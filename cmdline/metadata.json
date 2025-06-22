@@ -1,0 +1,21 @@
+{
+  "attributes": [
+    {
+      "display_type": "boost_number",
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "display_type": "number",
+      "trait_type": "Power",
+      "value": 95.0
+    },
+    {
+      "trait_type": "Element",
+      "value": "Fire"
+    }
+  ],
+  "description": "A magical spark of energy",
+  "image": "https://xea2t-daaaa-aaaaj-qnp2a-cai.raw.icp0.io/images/aetheric_spark.png",
+  "name": "Aetheric Spark"
+}

@@ -1,0 +1,296 @@
+[2025-06-22T20:33:58.679209] === NFT Metadata Generation Started ===
+[2025-06-22T20:33:58.679282] === Phase 1: BLIP Captioning All Images ===
+[2025-06-22T20:34:05.333062] [BLIP] Captioned bigblast.png: a cartoon character with a big head and a big body
+[2025-06-22T20:34:05.568353] [BLIP] Captioned goatman_x.png: a cartoon style illustration of a man with a goat head
+[2025-06-22T20:34:05.861673] [BLIP] Captioned cape_chroma.png: a white cat with a black and white outfit and a red caper
+[2025-06-22T20:34:06.084851] [BLIP] Captioned pixelheadsmile.png: a cartoon character with a big smile and a big head
+[2025-06-22T20:34:06.309333] [BLIP] Captioned velvet_horned_bull.png: a purple and green bull with horns and horns
+[2025-06-22T20:34:06.487480] [BLIP] Captioned cosmic_guardian.png: a cartoon style illustration of a dragon
+[2025-06-22T20:34:06.673193] [BLIP] Captioned verdant_pulse.png: a character with a green and purple outfit
+[2025-06-22T20:34:06.900696] [BLIP] Captioned fury_of_the_gun.png: a drawing of a man in a suit with a gun
+[2025-06-22T20:34:07.100839] [BLIP] Captioned eclipse_knight_cyber_samurai.png: a guy with long hair and a black suit
+[2025-06-22T20:34:07.335583] [BLIP] Captioned bustling_giant.png: a cartoon character with a big head and a big body
+[2025-06-22T20:34:07.525073] [BLIP] Captioned greeneye_chronicles.png: a cartoon character with a big green eye
+[2025-06-22T20:34:07.833354] [BLIP] Captioned verdant_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T20:34:08.066060] [BLIP] Captioned bunhead.png: a cartoon character with a big head and a big nose
+[2025-06-22T20:34:08.297303] [BLIP] Captioned stormblade_knight.png: a cartoon character with a helmet and a sword
+[2025-06-22T20:34:08.511122] [BLIP] Captioned fur_of_red.png: a woman with a red background and a white fox
+[2025-06-22T20:34:08.740611] [BLIP] Captioned eclipse_knight.png: a character in a suit with a helmet and a sword
+[2025-06-22T20:34:08.970312] [BLIP] Captioned two_hat_titan.png: a cartoon character with a hat and a hat on
+[2025-06-22T20:34:09.167077] [BLIP] Captioned beardglow.png: a cartoon character with a beard and a beard
+[2025-06-22T20:34:09.412986] [BLIP] Captioned emerald_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T20:34:09.647571] [BLIP] Captioned giantheadbod.png: a cartoon character with a big head and a big body
+[2025-06-22T20:34:09.865471] [BLIP] Captioned flickerfang.png: a white cat with a blue eyes and a red coat
+[2025-06-22T20:34:10.058807] [BLIP] Captioned vivid_ecliptic.png: a stylized illustration of a purple and green creature
+[2025-06-22T20:34:10.194437] [BLIP] Captioned furry_titan_giant.png: a very big furry
+[2025-06-22T20:34:10.416100] [BLIP] Captioned epic_nobe.png: a cartoon character with a big head and a big nose
+[2025-06-22T20:34:10.605316] [BLIP] Captioned frostbound_knight.png: a character in a suit with a sword
+[2025-06-22T20:34:10.832191] [BLIP] Captioned verdant_eclipse.png: a girl with green hair and horns, wearing a brown jacket
+[2025-06-22T20:34:11.050438] [BLIP] Captioned pink_pulse.png: a female character with a gun and a pink background
+[2025-06-22T20:34:11.453061] [BLIP] Captioned zephyr_s_furry_enigma.png: a very big, furry looking, purple - colored, furry - colored, and green - colored creature
+[2025-06-22T20:34:11.639922] [BLIP] Captioned ethereal_guardian.png: a character in a suit with a sword
+[2025-06-22T20:34:11.861842] [BLIP] Captioned aetherial_guardian.png: a white cat with a blue eyes and a white coat
+[2025-06-22T20:34:12.055351] [BLIP] Captioned feral_gun_cat.png: a cat with a gun in its hand
+[2025-06-22T20:34:12.225821] [BLIP] Captioned aetheric_spark.png: a cartoon style picture of a dragon
+[2025-06-22T20:34:12.408721] [BLIP] Captioned eclipse_horned.png: a cartoon style illustration of a horned animal
+[2025-06-22T20:34:12.591677] [BLIP] Captioned horned_sentinel.png: a cartoon character with horns and horns
+[2025-06-22T20:34:12.788857] [BLIP] Captioned crown_of_the_wild.png: a woman with horns and horns on her head
+[2025-06-22T20:34:12.995867] [BLIP] Captioned aetherwisp.png: a woman in a white coat and a blue sky
+[2025-06-22T20:34:13.245274] [BLIP] Captioned astral_horned_guardian.png: a cartoon character with horns and horns on his head
+[2025-06-22T20:34:13.447235] [BLIP] Captioned eclipse_green.png: a character with a hoodie and a green coat
+[2025-06-22T20:34:13.672892] [BLIP] Captioned pink_sphere_the_bloom.png: a female character with a pink background and a pink background
+[2025-06-22T20:34:13.874394] [BLIP] Captioned frostblade.png: a cartoon character with a sword in his hand
+[2025-06-22T20:34:14.085442] [BLIP] Captioned crimson_veil.png: a cat with a red coat and a blue background
+[2025-06-22T20:34:14.401041] [BLIP] Captioned headblast.png: a cartoon character with a big head and a big body
+[2025-06-22T20:34:14.645146] [BLIP] Captioned y_g_warrior.png: a character with a red and yellow outfit, holding a sword
+[2025-06-22T20:34:14.708889] [BLIP] Saved all captions to captions.json
+[2025-06-22T20:34:14.708968] === Phase 2: Generating Metadata with Ollama ===
+[2025-06-22T20:34:14.709097] [OLLAMA][INFO] Processing bigblast.png (attempt 1/3)
+[2025-06-22T20:34:14.710467] [OLLAMA][ERROR] Failed to process bigblast.png (attempt 1/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbd1956d6a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:17.710943] [OLLAMA][INFO] Processing bigblast.png (attempt 2/3)
+[2025-06-22T20:34:17.717020] [OLLAMA][ERROR] Failed to process bigblast.png (attempt 2/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc256f6850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:20.718515] [OLLAMA][INFO] Processing bigblast.png (attempt 3/3)
+[2025-06-22T20:34:20.725723] [OLLAMA][ERROR] Failed to process bigblast.png (attempt 3/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc256f65d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:20.726014] [OLLAMA][FAIL] Skipping bigblast.png after 3 failed attempts.
+[2025-06-22T20:34:20.726311] [OLLAMA][INFO] Processing goatman_x.png (attempt 1/3)
+[2025-06-22T20:34:20.733004] [OLLAMA][ERROR] Failed to process goatman_x.png (attempt 1/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc256ed940>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:23.733523] [OLLAMA][INFO] Processing goatman_x.png (attempt 2/3)
+[2025-06-22T20:34:23.738674] [OLLAMA][ERROR] Failed to process goatman_x.png (attempt 2/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc256ed6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:26.739253] [OLLAMA][INFO] Processing goatman_x.png (attempt 3/3)
+[2025-06-22T20:34:26.744089] [OLLAMA][ERROR] Failed to process goatman_x.png (attempt 3/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbd17d297f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:26.744372] [OLLAMA][FAIL] Skipping goatman_x.png after 3 failed attempts.
+[2025-06-22T20:34:26.744631] [OLLAMA][INFO] Processing cape_chroma.png (attempt 1/3)
+[2025-06-22T20:34:26.752188] [OLLAMA][ERROR] Failed to process cape_chroma.png (attempt 1/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc25693350>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:29.752615] [OLLAMA][INFO] Processing cape_chroma.png (attempt 2/3)
+[2025-06-22T20:34:29.755841] [OLLAMA][ERROR] Failed to process cape_chroma.png (attempt 2/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc25693020>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:32.756137] [OLLAMA][INFO] Processing cape_chroma.png (attempt 3/3)
+[2025-06-22T20:34:32.757589] [OLLAMA][ERROR] Failed to process cape_chroma.png (attempt 3/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc25692e00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:34:32.757668] [OLLAMA][FAIL] Skipping cape_chroma.png after 3 failed attempts.
+[2025-06-22T20:34:32.757735] [OLLAMA][INFO] Processing pixelheadsmile.png (attempt 1/3)
+[2025-06-22T20:34:32.759194] [OLLAMA][ERROR] Failed to process pixelheadsmile.png (attempt 1/3): HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fbc25692be0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[2025-06-22T20:35:19.574988] [OLLAMA] Ollama is not running. Attempting to start Ollama in the background...
+[2025-06-22T20:35:20.583761] [OLLAMA] Ollama started successfully.
+[2025-06-22T20:35:20.583945] === NFT Metadata Generation Started ===
+[2025-06-22T20:35:20.584044] === Phase 1: BLIP Captioning All Images ===
+[2025-06-22T20:35:26.069049] [BLIP] Captioned bigblast.png: a cartoon character with a big head and a big body
+[2025-06-22T20:35:26.306985] [BLIP] Captioned goatman_x.png: a cartoon style illustration of a man with a goat head
+[2025-06-22T20:35:26.561660] [BLIP] Captioned cape_chroma.png: a white cat with a black and white outfit and a red caper
+[2025-06-22T20:35:26.775821] [BLIP] Captioned pixelheadsmile.png: a cartoon character with a big smile and a big head
+[2025-06-22T20:35:26.965886] [BLIP] Captioned velvet_horned_bull.png: a purple and green bull with horns and horns
+[2025-06-22T20:35:27.140228] [BLIP] Captioned cosmic_guardian.png: a cartoon style illustration of a dragon
+[2025-06-22T20:35:27.317140] [BLIP] Captioned verdant_pulse.png: a character with a green and purple outfit
+[2025-06-22T20:35:27.534860] [BLIP] Captioned fury_of_the_gun.png: a drawing of a man in a suit with a gun
+[2025-06-22T20:35:27.731965] [BLIP] Captioned eclipse_knight_cyber_samurai.png: a guy with long hair and a black suit
+[2025-06-22T20:35:27.957507] [BLIP] Captioned bustling_giant.png: a cartoon character with a big head and a big body
+[2025-06-22T20:35:28.147589] [BLIP] Captioned greeneye_chronicles.png: a cartoon character with a big green eye
+[2025-06-22T20:35:28.456028] [BLIP] Captioned verdant_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T20:35:28.678122] [BLIP] Captioned bunhead.png: a cartoon character with a big head and a big nose
+[2025-06-22T20:35:28.889829] [BLIP] Captioned stormblade_knight.png: a cartoon character with a helmet and a sword
+[2025-06-22T20:35:29.100976] [BLIP] Captioned fur_of_red.png: a woman with a red background and a white fox
+[2025-06-22T20:35:29.324833] [BLIP] Captioned eclipse_knight.png: a character in a suit with a helmet and a sword
+[2025-06-22T20:35:29.535633] [BLIP] Captioned two_hat_titan.png: a cartoon character with a hat and a hat on
+[2025-06-22T20:35:29.725708] [BLIP] Captioned beardglow.png: a cartoon character with a beard and a beard
+[2025-06-22T20:35:29.975624] [BLIP] Captioned emerald_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T20:35:30.196098] [BLIP] Captioned giantheadbod.png: a cartoon character with a big head and a big body
+[2025-06-22T20:35:30.414543] [BLIP] Captioned flickerfang.png: a white cat with a blue eyes and a red coat
+[2025-06-22T20:35:30.608938] [BLIP] Captioned vivid_ecliptic.png: a stylized illustration of a purple and green creature
+[2025-06-22T20:35:30.743550] [BLIP] Captioned furry_titan_giant.png: a very big furry
+[2025-06-22T20:35:30.963714] [BLIP] Captioned epic_nobe.png: a cartoon character with a big head and a big nose
+[2025-06-22T20:35:31.152604] [BLIP] Captioned frostbound_knight.png: a character in a suit with a sword
+[2025-06-22T20:35:31.381863] [BLIP] Captioned verdant_eclipse.png: a girl with green hair and horns, wearing a brown jacket
+[2025-06-22T20:35:31.590496] [BLIP] Captioned pink_pulse.png: a female character with a gun and a pink background
+[2025-06-22T20:35:31.984688] [BLIP] Captioned zephyr_s_furry_enigma.png: a very big, furry looking, purple - colored, furry - colored, and green - colored creature
+[2025-06-22T20:35:32.164506] [BLIP] Captioned ethereal_guardian.png: a character in a suit with a sword
+[2025-06-22T20:35:32.389395] [BLIP] Captioned aetherial_guardian.png: a white cat with a blue eyes and a white coat
+[2025-06-22T20:35:32.575641] [BLIP] Captioned feral_gun_cat.png: a cat with a gun in its hand
+[2025-06-22T20:35:32.751265] [BLIP] Captioned aetheric_spark.png: a cartoon style picture of a dragon
+[2025-06-22T20:35:32.934739] [BLIP] Captioned eclipse_horned.png: a cartoon style illustration of a horned animal
+[2025-06-22T20:35:33.110040] [BLIP] Captioned horned_sentinel.png: a cartoon character with horns and horns
+[2025-06-22T20:35:33.307413] [BLIP] Captioned crown_of_the_wild.png: a woman with horns and horns on her head
+[2025-06-22T20:35:33.518921] [BLIP] Captioned aetherwisp.png: a woman in a white coat and a blue sky
+[2025-06-22T20:35:33.728805] [BLIP] Captioned astral_horned_guardian.png: a cartoon character with horns and horns on his head
+[2025-06-22T20:35:33.936070] [BLIP] Captioned eclipse_green.png: a character with a hoodie and a green coat
+[2025-06-22T20:35:34.173573] [BLIP] Captioned pink_sphere_the_bloom.png: a female character with a pink background and a pink background
+[2025-06-22T20:35:34.371971] [BLIP] Captioned frostblade.png: a cartoon character with a sword in his hand
+[2025-06-22T20:35:34.583798] [BLIP] Captioned crimson_veil.png: a cat with a red coat and a blue background
+[2025-06-22T20:35:34.900411] [BLIP] Captioned headblast.png: a cartoon character with a big head and a big body
+[2025-06-22T20:35:35.139957] [BLIP] Captioned y_g_warrior.png: a character with a red and yellow outfit, holding a sword
+[2025-06-22T20:35:35.204104] [BLIP] Saved all captions to captions.json
+[2025-06-22T20:35:35.204197] === Phase 2: Generating Metadata with Ollama ===
+[2025-06-22T20:35:35.204351] [OLLAMA][INFO] Processing bigblast.png (attempt 1/3)
+[2025-06-22T20:35:54.435219] [OLLAMA][SUCCESS] Renamed bigblast.png -> headbody.png
+[2025-06-22T20:35:54.435413] [OLLAMA][SUCCESS] Generated metadata for headbody.png -> metadata/headbody.json
+[2025-06-22T20:36:04.435632] [OLLAMA][INFO] Processing goatman_x.png (attempt 1/3)
+[2025-06-22T20:36:22.213243] [OLLAMA][SUCCESS] Renamed goatman_x.png -> goatman.png
+[2025-06-22T20:36:22.213445] [OLLAMA][SUCCESS] Generated metadata for goatman.png -> metadata/goatman.json
+[2025-06-22T20:36:32.213636] [OLLAMA][INFO] Processing cape_chroma.png (attempt 1/3)
+[2025-06-22T20:36:44.722755] [OLLAMA][SUCCESS] Renamed cape_chroma.png -> crimson_whisker.png
+[2025-06-22T20:36:44.722966] [OLLAMA][SUCCESS] Generated metadata for crimson_whisker.png -> metadata/crimson_whisker.json
+[2025-06-22T21:15:38.852032] [OLLAMA] Ollama is not running. Attempting to start Ollama in the background...
+[2025-06-22T21:15:39.855249] [OLLAMA] Ollama started successfully.
+[2025-06-22T21:15:39.855562] === NFT Metadata Generation Started ===
+[2025-06-22T21:15:39.855807] === Phase 1: BLIP Captioning All Images ===
+[2025-06-22T21:15:45.146594] [BLIP] Captioned cosmic_guardian.webp: a cartoon character with a big head and big horns
+[2025-06-22T21:15:45.386355] [BLIP] Captioned verdant_veil.webp: a drawing of a woman with a green hat and a green coat
+[2025-06-22T21:15:45.573047] [BLIP] Captioned vivid_ecliptic.webp: a stylized illustration of a purple and green creature
+[2025-06-22T21:15:45.792334] [BLIP] Captioned pixelheadsmile.png: a cartoon character with a big smile and a big head
+[2025-06-22T21:15:45.967394] [BLIP] Captioned ethereal_guardian.webp: a character in a suit with a sword
+[2025-06-22T21:15:46.161756] [BLIP] Captioned velvet_horned_bull.png: a purple and green bull with horns and horns
+[2025-06-22T21:15:46.351118] [BLIP] Captioned greeneye_chronicles.webp: a stylized illustration of a purple and green creature
+[2025-06-22T21:15:46.534792] [BLIP] Captioned bustling_giant.webp: a character in a suit with horns and horns
+[2025-06-22T21:15:46.712497] [BLIP] Captioned cosmic_guardian.png: a cartoon style illustration of a dragon
+[2025-06-22T21:15:46.913749] [BLIP] Captioned flickerfang.webp: a white cat with a blue eyes and a red coat
+[2025-06-22T21:15:47.093465] [BLIP] Captioned verdant_pulse.png: a character with a green and purple outfit
+[2025-06-22T21:15:47.309552] [BLIP] Captioned eclipse_knight.webp: a character in a suit with a green and yellow background
+[2025-06-22T21:15:47.522341] [BLIP] Captioned fury_of_the_gun.png: a drawing of a man in a suit with a gun
+[2025-06-22T21:15:47.720815] [BLIP] Captioned eclipse_knight_cyber_samurai.png: a guy with long hair and a black suit
+[2025-06-22T21:15:47.968760] [BLIP] Captioned astral_horned_guardian.webp: a character with horns and horns on his head, standing on a rock
+[2025-06-22T21:15:48.216688] [BLIP] Captioned bustling_giant.png: a cartoon character with a big head and a big body
+[2025-06-22T21:15:48.401494] [BLIP] Captioned greeneye_chronicles.png: a cartoon character with a big green eye
+[2025-06-22T21:15:48.596817] [BLIP] Captioned eclipse_green.webp: a character with a hoodie and a green coat
+[2025-06-22T21:15:48.900342] [BLIP] Captioned verdant_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T21:15:49.137947] [BLIP] Captioned fury_of_the_gun.webp: a drawing of a man in a suit and helmet holding a gun
+[2025-06-22T21:15:49.454711] [BLIP] Captioned furry_titan_giant.webp: a very big, furry, and very big, furry, and very big, furry, and very
+[2025-06-22T21:15:49.683098] [BLIP] Captioned bunhead.png: a cartoon character with a big head and a big nose
+[2025-06-22T21:15:49.859690] [BLIP] Captioned frostblade.webp: a character in the sky with a sword
+[2025-06-22T21:15:50.062452] [BLIP] Captioned stormblade_knight.png: a cartoon character with a helmet and a sword
+[2025-06-22T21:15:50.282066] [BLIP] Captioned fur_of_red.png: a woman with a red background and a white fox
+[2025-06-22T21:15:50.471940] [BLIP] Captioned pixelheadsmile.webp: a character with horns and horns, wearing a helmet
+[2025-06-22T21:15:50.692347] [BLIP] Captioned eclipse_knight.png: a character in a suit with a helmet and a sword
+[2025-06-22T21:15:50.874936] [BLIP] Captioned stormblade_knight.webp: a character in a space suit with a sword
+[2025-06-22T21:15:51.052692] [BLIP] Captioned feral_gun_cat.webp: a cat with a gun in its hand
+[2025-06-22T21:15:51.262472] [BLIP] Captioned eclipse_horned.webp: a cartoon character with a big head and a big nose
+[2025-06-22T21:15:51.482055] [BLIP] Captioned two_hat_titan.png: a cartoon character with a hat and a hat on
+[2025-06-22T21:15:51.684256] [BLIP] Captioned beardglow.png: a cartoon character with a beard and a beard
+[2025-06-22T21:15:51.931055] [BLIP] Captioned emerald_veil.png: a drawing of a woman with a green hat and a green coat
+[2025-06-22T21:15:52.170998] [BLIP] Captioned crimson_whisker.webp: a white cat with a black and white outfit and a red caper
+[2025-06-22T21:15:52.392619] [BLIP] Captioned giantheadbod.png: a cartoon character with a big head and a big body
+[2025-06-22T21:15:52.624585] [BLIP] Captioned flickerfang.png: a white cat with a blue eyes and a red coat
+[2025-06-22T21:15:52.809990] [BLIP] Captioned velvet_horned_bull.webp: a stylized illustration of an elephant with green eyes
+[2025-06-22T21:15:53.013800] [BLIP] Captioned pink_sphere_the_bloom.webp: a female character with a pink background and a pink background
+[2025-06-22T21:15:53.207345] [BLIP] Captioned vivid_ecliptic.png: a stylized illustration of a purple and green creature
+[2025-06-22T21:15:53.400694] [BLIP] Captioned epic_nobe.webp: a character with a big head and a big nose
+[2025-06-22T21:15:53.534652] [BLIP] Captioned furry_titan_giant.png: a very big furry
+[2025-06-22T21:15:53.776166] [BLIP] Captioned emerald_veil.webp: a drawing of a woman with a green hat and a green coat
+[2025-06-22T21:15:53.949511] [BLIP] Captioned frostbound_knight.webp: a character in a suit with a sword
+[2025-06-22T21:15:54.169678] [BLIP] Captioned epic_nobe.png: a cartoon character with a big head and a big nose
+[2025-06-22T21:15:54.354457] [BLIP] Captioned frostbound_knight.png: a character in a suit with a sword
+[2025-06-22T21:15:54.569004] [BLIP] Captioned zephyr_s_furry_enigma.webp: a very big, furry, and very big, furry monster
+[2025-06-22T21:15:54.755724] [BLIP] Captioned eclipse_knight_cyber_samurai.webp: a man with long hair and a black suit
+[2025-06-22T21:15:55.051119] [BLIP] Captioned headbody.webp: a character with a big head and a big body, wearing a helmet and holding a sword
+[2025-06-22T21:15:55.285603] [BLIP] Captioned verdant_eclipse.png: a girl with green hair and horns, wearing a brown jacket
+[2025-06-22T21:15:55.492854] [BLIP] Captioned pink_pulse.png: a female character with a gun and a pink background
+[2025-06-22T21:15:55.691933] [BLIP] Captioned aetherial_guardian.webp: a white cat with blue eyes and a white coat
+[2025-06-22T21:15:55.895805] [BLIP] Captioned verdant_pulse.webp: a woman in a green and purple outfit holding a gun
+[2025-06-22T21:15:56.092140] [BLIP] Captioned crimson_veil.webp: a cat with a red coat and a blue eyes
+[2025-06-22T21:15:56.320147] [BLIP] Captioned headbody.png: a cartoon character with a big head and a big body
+[2025-06-22T21:15:56.515556] [BLIP] Captioned aetheric_spark.webp: a cartoon character with a big head and big eyes
+[2025-06-22T21:15:56.913343] [BLIP] Captioned zephyr_s_furry_enigma.png: a very big, furry looking, purple - colored, furry - colored, and green - colored creature
+[2025-06-22T21:15:57.098997] [BLIP] Captioned ethereal_guardian.png: a character in a suit with a sword
+[2025-06-22T21:15:57.364118] [BLIP] Captioned crimson_whisker.png: a white cat with a black and white outfit and a red caper
+[2025-06-22T21:15:57.630468] [BLIP] Captioned verdant_eclipse.webp: a woman with green hair and horns, wearing a white shirt and a brown jacket
+[2025-06-22T21:15:57.833068] [BLIP] Captioned pink_pulse.webp: a female character with a pink background and a black cat
+[2025-06-22T21:15:58.057841] [BLIP] Captioned aetherial_guardian.png: a white cat with a blue eyes and a white coat
+[2025-06-22T21:15:58.243049] [BLIP] Captioned feral_gun_cat.png: a cat with a gun in its hand
+[2025-06-22T21:15:58.473059] [BLIP] Captioned two_hat_titan.webp: a character with a hat and a hat on, holding a sword
+[2025-06-22T21:15:58.648106] [BLIP] Captioned aetheric_spark.png: a cartoon style picture of a dragon
+[2025-06-22T21:15:58.967264] [BLIP] Captioned beardglow.webp: a character with a white beard and a long white beard, wearing a black coat and a red cape
+[2025-06-22T21:15:59.153027] [BLIP] Captioned headblast.webp: a character in a suit with horns and horns
+[2025-06-22T21:15:59.342770] [BLIP] Captioned eclipse_horned.png: a cartoon style illustration of a horned animal
+[2025-06-22T21:15:59.515171] [BLIP] Captioned horned_sentinel.png: a cartoon character with horns and horns
+[2025-06-22T21:15:59.709444] [BLIP] Captioned fur_of_red.webp: a woman with a red background and a white fox
+[2025-06-22T21:15:59.911574] [BLIP] Captioned crown_of_the_wild.png: a woman with horns and horns on her head
+[2025-06-22T21:16:00.086227] [BLIP] Captioned goatman.webp: a cartoon character with horns and a backpack
+[2025-06-22T21:16:00.310282] [BLIP] Captioned aetherwisp.png: a woman in a white coat and a blue sky
+[2025-06-22T21:16:00.497532] [BLIP] Captioned crown_of_the_wild.webp: a woman with horns and horns on her head
+[2025-06-22T21:16:00.720997] [BLIP] Captioned astral_horned_guardian.png: a cartoon character with horns and horns on his head
+[2025-06-22T21:16:00.935452] [BLIP] Captioned eclipse_green.png: a character with a hoodie and a green coat
+[2025-06-22T21:16:01.164160] [BLIP] Captioned pink_sphere_the_bloom.png: a female character with a pink background and a pink background
+[2025-06-22T21:16:01.369611] [BLIP] Captioned frostblade.png: a cartoon character with a sword in his hand
+[2025-06-22T21:16:01.734957] [BLIP] Captioned y_g_warrior.webp: a character with a big head and a big tail, wearing a red jacket and a yellow jacket
+[2025-06-22T21:16:01.929902] [BLIP] Captioned giantheadbod.webp: a character in a suit with horns and horns
+[2025-06-22T21:16:02.139536] [BLIP] Captioned crimson_veil.png: a cat with a red coat and a blue background
+[2025-06-22T21:16:02.447740] [BLIP] Captioned headblast.png: a cartoon character with a big head and a big body
+[2025-06-22T21:16:02.635758] [BLIP] Captioned bunhead.webp: a cartoon character with a big head and horns
+[2025-06-22T21:16:02.875398] [BLIP] Captioned y_g_warrior.png: a character with a red and yellow outfit, holding a sword
+[2025-06-22T21:16:03.101734] [BLIP] Captioned goatman.png: a cartoon style illustration of a man with a goat head
+[2025-06-22T21:16:03.321215] [BLIP] Captioned horned_sentinel.webp: a female character with horns and horns, holding a cigarette
+[2025-06-22T21:16:03.532043] [BLIP] Captioned aetherwisp.webp: a woman in a white coat and a blue sky background
+[2025-06-22T21:16:03.595119] [BLIP] Saved all captions to captions.json
+[2025-06-22T21:16:03.595203] === Phase 2: Generating Metadata with Ollama ===
+[2025-06-22T21:16:03.595343] [OLLAMA][INFO] Processing cosmic_guardian.webp (attempt 1/3)
+[2025-06-22T21:16:15.099111] [OLLAMA][SUCCESS] Renamed cosmic_guardian.webp -> bramble_horned.webp
+[2025-06-22T21:16:15.099264] [OLLAMA][SUCCESS] Generated metadata for bramble_horned.webp -> metadata/bramble_horned.json
+[2025-06-22T21:16:25.099666] [OLLAMA][INFO] Processing verdant_veil.webp (attempt 1/3)
+[2025-06-22T21:16:32.881477] [OLLAMA][SUCCESS] Renamed verdant_veil.webp -> verdant_guardian.webp
+[2025-06-22T21:16:32.881681] [OLLAMA][SUCCESS] Generated metadata for verdant_guardian.webp -> metadata/verdant_guardian.json
+[2025-06-22T21:16:42.882067] [OLLAMA][INFO] Processing vivid_ecliptic.webp (attempt 1/3)
+[2025-06-22T21:16:52.920304] [OLLAMA][SUCCESS] Renamed vivid_ecliptic.webp -> zephyr_veil.webp
+[2025-06-22T21:16:52.920452] [OLLAMA][SUCCESS] Generated metadata for zephyr_veil.webp -> metadata/zephyr_veil.json
+[2025-06-22T21:17:02.920885] [OLLAMA][INFO] Processing pixelheadsmile.png (attempt 1/3)
+[2025-06-22T21:17:15.708433] [OLLAMA][SUCCESS] Renamed pixelheadsmile.png -> smilesphere.png
+[2025-06-22T21:17:15.708629] [OLLAMA][SUCCESS] Generated metadata for smilesphere.png -> metadata/smilesphere.json
+[2025-06-22T21:17:25.709075] [OLLAMA][INFO] Processing ethereal_guardian.webp (attempt 1/3)
+[2025-06-22T21:17:38.570031] [OLLAMA][SUCCESS] Renamed ethereal_guardian.webp -> blade_sovereign.webp
+[2025-06-22T21:17:38.570202] [OLLAMA][SUCCESS] Generated metadata for blade_sovereign.webp -> metadata/blade_sovereign.json
+[2025-06-22T21:17:48.570590] [OLLAMA][INFO] Processing velvet_horned_bull.png (attempt 1/3)
+[2025-06-22T21:18:00.262126] [OLLAMA][SUCCESS] Renamed velvet_horned_bull.png -> vivid_vortex.png
+[2025-06-22T21:18:00.262335] [OLLAMA][SUCCESS] Generated metadata for vivid_vortex.png -> metadata/vivid_vortex.json
+[2025-06-22T21:18:10.262717] [OLLAMA][INFO] Processing greeneye_chronicles.webp (attempt 1/3)
+[2025-06-22T21:18:18.403945] [OLLAMA][SUCCESS] Renamed greeneye_chronicles.webp -> eclipse_pulse.webp
+[2025-06-22T21:18:18.404129] [OLLAMA][SUCCESS] Generated metadata for eclipse_pulse.webp -> metadata/eclipse_pulse.json
+[2025-06-22T21:18:28.404543] [OLLAMA][INFO] Processing bustling_giant.webp (attempt 1/3)
+[2025-06-22T21:18:42.490643] [OLLAMA][SUCCESS] Renamed bustling_giant.webp -> horned_sovereign.webp
+[2025-06-22T21:18:42.490835] [OLLAMA][SUCCESS] Generated metadata for horned_sovereign.webp -> metadata/horned_sovereign.json
+[2025-06-22T21:18:52.491227] [OLLAMA][INFO] Processing cosmic_guardian.png (attempt 1/3)
+[2025-06-22T21:19:08.752473] [OLLAMA][SUCCESS] Renamed cosmic_guardian.png -> cyber_dragon.png
+[2025-06-22T21:19:08.752695] [OLLAMA][SUCCESS] Generated metadata for cyber_dragon.png -> metadata/cyber_dragon.json
+[2025-06-22T21:19:18.753087] [OLLAMA][INFO] Processing flickerfang.webp (attempt 1/3)
+[2025-06-22T21:19:31.533833] [OLLAMA][SUCCESS] Renamed flickerfang.webp -> crimson_velvet.webp
+[2025-06-22T21:19:31.534023] [OLLAMA][SUCCESS] Generated metadata for crimson_velvet.webp -> metadata/crimson_velvet.json
+[2025-06-22T21:19:41.534435] [OLLAMA][INFO] Processing verdant_pulse.png (attempt 1/3)
+[2025-06-22T21:19:48.954152] [OLLAMA][SUCCESS] Generated metadata for verdant_pulse.png -> metadata/verdant_pulse.json
+[2025-06-22T21:19:58.954587] [OLLAMA][INFO] Processing eclipse_knight.webp (attempt 1/3)
+[2025-06-22T21:20:18.740108] [OLLAMA][SUCCESS] Renamed eclipse_knight.webp -> eclipse_suit.webp
+[2025-06-22T21:20:18.740307] [OLLAMA][SUCCESS] Generated metadata for eclipse_suit.webp -> metadata/eclipse_suit.json
+[2025-06-22T21:20:28.740657] [OLLAMA][INFO] Processing fury_of_the_gun.png (attempt 1/3)
+[2025-06-22T21:20:47.388492] [OLLAMA][SUCCESS] Renamed fury_of_the_gun.png -> gunblade_vanguard.png
+[2025-06-22T21:20:47.388648] [OLLAMA][SUCCESS] Generated metadata for gunblade_vanguard.png -> metadata/gunblade_vanguard.json
+[2025-06-22T21:20:57.389040] [OLLAMA][INFO] Processing eclipse_knight_cyber_samurai.png (attempt 1/3)
+[2025-06-22T21:21:10.812219] [OLLAMA][SUCCESS] Renamed eclipse_knight_cyber_samurai.png -> ethereal_knight.png
+[2025-06-22T21:21:10.812406] [OLLAMA][SUCCESS] Generated metadata for ethereal_knight.png -> metadata/ethereal_knight.json
+[2025-06-22T21:21:20.812784] [OLLAMA][INFO] Processing astral_horned_guardian.webp (attempt 1/3)
+[2025-06-22T21:21:33.746874] [OLLAMA][SUCCESS] Renamed astral_horned_guardian.webp -> horned_titan.webp
+[2025-06-22T21:21:33.747069] [OLLAMA][SUCCESS] Generated metadata for horned_titan.webp -> metadata/horned_titan.json
+[2025-06-22T21:21:43.747454] [OLLAMA][INFO] Processing bustling_giant.png (attempt 1/3)
+[2025-06-22T21:22:13.095456] [OLLAMA][SUCCESS] Renamed bustling_giant.png -> big_head_big_body.png
+[2025-06-22T21:22:13.095632] [OLLAMA][SUCCESS] Generated metadata for big_head_big_body.png -> metadata/big_head_big_body.json
+[2025-06-22T21:22:23.096095] [OLLAMA][INFO] Processing greeneye_chronicles.png (attempt 1/3)
+[2025-06-22T21:22:37.951682] [OLLAMA][SUCCESS] Renamed greeneye_chronicles.png -> green_eye_guardian.png
+[2025-06-22T21:22:37.951934] [OLLAMA][SUCCESS] Generated metadata for green_eye_guardian.png -> metadata/green_eye_guardian.json
+[2025-06-22T21:22:47.952363] [OLLAMA][INFO] Processing eclipse_green.webp (attempt 1/3)
+[2025-06-22T21:22:56.081163] [OLLAMA][SUCCESS] Renamed eclipse_green.webp -> hooded_verdant_guardian.webp
+[2025-06-22T21:22:56.081354] [OLLAMA][SUCCESS] Generated metadata for hooded_verdant_guardian.webp -> metadata/hooded_verdant_guardian.json
+[2025-06-22T21:23:06.081770] [OLLAMA][INFO] Processing verdant_veil.png (attempt 1/3)
+[2025-06-22T21:23:17.614424] [OLLAMA][SUCCESS] Generated metadata for verdant_veil.png -> metadata/verdant_veil.json
+[2025-06-22T21:23:27.614844] [OLLAMA][INFO] Processing fury_of_the_gun.webp (attempt 1/3)
+[2025-06-22T21:23:43.503976] [OLLAMA][SUCCESS] Renamed fury_of_the_gun.webp -> fury_titan_tactical_guardian_gun_commander.webp
+[2025-06-22T21:23:43.504179] [OLLAMA][SUCCESS] Generated metadata for fury_titan_tactical_guardian_gun_commander.webp -> metadata/fury_titan_tactical_guardian_gun_commander.json
+[2025-06-22T21:23:53.504565] [OLLAMA][INFO] Processing furry_titan_giant.webp (attempt 1/3)
+[2025-06-22T21:24:10.189863] [OLLAMA][SUCCESS] Renamed furry_titan_giant.webp -> furry_titan_of_the_deep.webp
+[2025-06-22T21:24:10.190062] [OLLAMA][SUCCESS] Generated metadata for furry_titan_of_the_deep.webp -> metadata/furry_titan_of_the_deep.json
+[2025-06-22T21:24:20.190449] [OLLAMA][INFO] Processing bunhead.png (attempt 1/3)
+[2025-06-22T21:24:30.646143] [OLLAMA][SUCCESS] Renamed bunhead.png -> big_nosed_brawler.png
+[2025-06-22T21:24:30.646400] [OLLAMA][SUCCESS] Generated metadata for big_nosed_brawler.png -> metadata/big_nosed_brawler.json
+[2025-06-22T21:24:40.646665] [OLLAMA][INFO] Processing frostblade.webp (attempt 1/3)
+[2025-06-22T21:24:52.252452] [OLLAMA][SUCCESS] Renamed frostblade.webp -> aetherian_skyblade.webp
+[2025-06-22T21:24:52.252654] [OLLAMA][SUCCESS] Generated metadata for aetherian_skyblade.webp -> metadata/aetherian_skyblade.json
+[2025-06-22T21:25:02.253049] [OLLAMA][INFO] Processing stormblade_knight.png (attempt 1/3)
+[2025-06-22T21:25:15.230435] [OLLAMA][SUCCESS] Renamed stormblade_knight.png -> storm_helm_knight.png
+[2025-06-22T21:25:15.230633] [OLLAMA][SUCCESS] Generated metadata for storm_helm_knight.png -> metadata/storm_helm_knight.json
+[2025-06-22T21:25:25.231039] [OLLAMA][INFO] Processing fur_of_red.png (attempt 1/3)
+[2025-06-22T21:25:37.892443] [OLLAMA][SUCCESS] Renamed fur_of_red.png -> whispers_of_red.png
+[2025-06-22T21:25:37.892646] [OLLAMA][SUCCESS] Generated metadata for whispers_of_red.png -> metadata/whispers_of_red.json
+[2025-06-22T21:25:47.892848] [OLLAMA][INFO] Processing pixelheadsmile.webp (attempt 1/3)
+[2025-06-22T21:25:57.710117] [OLLAMA][SUCCESS] Renamed pixelheadsmile.webp -> helmbound.webp
+[2025-06-22T21:25:57.710351] [OLLAMA][SUCCESS] Generated metadata for helmbound.webp -> metadata/helmbound.json
