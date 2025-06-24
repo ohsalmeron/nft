@@ -294,3 +294,481 @@
 [2025-06-22T21:25:47.892848] [OLLAMA][INFO] Processing pixelheadsmile.webp (attempt 1/3)
 [2025-06-22T21:25:57.710117] [OLLAMA][SUCCESS] Renamed pixelheadsmile.webp -> helmbound.webp
 [2025-06-22T21:25:57.710351] [OLLAMA][SUCCESS] Generated metadata for helmbound.webp -> metadata/helmbound.json
+[2025-06-23T01:44:19.105885] [OLLAMA] Ollama is already running.
+[2025-06-23T01:44:19.105945] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:44:19.105980] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:44:19.106168] No new PNG files to convert.
+[2025-06-23T01:44:19.106206] === Phase 1 Complete ===
+[2025-06-23T01:44:19.106240] ====================
+[2025-06-23T01:44:19.106274] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:44:50.895745] [OLLAMA] Ollama is already running.
+[2025-06-23T01:44:50.895808] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:44:50.895863] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:44:50.896053] No new PNG files to convert.
+[2025-06-23T01:44:50.896099] === Phase 1 Complete ===
+[2025-06-23T01:44:50.896135] ====================
+[2025-06-23T01:44:50.896169] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:44:55.878289] [BLIP] Captioned era_of_glam.webp: a man with a mustache and a beard, wearing a suit
+[2025-06-23T01:44:56.179299] [BLIP] Captioned furry_wisp.webp: a very big, furry, and very big, furry, and very big, furry, and very
+[2025-06-23T01:44:56.417611] [BLIP] Captioned whirled_white.webp: a white cat with a black and white outfit and a red caper
+[2025-06-23T01:44:56.667731] [BLIP] Captioned green_yellow_guardian.webp: a woman with long hair and a hat, wearing a green and yellow outfit
+[2025-06-23T01:44:56.859232] [BLIP] Captioned verdant_veil.webp: a woman in a green hat and green jacket
+[2025-06-23T01:44:57.052623] [BLIP] Captioned eclipse_glow.webp: a cartoon character with a green light on her chest
+[2025-06-23T01:44:57.264171] [BLIP] Captioned nosey_the_nerd.webp: a cartoon character with a big nose and a big nose
+[2025-06-23T01:44:57.429988] [BLIP] Captioned eclipse_vanguard.webp: a character in a suit with a sword
+[2025-06-23T01:44:57.599425] [BLIP] Captioned aetherian_skyblade.webp: a character in the sky with a sword
+[2025-06-23T01:44:57.870059] [BLIP] Captioned blossom_s_tower.webp: a woman with a big breast and a big breast, standing in front of a tree
+[2025-06-23T01:44:58.152414] [BLIP] Captioned beard_s_aviator.webp: a man with a beard and a beard, sitting on a bench with birds flying around him
+[2025-06-23T01:44:58.394003] [BLIP] Captioned giant_titan.webp: a character with a big head and a big body, wearing a suit
+[2025-06-23T01:44:58.574813] [BLIP] Captioned eclipse.webp: a green and black robot with a green face
+[2025-06-23T01:44:58.783884] [BLIP] Captioned crimson_veil_blue_cat.webp: a white cat with a blue eyes and a red coat
+[2025-06-23T01:44:58.977244] [BLIP] Captioned green_hooded_sage.webp: a cartoon character with a beard and a green helmet
+[2025-06-23T01:44:59.193315] [BLIP] Captioned horned_sky.webp: a female character with horns and horns, wearing a blue outfit
+[2025-06-23T01:44:59.385062] [BLIP] Captioned horned_titan.webp: a cartoon character with a big head and big horns
+[2025-06-23T01:44:59.570088] [BLIP] Captioned zephyr_zealot.webp: a cartoon character with a green and yellow outfit
+[2025-06-23T01:44:59.763096] [BLIP] Captioned sky_gun_warden.webp: a woman with a gun and a blue sky background
+[2025-06-23T01:44:59.965878] [BLIP] Captioned head_nose_guardian.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:00.244126] [BLIP] Captioned horned_sun_voyager.webp: a woman with horns and a hoodie, holding her head in front of the sun
+[2025-06-23T01:45:00.528629] [BLIP] Captioned horned_sunne.webp: a woman with horns and a hoodie, holding her head in front of the sun
+[2025-06-23T01:45:00.772023] [BLIP] Captioned pink_purr.webp: a female character with a pink background and a black cat
+[2025-06-23T01:45:00.980209] [BLIP] Captioned smilenose.webp: a character with a big smile and a big nose
+[2025-06-23T01:45:01.183563] [BLIP] Captioned eyespace.webp: a character in a space suit with a green eye
+[2025-06-23T01:45:01.379320] [BLIP] Captioned smilebite_the_charmer.webp: a cartoon character with a big smile and big teeth
+[2025-06-23T01:45:01.607490] [BLIP] Captioned erect_titan.webp: a character in a suit with a big head and a big body
+[2025-06-23T01:45:01.850877] [BLIP] Captioned massiv_maw_titan_s_blade.webp: a character with a big head and a big nose, holding a sword
+[2025-06-23T01:45:02.051743] [BLIP] Captioned maw_s_mustache.webp: a man with a mustache and a mustache in his mouth
+[2025-06-23T01:45:02.250953] [BLIP] Captioned giant_head_body.webp: a character with a big head and a big body
+[2025-06-23T01:45:02.502981] [BLIP] Captioned glimmer_veil.webp: a woman with long hair and a hat, wearing a green and white outfit
+[2025-06-23T01:45:02.698958] [BLIP] Captioned smilebite.webp: a cartoon character with a big smile and big teeth
+[2025-06-23T01:45:02.902682] [BLIP] Captioned green_horned.webp: a female with horns and horns, wearing a green outfit
+[2025-06-23T01:45:03.103397] [BLIP] Captioned crimson_whisp.webp: a white cat with a red coat and a blue cape
+[2025-06-23T01:45:03.287189] [BLIP] Captioned velis_crimson_gambit.webp: a character in a purple outfit with a sword
+[2025-06-23T01:45:03.477310] [BLIP] Captioned eyes_of_the_cosmos.webp: a cartoon character with a big head and big eyes
+[2025-06-23T01:45:03.658409] [BLIP] Captioned verdant_vex.webp: a stylized illustration of a demon with green eyes
+[2025-06-23T01:45:03.861297] [BLIP] Captioned crimson_whiteness_blue_eyes.webp: a white wolf with a red coat and a blue eyes
+[2025-06-23T01:45:04.095956] [BLIP] Captioned emerald_veil_guardian.webp: a drawing of a woman with a green hat and a green coat
+[2025-06-23T01:45:04.267413] [BLIP] Captioned mustache_master_the_guardian_of_the_smile.webp: a man with a mustache and a mustache
+[2025-06-23T01:45:04.560757] [BLIP] Captioned helmblade_titan.webp: a character with a big head and a big body, wearing a helmet and holding a sword
+[2025-06-23T01:45:04.798652] [BLIP] Captioned suitspectacle.webp: a man with a green and black suit and a green and black suit
+[2025-06-23T01:45:05.020677] [BLIP] Captioned eternal_beard_in_the_suit.webp: a man with a mustache and a beard, wearing a suit
+[2025-06-23T01:45:05.199643] [BLIP] Captioned eon_whitle.webp: a character with long hair and a white face
+[2025-06-23T01:45:05.438019] [BLIP] Captioned titan_of_the_head_and_nose.webp: a character with a big head and a big nose, wearing a suit
+[2025-06-23T01:45:05.740521] [BLIP] Captioned whitewarden_knight.webp: a character with a white beard and a long white beard, wearing a black coat and a red cape
+[2025-06-23T01:45:05.914130] [BLIP] Captioned aetherian_vanguard.webp: a character in the sky with a sword
+[2025-06-23T01:45:06.123474] [BLIP] Captioned smile_nose_the_cartoon_companion.webp: a cartoon character with a big smile and a big nose
+[2025-06-23T01:45:06.302871] [BLIP] Captioned horned_horizon.webp: a character with horns and horns on his head
+[2025-06-23T01:45:06.593663] [BLIP] Captioned red_velvet_eclipse.webp: a woman with long hair and a red coat, wearing a red coat and a yellow collar
+[2025-06-23T01:45:06.801445] [BLIP] Captioned mawtastic.webp: a cartoon character with a big mouth and a big nose
+[2025-06-23T01:45:07.015200] [BLIP] Captioned eclipse_glimmer.webp: a stylized illustration of a purple and green monster with green eyes
+[2025-06-23T01:45:07.194144] [BLIP] Captioned zephyr_fusion.webp: a cartoon character with a purple and green outfit
+[2025-06-23T01:45:07.401261] [BLIP] Captioned eclipsed_unicorn.webp: a cartoon character with a unicorn like face and purple hair
+[2025-06-23T01:45:07.582142] [BLIP] Captioned vesper_s_edge.webp: a character in a purple outfit with a sword
+[2025-06-23T01:45:07.764146] [BLIP] Captioned verdant_vanguard.webp: a character in a suit with a green background
+[2025-06-23T01:45:07.950274] [BLIP] Captioned eclipsed_horns.webp: a woman with horns and horns on her head
+[2025-06-23T01:45:08.148235] [BLIP] Captioned verdant_guardian.webp: a character with a hoodie and a green coat
+[2025-06-23T01:45:08.355179] [BLIP] Captioned radiant_smile.webp: a cartoon character with a big smile and a big smile
+[2025-06-23T01:45:08.559964] [BLIP] Captioned crimson_flame_horned_whispers_smoke_seraph.webp: a female character with horns and horns, holding a cigarette
+[2025-06-23T01:45:08.737400] [BLIP] Captioned azure_ember_neon_elegance.webp: a cat with blue eyes and a red shirt
+[2025-06-23T01:45:09.013667] [BLIP] Captioned purple_starweaver.webp: a woman with a purple hair and a purple hat, holding a blue and yellow star
+[2025-06-23T01:45:09.185012] [BLIP] Captioned mustache_beard.webp: a man with a mustache and a mustache
+[2025-06-23T01:45:09.424203] [BLIP] Captioned mouthy_munch.webp: a cartoon character with a big mouth and a big nose
+[2025-06-23T01:45:09.632978] [BLIP] Captioned verdantguardian.webp: a character with a green background and a green background
+[2025-06-23T01:45:09.815052] [BLIP] Captioned shadowweaver.webp: a man with long hair and a black suit
+[2025-06-23T01:45:10.038118] [BLIP] Captioned orbital_glimmer.webp: a character in a space suit with a green and orange face
+[2025-06-23T01:45:10.230178] [BLIP] Captioned green_queen.webp: a woman in a green hat and a green hat
+[2025-06-23T01:45:10.422969] [BLIP] Captioned horned_cavalier.webp: a character with horns and horns, wearing a helmet
+[2025-06-23T01:45:10.601915] [BLIP] Captioned twilight_veil.webp: a stylized illustration of a purple and green creature
+[2025-06-23T01:45:10.793819] [BLIP] Captioned era_of_giants.webp: a character with a big head and a big nose
+[2025-06-23T01:45:11.005430] [BLIP] Captioned cuddlebloom.webp: a very cute and colorful character i made for a friend
+[2025-06-23T01:45:11.199609] [BLIP] Captioned ecliptic_whisker.webp: a white cat with blue hair and a red tie
+[2025-06-23T01:45:11.429648] [BLIP] Captioned massive_maelstrom.webp: a character with a big head and a big body
+[2025-06-23T01:45:11.652909] [BLIP] Captioned horned_explorer.webp: a cartoon character with horns and a backpack
+[2025-06-23T01:45:11.834045] [BLIP] Captioned horned_aetherian_warrior.webp: a character in a suit with horns and horns
+[2025-06-23T01:45:12.040615] [BLIP] Captioned vapor_pulse.webp: a woman in a green and purple outfit holding a gun
+[2025-06-23T01:45:12.230116] [BLIP] Captioned horned_warlord.webp: a character with horns and horns, holding a weapon
+[2025-06-23T01:45:12.426116] [BLIP] Captioned verdant_pulse.webp: a character in a purple suit with a green background
+[2025-06-23T01:45:12.667577] [BLIP] Captioned swordhead.webp: a character with a big head and a big nose, holding a sword
+[2025-06-23T01:45:12.874561] [BLIP] Captioned zephyr_s_glowing_caper.webp: a character with a green background and a purple caper
+[2025-06-23T01:45:13.081837] [BLIP] Captioned maw_of_the_abyss.webp: a stylized illustration of a demonic monster with a big mouth
+[2025-06-23T01:45:13.301417] [BLIP] Captioned hooded_horizon.webp: a cartoon character with a hoodie and a hoodie hat
+[2025-06-23T01:45:13.492296] [BLIP] Captioned luminara.webp: a cartoon character with a green light on her chest
+[2025-06-23T01:45:13.750323] [BLIP] Captioned skyborn_eclipse.webp: a character in a blue sky with a large head and a big, long nose
+[2025-06-23T01:45:14.039234] [BLIP] Captioned helm_titan_warrior.webp: a character with a big head and a big body, wearing a helmet and holding a sword
+[2025-06-23T01:45:14.241626] [BLIP] Captioned pink_pulse.webp: a female character with a pink background and a pink background
+[2025-06-23T01:45:14.464182] [BLIP] Captioned green_veil_the_guardian_of_the_green.webp: a drawing of a woman with a green hat and a green coat
+[2025-06-23T01:45:14.631663] [BLIP] Captioned eclipsing_blade.webp: a character with long hair and a sword
+[2025-06-23T01:45:14.836984] [BLIP] Captioned smilespark.webp: a cartoon character with a big smile and a big smile
+[2025-06-23T01:45:15.002085] [BLIP] Captioned dual_mustache.webp: a man with a mustache and a mustache
+[2025-06-23T01:45:15.226590] [BLIP] Captioned blonde_pulse.webp: a woman with blonde hair and a green cape, holding a phone
+[2025-06-23T01:45:15.404298] [BLIP] Captioned vexorb.webp: a character in a space suit with a sword
+[2025-06-23T01:45:15.697101] [BLIP] Captioned beardlit_vanguard.webp: a man with a beard and a beard mustache, wearing a suit with a glowing light on his face
+[2025-06-23T01:45:15.863849] [BLIP] Captioned green_abyss.webp: a character with a green and black outfit
+[2025-06-23T01:45:16.042563] [BLIP] Captioned neon_pulse.webp: a woman with headphones and a blue background
+[2025-06-23T01:45:16.234829] [BLIP] Captioned whisper_of_the_red.webp: a woman with a red background and a white fox
+[2025-06-23T01:45:16.404127] [BLIP] Captioned feral_gunner.webp: a cat with a gun in its hand
+[2025-06-23T01:45:16.694731] [BLIP] Captioned eclipse_blade.webp: a woman with long hair and a blue eyes, wearing a black outfit, holding a sword
+[2025-06-23T01:45:16.898311] [BLIP] Captioned bignose_titan.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:17.105931] [BLIP] Captioned era_of_style.webp: a man with a mustache and a beard in a suit
+[2025-06-23T01:45:17.337416] [BLIP] Captioned giant_glimmer.webp: a character in a suit with a large head and a large body
+[2025-06-23T01:45:17.627715] [BLIP] Captioned swordsworn_titan.webp: a character with a big head and a big body, wearing a helmet and holding a sword
+[2025-06-23T01:45:17.796281] [BLIP] Captioned era_of_the_blade.webp: a character in a suit with a sword
+[2025-06-23T01:45:18.014350] [BLIP] Captioned aetherian_luminous.webp: a character in a blue sky with a green and yellow light
+[2025-06-23T01:45:18.194976] [BLIP] Captioned ethereal_femme.webp: a woman in a hat and a long coat
+[2025-06-23T01:45:18.404340] [BLIP] Captioned headbane.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:18.596937] [BLIP] Captioned grimace_s_maw.webp: a cartoon character with a big mouth and big teeth
+[2025-06-23T01:45:18.802716] [BLIP] Captioned greenyell.webp: a character in a suit with a green and yellow background
+[2025-06-23T01:45:19.062768] [BLIP] Captioned ecliptic_guardian.webp: a woman with green hair and horns, wearing a white shirt and a brown jacket
+[2025-06-23T01:45:19.266662] [BLIP] Captioned beardsuit_the_elegance_of_rebellion.webp: a man with a beard and a beard in a suit
+[2025-06-23T01:45:19.531712] [BLIP] Captioned whitewolf_s_edge.webp: a woman with horns and horns, wearing a white outfit, and holding a knife
+[2025-06-23T01:45:19.707638] [BLIP] Captioned aurora_rider.webp: a woman with a hat and a horse
+[2025-06-23T01:45:19.936054] [BLIP] Captioned hatless_samurai.webp: a character with a hat and a hat on, holding a sword
+[2025-06-23T01:45:20.138274] [BLIP] Captioned crimson_whispers.webp: a white cat with a blue eyes and a red coat
+[2025-06-23T01:45:20.344704] [BLIP] Captioned nodhead_guardian.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:20.646424] [BLIP] Captioned cosmic_wraiths.webp: a character with a big head and a big tail, wearing a red jacket and a yellow jacket
+[2025-06-23T01:45:20.826160] [BLIP] Captioned celestial_guardian.webp: a character in a suit with horns and horns
+[2025-06-23T01:45:21.008462] [BLIP] Captioned eclipta_s_veil.webp: a girl with purple hair and a blue eyes
+[2025-06-23T01:45:21.192004] [BLIP] Captioned zephyr_veil.webp: a stylized illustration of a purple and green creature
+[2025-06-23T01:45:21.398509] [BLIP] Captioned big_head_big_nose.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:21.583949] [BLIP] Captioned green_helm.webp: a woman in a helmet and a green helmet
+[2025-06-23T01:45:21.793283] [BLIP] Captioned head_nose.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:22.001612] [BLIP] Captioned velvet_spark.webp: a cartoon character with a unicorn like face and purple hair
+[2025-06-23T01:45:22.183354] [BLIP] Captioned luminara_veil.webp: a stylized illustration of a purple and green creature
+[2025-06-23T01:45:22.343004] [BLIP] Captioned cosmic_pixel.webp: a cartoon character in a space suit
+[2025-06-23T01:45:22.559260] [BLIP] Captioned furry_titan_the_apex_beast.webp: a very big, furry, and very big, furry monster
+[2025-06-23T01:45:22.751481] [BLIP] Captioned horned_vanguard.webp: a character with horns and horns, holding a weapon
+[2025-06-23T01:45:22.980588] [BLIP] Captioned eclipse_guardian.webp: a woman with blonde hair and a green cape, holding a phone
+[2025-06-23T01:45:23.171447] [BLIP] Captioned celestial_sentinel.webp: a cartoon character with a space suit and a helmet
+[2025-06-23T01:45:23.364281] [BLIP] Captioned celestia_s_echo.webp: a white cat with blue eyes and a white coat
+[2025-06-23T01:45:23.554117] [BLIP] Captioned nova_eclipse.webp: a character in a purple suit with a green background
+[2025-06-23T01:45:23.735318] [BLIP] Captioned verdant_nexus.webp: a green and black robot with a green face
+[2025-06-23T01:45:23.934102] [BLIP] Captioned mouthbound.webp: a character with a big mouth and a big mouth
+[2025-06-23T01:45:24.127507] [BLIP] Captioned eclipse_pulse_green_eye_purple_helm_cyber_knight.webp: a character with a green eye and a purple helmet
+[2025-06-23T01:45:24.306357] [BLIP] Captioned zephyr_s_pulse.webp: a cartoon character with a purple and green outfit
+[2025-06-23T01:45:24.565963] [BLIP] Captioned pistol_pundit.webp: a cartoon character with a big head and a big nose, holding two pistols
+[2025-06-23T01:45:24.763900] [BLIP] Captioned mouth_whisperer.webp: a cartoon character with a big mouth and a big nose
+[2025-06-23T01:45:24.965848] [BLIP] Captioned bunbun.webp: a cartoon character with a big head and a big nose
+[2025-06-23T01:45:25.181442] [BLIP] Captioned horned_green_guardian.webp: a cartoon character with horns and horns, wearing a green coat
+[2025-06-23T01:45:25.371031] [BLIP] Captioned horned_sovereign.webp: a character with horns and horns, holding a weapon
+[2025-06-23T01:45:25.576872] [BLIP] Captioned green_horned_queen.webp: a female with horns and horns, wearing a green outfit
+[2025-06-23T01:45:25.771636] [BLIP] Captioned green_pulse.webp: a woman in a green hat and a green hat
+[2025-06-23T01:45:25.955507] [BLIP] Captioned horned_aetherian_draketh.webp: a character with horns and horns on his head
+[2025-06-23T01:45:26.171323] [BLIP] Captioned zephyr_glimmer.webp: a stylized illustration of a purple and green monster with green eyes
+[2025-06-23T01:45:26.364161] [BLIP] Captioned glimmerhead.webp: a cartoon character with a big head and big eyes
+[2025-06-23T01:45:26.555055] [BLIP] Captioned eclipsed_veil.webp: a character with a green background and a purple coat
+[2025-06-23T01:45:26.722677] [BLIP] Captioned vortex_knight_shadow_weave_celestial_bloom.webp: a character with a red and white outfit
+[2025-06-23T01:45:26.903631] [BLIP] Captioned glowing_elephant.webp: a stylized illustration of an elephant with green eyes
+[2025-06-23T01:45:27.083405] [BLIP] Captioned stellar_mustache.webp: a man in a space suit with a mustache
+[2025-06-23T01:45:27.263253] [BLIP] Captioned horned_aether_knight.webp: a character in a suit with horns and horns
+[2025-06-23T01:45:27.563681] [BLIP] Captioned furburst_megasphere.webp: a very big, furry, and very big, furry, and very big, furry, and very
+[2025-06-23T01:45:27.761362] [BLIP] Captioned horned_sentinel.webp: a cartoon character with horns and horns on his head
+[2025-06-23T01:45:27.991938] [BLIP] Captioned eclipsed_sentinel.webp: a character in a purple suit with green eyes and a green eye
+[2025-06-23T01:45:28.185268] [BLIP] Captioned crimson_pulse.webp: a cat with a red coat and a blue eyes
+[2025-06-23T01:45:28.391600] [BLIP] Captioned whiteline_skybound.webp: a woman in a white coat and a blue sky background
+[2025-06-23T01:45:28.596727] [BLIP] Captioned horned_valkyrie.webp: a female character with horns and horns, holding a knife
+[2025-06-23T01:45:28.825528] [BLIP] Captioned gunblade_vanguard.webp: a drawing of a man in a suit and helmet holding a gun
+[2025-06-23T01:45:29.006305] [BLIP] Captioned horned_suit_knight_aurora_pulse.webp: a character in a suit with horns and horns
+[2025-06-23T01:45:29.070439] [BLIP] Saved all captions to captions.json
+[2025-06-23T01:45:29.070499] === Phase 2 Complete ===
+[2025-06-23T01:45:29.071190] ====================
+[2025-06-23T01:45:29.071229] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T01:45:29.071452] [OLLAMA][INFO] Processing era_of_glam.webp (attempt 1/3)
+[2025-06-23T01:45:30.430229] [OLLAMA][ERROR] Failed to process era_of_glam.webp (attempt 1/3): 500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate
+[2025-06-23T01:45:33.430508] [OLLAMA][INFO] Processing era_of_glam.webp (attempt 2/3)
+[2025-06-23T01:45:47.672042] [OLLAMA][SUCCESS] Renamed era_of_glam.webp -> bearded_baron.webp
+[2025-06-23T01:45:47.672249] [OLLAMA][SUCCESS] Generated metadata for bearded_baron.webp -> metadata/bearded_baron.json
+[2025-06-23T01:45:57.672625] [OLLAMA][INFO] Processing furry_wisp.webp (attempt 1/3)
+[2025-06-23T01:46:10.333191] [OLLAMA][SUCCESS] Renamed furry_wisp.webp -> triple_furry_giant.webp
+[2025-06-23T01:46:10.333397] [OLLAMA][SUCCESS] Generated metadata for triple_furry_giant.webp -> metadata/triple_furry_giant.json
+[2025-06-23T01:46:20.333780] [OLLAMA][INFO] Processing whirled_white.webp (attempt 1/3)
+[2025-06-23T01:46:31.272720] [OLLAMA][SUCCESS] Renamed whirled_white.webp -> capershade.webp
+[2025-06-23T01:46:31.272942] [OLLAMA][SUCCESS] Generated metadata for capershade.webp -> metadata/capershade.json
+[2025-06-23T01:46:41.273275] [OLLAMA][INFO] Processing green_yellow_guardian.webp (attempt 1/3)
+[2025-06-23T01:46:50.815697] [OLLAMA][SUCCESS] Renamed green_yellow_guardian.webp -> luminous_harmony.webp
+[2025-06-23T01:46:50.815905] [OLLAMA][SUCCESS] Generated metadata for luminous_harmony.webp -> metadata/luminous_harmony.json
+[2025-06-23T01:47:00.816272] [OLLAMA][INFO] Processing verdant_veil.webp (attempt 1/3)
+[2025-06-23T01:47:13.250768] [OLLAMA][SUCCESS] Renamed verdant_veil.webp -> green_pulse.webp
+[2025-06-23T01:47:13.250998] [OLLAMA][SUCCESS] Generated metadata for green_pulse.webp -> metadata/green_pulse.json
+[2025-06-23T01:47:23.251359] [OLLAMA][INFO] Processing eclipse_glow.webp (attempt 1/3)
+[2025-06-23T01:47:37.232442] [OLLAMA][SUCCESS] Renamed eclipse_glow.webp -> veridian_pulse.webp
+[2025-06-23T01:47:37.232594] [OLLAMA][SUCCESS] Generated metadata for veridian_pulse.webp -> metadata/veridian_pulse.json
+[2025-06-23T01:47:47.232981] [OLLAMA][INFO] Processing nosey_the_nerd.webp (attempt 1/3)
+[2025-06-23T01:48:01.944043] [OLLAMA][SUCCESS] Renamed nosey_the_nerd.webp -> nosey_nerd_mischief_makers_pixel_art_style_glowing_eyes_futuristic_design.webp
+[2025-06-23T01:48:01.944241] [OLLAMA][SUCCESS] Generated metadata for nosey_nerd_mischief_makers_pixel_art_style_glowing_eyes_futuristic_design.webp -> metadata/nosey_nerd_mischief_makers_pixel_art_style_glowing_eyes_futuristic_design.json
+[2025-06-23T01:48:11.944520] [OLLAMA][INFO] Processing eclipse_vanguard.webp (attempt 1/3)
+[2025-06-23T01:48:29.913380] [OLLAMA][SUCCESS] Renamed eclipse_vanguard.webp -> blade_of_valor.webp
+[2025-06-23T01:48:29.913567] [OLLAMA][SUCCESS] Generated metadata for blade_of_valor.webp -> metadata/blade_of_valor.json
+[2025-06-23T01:48:39.913976] [OLLAMA][INFO] Processing aetherian_skyblade.webp (attempt 1/3)
+[2025-06-23T01:48:47.305275] [OLLAMA][SUCCESS] Generated metadata for aetherian_skyblade.webp -> metadata/aetherian_skyblade.json
+[2025-06-23T01:48:57.305622] [OLLAMA][INFO] Processing blossom_s_tower.webp (attempt 1/3)
+[2025-06-23T01:49:19.931459] [OLLAMA][SUCCESS] Renamed blossom_s_tower.webp -> radiant_bloom.webp
+[2025-06-23T01:49:19.931635] [OLLAMA][SUCCESS] Generated metadata for radiant_bloom.webp -> metadata/radiant_bloom.json
+[2025-06-23T01:49:29.932024] [OLLAMA][INFO] Processing beard_s_aviator.webp (attempt 1/3)
+[2025-06-23T01:49:41.139842] [OLLAMA][SUCCESS] Renamed beard_s_aviator.webp -> beardbound_aerial_dance.webp
+[2025-06-23T01:49:41.140013] [OLLAMA][SUCCESS] Generated metadata for beardbound_aerial_dance.webp -> metadata/beardbound_aerial_dance.json
+[2025-06-23T01:49:51.140337] [OLLAMA][INFO] Processing giant_titan.webp (attempt 1/3)
+[2025-06-23T01:50:03.510992] [OLLAMA][SUCCESS] Renamed giant_titan.webp -> titan_giant.webp
+[2025-06-23T01:50:03.511193] [OLLAMA][SUCCESS] Generated metadata for titan_giant.webp -> metadata/titan_giant.json
+[2025-06-23T01:50:13.511489] [OLLAMA][INFO] Processing eclipse.webp (attempt 1/3)
+[2025-06-23T01:50:29.310484] [OLLAMA][SUCCESS] Renamed eclipse.webp -> cyberglow.webp
+[2025-06-23T01:50:29.310699] [OLLAMA][SUCCESS] Generated metadata for cyberglow.webp -> metadata/cyberglow.json
+[2025-06-23T01:50:39.310956] [OLLAMA][INFO] Processing crimson_veil_blue_cat.webp (attempt 1/3)
+[2025-06-23T01:51:01.352977] [OLLAMA][SUCCESS] Renamed crimson_veil_blue_cat.webp -> crimson_sable_whisker.webp
+[2025-06-23T01:51:01.353272] [OLLAMA][SUCCESS] Generated metadata for crimson_sable_whisker.webp -> metadata/crimson_sable_whisker.json
+[2025-06-23T01:51:11.353547] [OLLAMA][INFO] Processing green_hooded_sage.webp (attempt 1/3)
+[2025-06-23T01:51:21.082948] [OLLAMA][SUCCESS] Renamed green_hooded_sage.webp -> green_bearded_futurist.webp
+[2025-06-23T01:51:21.083282] [OLLAMA][SUCCESS] Generated metadata for green_bearded_futurist.webp -> metadata/green_bearded_futurist.json
+[2025-06-23T01:51:31.083655] [OLLAMA][INFO] Processing horned_sky.webp (attempt 1/3)
+[2025-06-23T01:51:50.255205] [OLLAMA][SUCCESS] Renamed horned_sky.webp -> horned_blue_dawn.webp
+[2025-06-23T01:51:50.255415] [OLLAMA][SUCCESS] Generated metadata for horned_blue_dawn.webp -> metadata/horned_blue_dawn.json
+[2025-06-23T01:52:00.255787] [OLLAMA][INFO] Processing horned_titan.webp (attempt 1/3)
+[2025-06-23T01:52:19.950648] [OLLAMA][SUCCESS] Renamed horned_titan.webp -> eclat_horned_titan.webp
+[2025-06-23T01:52:19.950886] [OLLAMA][SUCCESS] Generated metadata for eclat_horned_titan.webp -> metadata/eclat_horned_titan.json
+[2025-06-23T01:52:29.951076] [OLLAMA][INFO] Processing zephyr_zealot.webp (attempt 1/3)
+[2025-06-23T01:52:43.826071] [OLLAMA][SUCCESS] Renamed zephyr_zealot.webp -> yellowspring.webp
+[2025-06-23T01:52:43.826291] [OLLAMA][SUCCESS] Generated metadata for yellowspring.webp -> metadata/yellowspring.json
+[2025-06-23T01:52:53.826627] [OLLAMA][INFO] Processing sky_gun_warden.webp (attempt 1/3)
+[2025-06-23T01:53:07.733744] [OLLAMA][SUCCESS] Renamed sky_gun_warden.webp -> skybound_warrior.webp
+[2025-06-23T01:53:07.733959] [OLLAMA][SUCCESS] Generated metadata for skybound_warrior.webp -> metadata/skybound_warrior.json
+[2025-06-23T01:53:17.734324] [OLLAMA][INFO] Processing head_nose_guardian.webp (attempt 1/3)
+[2025-06-23T01:53:30.417295] [OLLAMA][SUCCESS] Renamed head_nose_guardian.webp -> bulbous_beacon.webp
+[2025-06-23T01:53:30.417531] [OLLAMA][SUCCESS] Generated metadata for bulbous_beacon.webp -> metadata/bulbous_beacon.json
+[2025-06-23T01:53:40.417832] [OLLAMA][INFO] Processing horned_sun_voyager.webp (attempt 1/3)
+[2025-06-23T01:53:50.954882] [OLLAMA][SUCCESS] Renamed horned_sun_voyager.webp -> sun_horned_sovereign.webp
+[2025-06-23T01:53:50.955082] [OLLAMA][SUCCESS] Generated metadata for sun_horned_sovereign.webp -> metadata/sun_horned_sovereign.json
+[2025-06-23T01:54:00.955309] [OLLAMA][INFO] Processing horned_sunne.webp (attempt 1/3)
+[2025-06-23T01:54:16.517625] [OLLAMA][SUCCESS] Renamed horned_sunne.webp -> ecliptic_dawn.webp
+[2025-06-23T01:54:16.517840] [OLLAMA][SUCCESS] Generated metadata for ecliptic_dawn.webp -> metadata/ecliptic_dawn.json
+[2025-06-23T01:54:26.518059] [OLLAMA][INFO] Processing pink_purr.webp (attempt 1/3)
+[2025-06-23T01:54:34.478992] [OLLAMA][SUCCESS] Renamed pink_purr.webp -> pink_purr_fection.webp
+[2025-06-23T01:54:34.479182] [OLLAMA][SUCCESS] Generated metadata for pink_purr_fection.webp -> metadata/pink_purr_fection.json
+[2025-06-23T01:54:44.479582] [OLLAMA][INFO] Processing smilenose.webp (attempt 1/3)
+[2025-06-23T01:55:06.508579] [OLLAMA][SUCCESS] Renamed smilenose.webp -> smilenose_titan.webp
+[2025-06-23T01:55:06.508791] [OLLAMA][SUCCESS] Generated metadata for smilenose_titan.webp -> metadata/smilenose_titan.json
+[2025-06-23T01:55:16.509143] [OLLAMA][INFO] Processing eyespace.webp (attempt 1/3)
+[2025-06-23T01:55:33.135805] [OLLAMA][SUCCESS] Renamed eyespace.webp -> eclipse_green.webp
+[2025-06-23T01:55:33.136008] [OLLAMA][SUCCESS] Generated metadata for eclipse_green.webp -> metadata/eclipse_green.json
+[2025-06-23T01:55:43.136308] [OLLAMA][INFO] Processing smilebite_the_charmer.webp (attempt 1/3)
+[2025-06-23T01:55:59.700312] [OLLAMA][SUCCESS] Renamed smilebite_the_charmer.webp -> smilebite.webp
+[2025-06-23T01:55:59.700528] [OLLAMA][SUCCESS] Generated metadata for smilebite.webp -> metadata/smilebite.json
+[2025-06-23T01:56:32.681550] [OLLAMA] Ollama is already running.
+[2025-06-23T01:56:32.681616] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:56:32.681649] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:56:32.681723] No new PNG files to convert.
+[2025-06-23T01:56:32.681769] === Phase 1 Complete ===
+[2025-06-23T01:56:32.681806] ====================
+[2025-06-23T01:56:32.681854] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:56:37.778512] [BLIP] Captioned aetherian_skyblade.webp: describe this image in detail, listing all visible objects, colors, actions, and any notable features.
+[2025-06-23T01:56:38.142565] [BLIP] Captioned aetherian_vanguard.webp: describe this image in detail, listing all visible objects, colors, actions, and any notable features.
+[2025-06-23T01:56:38.861161] [BLIP] Captioned aetherian_luminous.webp: describe this image in detail, listing all visible objects, colors, actions, and any notable features.s overwatching overwatching overwatching overwatching overwatching overwatch
+[2025-06-23T01:56:39.225420] [BLIP] Captioned aurora_rider.webp: describe this image in detail, listing all visible objects, colors, actions, and any notable features.
+[2025-06-23T01:56:39.297457] [BLIP] Saved all captions to captions.json
+[2025-06-23T01:56:39.297519] === Phase 2 Complete ===
+[2025-06-23T01:56:39.297601] ====================
+[2025-06-23T01:56:39.297642] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T01:56:39.297775] [OLLAMA][INFO] Processing aetherian_skyblade.webp (attempt 1/3)
+[2025-06-23T01:56:56.134785] [OLLAMA][SUCCESS] Renamed aetherian_skyblade.webp -> neotokyo_samurai.webp
+[2025-06-23T01:56:56.135022] [OLLAMA][SUCCESS] Generated metadata for neotokyo_samurai.webp -> metadata/neotokyo_samurai.json
+[2025-06-23T01:57:06.135409] [OLLAMA][INFO] Processing aetherian_vanguard.webp (attempt 1/3)
+[2025-06-23T01:57:26.559212] [OLLAMA][SUCCESS] Renamed aetherian_vanguard.webp -> neon_samurai.webp
+[2025-06-23T01:57:26.559410] [OLLAMA][SUCCESS] Generated metadata for neon_samurai.webp -> metadata/neon_samurai.json
+[2025-06-23T01:57:42.905790] [OLLAMA] Ollama is already running.
+[2025-06-23T01:57:42.905867] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:57:42.905921] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:57:42.905998] No new PNG files to convert.
+[2025-06-23T01:57:42.906042] === Phase 1 Complete ===
+[2025-06-23T01:57:42.906088] ====================
+[2025-06-23T01:57:42.906136] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:57:48.938209] [BLIP] Captioned neon_samurai.webp: describe this image in detail :
+[2025-06-23T01:57:49.728043] [BLIP] Captioned neotokyo_samurai.webp: describe this image in detail :
+[2025-06-23T01:57:50.919775] [BLIP] Captioned aetherian_luminous.webp: describe this image in detail :a overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch
+[2025-06-23T01:57:51.730517] [BLIP] Captioned aurora_rider.webp: describe this image in detail :a
+[2025-06-23T01:57:51.802850] [BLIP] Saved all captions to captions.json
+[2025-06-23T01:57:51.802911] === Phase 2 Complete ===
+[2025-06-23T01:57:51.802996] ====================
+[2025-06-23T01:57:51.803046] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T01:57:51.803191] [OLLAMA][INFO] Processing neon_samurai.webp (attempt 1/3)
+[2025-06-23T01:58:18.546667] [OLLAMA] Ollama is already running.
+[2025-06-23T01:58:18.546746] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:58:18.546785] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:58:18.546884] No new PNG files to convert.
+[2025-06-23T01:58:18.546924] === Phase 1 Complete ===
+[2025-06-23T01:58:18.546959] ====================
+[2025-06-23T01:58:18.546991] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:58:24.024436] [BLIP] Captioned neon_samurai.webp: describe this image in detail :
+[2025-06-23T01:58:24.800923] [BLIP] Captioned neotokyo_samurai.webp: describe this image in detail :
+[2025-06-23T01:58:25.980201] [BLIP] Captioned aetherian_luminous.webp: describe this image in detail :a overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch
+[2025-06-23T01:58:26.752613] [BLIP] Captioned aurora_rider.webp: describe this image in detail :a
+[2025-06-23T01:58:26.824217] [BLIP] Saved all captions to captions.json
+[2025-06-23T01:58:26.824276] === Phase 2 Complete ===
+[2025-06-23T01:58:26.824350] ====================
+[2025-06-23T01:58:26.824386] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T01:58:26.824502] [OLLAMA][INFO] Processing neon_samurai.webp (attempt 1/3)
+[2025-06-23T01:58:51.843196] [OLLAMA] Ollama is already running.
+[2025-06-23T01:58:51.843254] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T01:58:51.843293] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T01:58:51.843369] No new PNG files to convert.
+[2025-06-23T01:58:51.843412] === Phase 1 Complete ===
+[2025-06-23T01:58:51.843449] ====================
+[2025-06-23T01:58:51.843487] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T01:58:56.780589] [BLIP] Captioned neon_samurai.webp: a character in the sky with a sword
+[2025-06-23T01:58:56.947889] [BLIP] Captioned neotokyo_samurai.webp: a character in the sky with a sword
+[2025-06-23T01:58:57.161339] [BLIP] Captioned aetherian_luminous.webp: a character in a blue sky with a green and yellow light
+[2025-06-23T01:58:57.323275] [BLIP] Captioned aurora_rider.webp: a woman with a hat and a horse
+[2025-06-23T01:58:57.386493] [BLIP] Saved all captions to captions.json
+[2025-06-23T01:58:57.386687] === Phase 2 Complete ===
+[2025-06-23T01:58:57.387240] ====================
+[2025-06-23T01:58:57.387301] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T01:58:57.387456] [OLLAMA][INFO] Processing neon_samurai.webp (attempt 1/3)
+[2025-06-23T01:59:14.190053] [OLLAMA][SUCCESS] Renamed neon_samurai.webp -> nova_skyblade.webp
+[2025-06-23T01:59:14.190269] [OLLAMA][SUCCESS] Generated metadata for nova_skyblade.webp -> metadata/nova_skyblade.json
+[2025-06-23T01:59:24.190660] [OLLAMA][INFO] Processing neotokyo_samurai.webp (attempt 1/3)
+[2025-06-23T01:59:33.456653] [OLLAMA][SUCCESS] Renamed neotokyo_samurai.webp -> aetherian_knight.webp
+[2025-06-23T01:59:33.456917] [OLLAMA][SUCCESS] Generated metadata for aetherian_knight.webp -> metadata/aetherian_knight.json
+[2025-06-23T01:59:43.457201] [OLLAMA][INFO] Processing aetherian_luminous.webp (attempt 1/3)
+[2025-06-23T01:59:54.166433] [OLLAMA][SUCCESS] Renamed aetherian_luminous.webp -> celestialume.webp
+[2025-06-23T01:59:54.166660] [OLLAMA][SUCCESS] Generated metadata for celestialume.webp -> metadata/celestialume.json
+[2025-06-23T02:00:04.166876] [OLLAMA][INFO] Processing aurora_rider.webp (attempt 1/3)
+[2025-06-23T02:00:15.781175] [OLLAMA][SUCCESS] Renamed aurora_rider.webp -> horsehead_lady.webp
+[2025-06-23T02:00:15.781364] [OLLAMA][SUCCESS] Generated metadata for horsehead_lady.webp -> metadata/horsehead_lady.json
+[2025-06-23T02:00:25.781603] === Phase 3 Complete ===
+[2025-06-23T02:00:25.781683] ====================
+[2025-06-23T02:00:25.781730] === Phase 4: Embedding XMP Metadata into WebP files ===
+[2025-06-23T02:00:25.783560] [XMP][SUCCESS] Embedded metadata into celestialume.webp
+[2025-06-23T02:00:25.785147] [XMP][SUCCESS] Embedded metadata into nova_skyblade.webp
+[2025-06-23T02:00:25.786692] [XMP][SUCCESS] Embedded metadata into horsehead_lady.webp
+[2025-06-23T02:00:25.788575] [XMP][SUCCESS] Embedded metadata into aetherian_knight.webp
+[2025-06-23T02:00:25.788641] === Phase 4 Complete ===
+[2025-06-23T02:00:25.788701] === NFT Asset Generation Pipeline Complete ===
+[2025-06-23T02:01:37.974916] [OLLAMA] Ollama is already running.
+[2025-06-23T02:01:37.974975] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T02:01:37.975016] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T02:01:37.975095] No new PNG files to convert.
+[2025-06-23T02:01:37.975139] === Phase 1 Complete ===
+[2025-06-23T02:01:37.975177] ====================
+[2025-06-23T02:01:37.975213] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T02:01:43.983617] [BLIP] Captioned celestialume.webp: describe this image in detail :a overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch overwatch
+[2025-06-23T02:01:44.748270] [BLIP] Captioned nova_skyblade.webp: describe this image in detail :
+[2025-06-23T02:01:45.514338] [BLIP] Captioned aetherian_knight.webp: describe this image in detail :
+[2025-06-23T02:01:46.276824] [BLIP] Captioned horsehead_lady.webp: describe this image in detail :a
+[2025-06-23T02:01:46.349284] [BLIP] Saved all captions to captions.json
+[2025-06-23T02:01:46.349341] === Phase 2 Complete ===
+[2025-06-23T02:01:46.349422] ====================
+[2025-06-23T02:01:46.349462] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T02:01:46.349588] [OLLAMA][INFO] Processing celestialume.webp (attempt 1/3)
+[2025-06-23T02:01:58.379967] [OLLAMA][SUCCESS] Renamed celestialume.webp -> overwatch_loop.webp
+[2025-06-23T02:01:58.380172] [OLLAMA][SUCCESS] Generated metadata for overwatch_loop.webp -> metadata/overwatch_loop.json
+[2025-06-23T02:02:08.380529] [OLLAMA][INFO] Processing nova_skyblade.webp (attempt 1/3)
+[2025-06-23T02:02:22.881860] [OLLAMA][SUCCESS] Renamed nova_skyblade.webp -> cybernova.webp
+[2025-06-23T02:02:22.882039] [OLLAMA][SUCCESS] Generated metadata for cybernova.webp -> metadata/cybernova.json
+[2025-06-23T02:02:32.882390] [OLLAMA][INFO] Processing aetherian_knight.webp (attempt 1/3)
+[2025-06-23T02:02:40.012783] [OLLAMA][SUCCESS] Renamed aetherian_knight.webp -> nova_pulse.webp
+[2025-06-23T02:02:40.013002] [OLLAMA][SUCCESS] Generated metadata for nova_pulse.webp -> metadata/nova_pulse.json
+[2025-06-23T02:02:50.013211] [OLLAMA][INFO] Processing horsehead_lady.webp (attempt 1/3)
+[2025-06-23T02:03:01.009427] [OLLAMA][SUCCESS] Renamed horsehead_lady.webp -> eclipse_mirage.webp
+[2025-06-23T02:03:01.016214] [OLLAMA][SUCCESS] Generated metadata for eclipse_mirage.webp -> metadata/eclipse_mirage.json
+[2025-06-23T02:03:07.603136] [OLLAMA] Ollama is already running.
+[2025-06-23T02:03:07.603200] === NFT Asset Generation Pipeline Started ===
+[2025-06-23T02:03:07.603255] === Phase 1: Converting PNGs to WebP ===
+[2025-06-23T02:03:07.603338] No new PNG files to convert.
+[2025-06-23T02:03:07.603374] === Phase 1 Complete ===
+[2025-06-23T02:03:07.603413] ====================
+[2025-06-23T02:03:07.603451] === Phase 2: BLIP Captioning All Images ===
+[2025-06-23T02:03:13.306131] [BLIP] Captioned eclipse_mirage.webp: an image of a woman with long hair, wearing a hat and holding her hand in front of her face
+[2025-06-23T02:03:13.739011] [BLIP] Captioned cybernova.webp: an image of an animal in the sky
+[2025-06-23T02:03:14.468385] [BLIP] Captioned overwatch_loop.webp: an image of a character from league league league league league league league league league league league league league league league
+[2025-06-23T02:03:14.892503] [BLIP] Captioned nova_pulse.webp: an image of an animal in the sky
+[2025-06-23T02:03:14.962868] [BLIP] Saved all captions to captions.json
+[2025-06-23T02:03:14.962926] === Phase 2 Complete ===
+[2025-06-23T02:03:14.963014] ====================
+[2025-06-23T02:03:14.963063] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-23T02:03:14.963205] [OLLAMA][INFO] Processing eclipse_mirage.webp (attempt 1/3)
+[2025-06-23T02:03:29.957490] [OLLAMA][SUCCESS] Renamed eclipse_mirage.webp -> whispers_of_the_hallow.webp
+[2025-06-23T02:03:29.957715] [OLLAMA][SUCCESS] Generated metadata for whispers_of_the_hallow.webp -> metadata/whispers_of_the_hallow.json
+[2025-06-23T02:03:39.958103] [OLLAMA][INFO] Processing cybernova.webp (attempt 1/3)
+[2025-06-23T02:03:52.536973] [OLLAMA][SUCCESS] Renamed cybernova.webp -> celestial_drifter.webp
+[2025-06-23T02:03:52.537147] [OLLAMA][SUCCESS] Generated metadata for celestial_drifter.webp -> metadata/celestial_drifter.json
+[2025-06-23T02:04:02.537381] [OLLAMA][INFO] Processing overwatch_loop.webp (attempt 1/3)
+[2025-06-23T02:04:19.422250] [OLLAMA][SUCCESS] Renamed overwatch_loop.webp -> eternal_league_the_guardian.webp
+[2025-06-23T02:04:19.422476] [OLLAMA][SUCCESS] Generated metadata for eternal_league_the_guardian.webp -> metadata/eternal_league_the_guardian.json
+[2025-06-23T02:04:29.422673] [OLLAMA][INFO] Processing nova_pulse.webp (attempt 1/3)
+[2025-06-23T02:04:37.491392] [OLLAMA][SUCCESS] Renamed nova_pulse.webp -> aetherfalcon.webp
+[2025-06-23T02:04:37.491639] [OLLAMA][SUCCESS] Generated metadata for aetherfalcon.webp -> metadata/aetherfalcon.json
+[2025-06-23T02:04:47.491780] === Phase 3 Complete ===
+[2025-06-23T02:04:47.491863] ====================
+[2025-06-23T02:04:47.491910] === Phase 4: Embedding XMP Metadata into WebP files ===
+[2025-06-23T02:04:47.493841] [XMP][SUCCESS] Embedded metadata into whispers_of_the_hallow.webp
+[2025-06-23T02:04:47.493924] [XMP][WARN] No corresponding webp file found for celestialume.json. Looked for assets/celestialume.webp. Skipping.
+[2025-06-23T02:04:47.493979] [XMP][WARN] No corresponding webp file found for nova_pulse.json. Looked for assets/nova_pulse.webp. Skipping.
+[2025-06-23T02:04:47.495552] [XMP][SUCCESS] Embedded metadata into aetherfalcon.webp
+[2025-06-23T02:04:47.495619] [XMP][WARN] No corresponding webp file found for overwatch_loop.json. Looked for assets/overwatch_loop.webp. Skipping.
+[2025-06-23T02:04:47.495672] [XMP][WARN] No corresponding webp file found for nova_skyblade.json. Looked for assets/nova_skyblade.webp. Skipping.
+[2025-06-23T02:04:47.495726] [XMP][WARN] No corresponding webp file found for horsehead_lady.json. Looked for assets/horsehead_lady.webp. Skipping.
+[2025-06-23T02:04:47.497440] [XMP][SUCCESS] Embedded metadata into eternal_league_the_guardian.webp
+[2025-06-23T02:04:47.497531] [XMP][WARN] No corresponding webp file found for aetherian_knight.json. Looked for assets/aetherian_knight.webp. Skipping.
+[2025-06-23T02:04:47.497590] [XMP][WARN] No corresponding webp file found for cybernova.json. Looked for assets/cybernova.webp. Skipping.
+[2025-06-23T02:04:47.497645] [XMP][WARN] No corresponding webp file found for eclipse_mirage.json. Looked for assets/eclipse_mirage.webp. Skipping.
+[2025-06-23T02:04:47.499240] [XMP][SUCCESS] Embedded metadata into celestial_drifter.webp
+[2025-06-23T02:04:47.499296] === Phase 4 Complete ===
+[2025-06-23T02:04:47.499332] === NFT Asset Generation Pipeline Complete ===
+[2025-06-24T00:57:44.094471] [OLLAMA] Ollama is not running. Attempting to start Ollama in the background...
+[2025-06-24T00:57:45.097639] [OLLAMA] Ollama started successfully.
+[2025-06-24T00:57:45.098024] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T00:57:45.098329] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T00:57:45.098776] No new PNG files to convert.
+[2025-06-24T00:57:45.099194] === Phase 1 Complete ===
+[2025-06-24T00:57:45.099584] ====================
+[2025-06-24T00:57:45.099967] === Phase 2: BLIP Captioning All Images ===
+[2025-06-24T00:57:51.127718] [BLIP] Saved all captions to captions.json
+[2025-06-24T00:57:51.127773] === Phase 2 Complete ===
+[2025-06-24T00:57:51.127830] ====================
+[2025-06-24T00:57:51.127880] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-24T00:57:51.127998] === Phase 3 Complete ===
+[2025-06-24T00:57:51.128044] ====================
+[2025-06-24T00:57:51.128091] === Phase 4: Embedding XMP Metadata into WebP files ===
+[2025-06-24T00:57:51.128161] === Phase 4 Complete ===
+[2025-06-24T00:57:51.128204] === NFT Asset Generation Pipeline Complete ===
+[2025-06-24T00:58:34.929401] [OLLAMA] Ollama is already running.
+[2025-06-24T00:58:34.929470] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T00:58:34.929515] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T00:58:35.165258] Converted ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.png -> ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.webp
+[2025-06-24T00:58:35.165736] Removed original PNG: ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.png
+[2025-06-24T00:58:35.348414] Converted ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.png -> ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.webp
+[2025-06-24T00:58:35.348686] Removed original PNG: ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.png
+[2025-06-24T00:58:35.527229] Converted ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.png -> ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.webp
+[2025-06-24T00:58:35.527495] Removed original PNG: ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.png
+[2025-06-24T00:58:35.739185] Converted ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.png -> ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp
+[2025-06-24T00:58:35.739490] Removed original PNG: ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.png
+[2025-06-24T00:58:35.739535] === Phase 1 Complete ===
+[2025-06-24T00:58:35.739959] ====================
+[2025-06-24T00:58:35.739993] === Phase 2: BLIP Captioning All Images ===
+[2025-06-24T00:58:40.945109] [BLIP] Captioned ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp: a cartoon character with a sad look on his face
+[2025-06-24T00:58:41.164291] [BLIP] Captioned ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.webp: a cartoon character with a big blue eyes and a yellow head
+[2025-06-24T00:58:41.349431] [BLIP] Captioned ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.webp: a purple robot with yellow eyes and a purple face
+[2025-06-24T00:58:41.539276] [BLIP] Captioned ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.webp: a close up of a purple robot with blue eyes
+[2025-06-24T00:58:41.602193] [BLIP] Saved all captions to captions.json
+[2025-06-24T00:58:41.602244] === Phase 2 Complete ===
+[2025-06-24T00:58:41.602309] ====================
+[2025-06-24T00:58:41.602346] === Phase 3: Generating Metadata with Ollama ===
+[2025-06-24T00:58:41.602460] [OLLAMA][INFO] Processing ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp (attempt 1/3)
+[2025-06-24T00:58:43.558197] [OLLAMA][ERROR] Failed to process ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp (attempt 1/3): 500 Server Error: Internal Server Error for url: http://localhost:11434/api/generate
+[2025-06-24T00:58:46.558451] [OLLAMA][INFO] Processing ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp (attempt 2/3)
+[2025-06-24T00:59:03.641031] [OLLAMA][SUCCESS] Renamed ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__84c6d683-b86f-4b7b-bc09-405ee8612421.webp -> sorrow_s_echo.webp
+[2025-06-24T00:59:03.641228] [OLLAMA][SUCCESS] Generated metadata for sorrow_s_echo.webp -> metadata/sorrow_s_echo.json
+[2025-06-24T00:59:13.641607] [OLLAMA][INFO] Processing ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.webp (attempt 1/3)
+[2025-06-24T00:59:31.444920] [OLLAMA][SUCCESS] Renamed ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__c770ab61-ad7d-44b3-98ca-b75d0a918674.webp -> cyan_yellowness.webp
+[2025-06-24T00:59:31.445127] [OLLAMA][SUCCESS] Generated metadata for cyan_yellowness.webp -> metadata/cyan_yellowness.json
+[2025-06-24T00:59:41.445536] [OLLAMA][INFO] Processing ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.webp (attempt 1/3)
+[2025-06-24T00:59:50.326542] [OLLAMA][SUCCESS] Renamed ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of__326a53b5-8519-44d9-ab22-f265be288c2f_2.webp -> purplish_eyes_of_neon.webp
+[2025-06-24T00:59:50.326756] [OLLAMA][SUCCESS] Generated metadata for purplish_eyes_of_neon.webp -> metadata/purplish_eyes_of_neon.json
+[2025-06-24T01:00:00.327474] [OLLAMA][INFO] Processing ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.webp (attempt 1/3)
+[2025-06-24T01:00:13.784685] [OLLAMA][SUCCESS] Renamed ohsalmeron_Tentacled_Alien_Diplomat_close_up_faceshot_PFP_of_a__7129cafd-d391-4499-ac32-09416bda8cec.webp -> vivid_pulse.webp
+[2025-06-24T01:00:13.784836] [OLLAMA][SUCCESS] Generated metadata for vivid_pulse.webp -> metadata/vivid_pulse.json
+[2025-06-24T01:00:23.785002] === Phase 3 Complete ===
+[2025-06-24T01:00:23.785180] ====================
+[2025-06-24T01:00:23.785303] === Phase 4: Embedding XMP Metadata into WebP files ===
+[2025-06-24T01:00:23.788053] [XMP][SUCCESS] Embedded metadata into vivid_pulse.webp
+[2025-06-24T01:00:23.789893] [XMP][SUCCESS] Embedded metadata into sorrow_s_echo.webp
+[2025-06-24T01:00:23.791473] [XMP][SUCCESS] Embedded metadata into purplish_eyes_of_neon.webp
+[2025-06-24T01:00:23.793195] [XMP][SUCCESS] Embedded metadata into cyan_yellowness.webp
+[2025-06-24T01:00:23.793255] === Phase 4 Complete ===
+[2025-06-24T01:00:23.793308] === NFT Asset Generation Pipeline Complete ===

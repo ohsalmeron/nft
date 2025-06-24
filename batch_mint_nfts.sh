@@ -31,14 +31,14 @@ echo "Using network: $NETWORK"
 echo "Assets dir: $ASSETS_DIR"
 echo "Metadata dir: $METADATA_DIR"
 
-echo "Files to process:" $ASSETS_DIR/*.png $ASSETS_DIR/*.jpg $ASSETS_DIR/*.jpeg
+echo "Files to process:" $ASSETS_DIR/*.webp
 
 NFTS_MINTED=0
 NFTS_SKIPPED=0
 
 set +e
 shopt -s nullglob
-for img in $ASSETS_DIR/*.png $ASSETS_DIR/*.jpg $ASSETS_DIR/*.jpeg; do
+for img in $ASSETS_DIR/*.webp; do
   echo "Processing: $img"
   fname=$(basename "$img")
   base="${fname%.*}"
