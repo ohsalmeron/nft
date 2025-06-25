@@ -772,3 +772,183 @@
 [2025-06-24T01:00:23.793195] [XMP][SUCCESS] Embedded metadata into cyan_yellowness.webp
 [2025-06-24T01:00:23.793255] === Phase 4 Complete ===
 [2025-06-24T01:00:23.793308] === NFT Asset Generation Pipeline Complete ===
+[2025-06-24T01:58:58.379485] [OLLAMA] Ollama is already running.
+[2025-06-24T01:58:58.379555] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T01:58:58.379601] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T01:58:58.379644] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T01:58:58.589374] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp
+[2025-06-24T01:58:58.589813] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png
+[2025-06-24T01:58:58.784548] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp
+[2025-06-24T01:58:58.784915] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png
+[2025-06-24T01:58:58.971134] Converted ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png -> ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp
+[2025-06-24T01:58:58.971407] Removed original PNG: ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png
+[2025-06-24T01:58:59.140884] Converted ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png -> ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp
+[2025-06-24T01:58:59.141108] Removed original PNG: ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png
+[2025-06-24T01:58:59.141150] === Phase 1 Complete ===
+[2025-06-24T01:58:59.141632] ====================
+[2025-06-24T01:58:59.141673] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T01:58:59.141764] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:01:18.409489] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp -> cyberpunk_beast.webp
+[2025-06-24T02:01:18.409730] [OLLAMA][SUCCESS] Generated metadata for cyberpunk_beast.webp -> metadata/cyberpunk_beast.json
+[2025-06-24T02:01:18.409780] [OLLAMA][DETAILS] Name: Cyberpunk Beast, Traits: cybernetic enhancements, glowing eyes, mechanical head, rocky terrain, starry sky
+[2025-06-24T02:01:23.410071] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:03:39.398948] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp -> starlit_horned_guardian.webp
+[2025-06-24T02:03:39.399167] [OLLAMA][SUCCESS] Generated metadata for starlit_horned_guardian.webp -> metadata/starlit_horned_guardian.json
+[2025-06-24T02:03:39.399212] [OLLAMA][DETAILS] Name: Starlit Horned Guardian, Traits: Pink Horns, Glowing Eyes, Staff Light, Celestial Theme, Pastel Colors
+[2025-06-24T02:03:44.399606] [OLLAMA][INFO] Processing ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:06:00.379523] [OLLAMA][SUCCESS] Renamed ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp -> cyberpunk_guardian.webp
+[2025-06-24T02:06:00.379745] [OLLAMA][SUCCESS] Generated metadata for cyberpunk_guardian.webp -> metadata/cyberpunk_guardian.json
+[2025-06-24T02:06:00.379790] [OLLAMA][DETAILS] Name: Cyberpunk Guardian, Traits: Cybernetic enhancements, glowing eyes, cloak, futuristic armor, mechanical appendages
+[2025-06-24T02:06:05.380186] [OLLAMA][INFO] Processing ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:08:20.708919] [OLLAMA][SUCCESS] Renamed ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp -> phoenix_s_resolve.webp
+[2025-06-24T02:08:20.709280] [OLLAMA][SUCCESS] Generated metadata for phoenix_s_resolve.webp -> metadata/phoenix_s_resolve.json
+[2025-06-24T02:08:20.709399] [OLLAMA][DETAILS] Name: Phoenix's Resolve, Traits: Feathered Mane, Fiery Eyes, Resolute Expression, Armor, Golden Accents
+[2025-06-24T02:08:25.709785] === Phase 2 Complete ===
+[2025-06-24T02:08:25.710235] ====================
+[2025-06-24T02:08:25.710543] === Phase 3: Embedding XMP Metadata into WebP files ===
+[2025-06-24T02:08:25.725101] [XMP][SUCCESS] Embedded metadata into cyberpunk_guardian.webp
+[2025-06-24T02:08:25.739284] [XMP][SUCCESS] Embedded metadata into phoenix_s_resolve.webp
+[2025-06-24T02:08:25.756541] [XMP][SUCCESS] Embedded metadata into starlit_horned_guardian.webp
+[2025-06-24T02:08:25.776953] [XMP][SUCCESS] Embedded metadata into cyberpunk_beast.webp
+[2025-06-24T02:08:25.777254] === Phase 3 Complete ===
+[2025-06-24T02:08:25.777490] === NFT Asset Generation Pipeline Complete ===
+[2025-06-24T02:22:35.087503] [OLLAMA] Ollama is already running.
+[2025-06-24T02:22:35.087577] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T02:22:35.087623] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T02:22:35.087666] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T02:22:35.291996] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp
+[2025-06-24T02:22:35.292439] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png
+[2025-06-24T02:22:35.496188] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp
+[2025-06-24T02:22:35.496611] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png
+[2025-06-24T02:22:35.687977] Converted ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png -> ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp
+[2025-06-24T02:22:35.688249] Removed original PNG: ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png
+[2025-06-24T02:22:35.885542] Converted ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png -> ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp
+[2025-06-24T02:22:35.885803] Removed original PNG: ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png
+[2025-06-24T02:22:35.885863] === Phase 1 Complete ===
+[2025-06-24T02:22:35.886431] ====================
+[2025-06-24T02:22:35.886492] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T02:22:35.886622] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:24:53.789559] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp -> orange_beast_warrior.webp
+[2025-06-24T02:24:53.789763] [OLLAMA][SUCCESS] Generated metadata for orange_beast_warrior.webp -> metadata/orange_beast_warrior.json
+[2025-06-24T02:24:53.789803] [OLLAMA][DETAILS] Name: Orange Beast Warrior, Traits: Orange fur, glowing eyes, sword on head, rocky cliff background, purple scarf
+[2025-06-24T02:24:58.790047] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:27:26.717037] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp -> horned_heroine.webp
+[2025-06-24T02:27:26.717226] [OLLAMA][SUCCESS] Generated metadata for horned_heroine.webp -> metadata/horned_heroine.json
+[2025-06-24T02:27:26.717263] [OLLAMA][DETAILS] Name: Horned Heroine, Traits: Horns, goggles, colorful outfit, dynamic pose, sparkling background
+[2025-06-24T02:27:31.717505] [OLLAMA][INFO] Processing ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T02:29:53.125244] [OLLAMA][SUCCESS] Renamed ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp -> cybergoblin_guardian.webp
+[2025-06-24T02:29:53.125421] [OLLAMA][SUCCESS] Generated metadata for cybergoblin_guardian.webp -> metadata/cybergoblin_guardian.json
+[2025-06-24T02:29:53.125471] [OLLAMA][DETAILS] Name: CyberGoblin Guardian, Traits: Cybernetic, futuristic armor, glowing eyes, hooded cloak, glowing accents
+[2025-06-24T02:29:58.125809] [OLLAMA][INFO] Processing ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:00:40.008902] [OLLAMA] Ollama is already running.
+[2025-06-24T03:00:40.008972] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:00:40.009013] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:00:40.009048] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:00:40.205872] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp
+[2025-06-24T03:00:40.206421] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png
+[2025-06-24T03:00:40.405741] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp
+[2025-06-24T03:00:40.406054] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png
+[2025-06-24T03:00:40.582655] Converted ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png -> ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp
+[2025-06-24T03:00:40.582932] Removed original PNG: ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png
+[2025-06-24T03:00:40.744187] Converted ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png -> ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp
+[2025-06-24T03:00:40.744424] Removed original PNG: ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png
+[2025-06-24T03:00:40.744469] === Phase 1 Complete ===
+[2025-06-24T03:00:40.745008] ====================
+[2025-06-24T03:00:40.745055] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:00:40.745174] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:00:40.749161] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:40.749213] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp (attempt 1/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:43.750022] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 2/3)
+[2025-06-24T03:00:43.765104] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:43.765433] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp (attempt 2/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:46.766314] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 3/3)
+[2025-06-24T03:00:46.780321] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:46.780622] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp (attempt 3/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:46.780803] [OLLAMA][FAIL] Skipping ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp after 3 failed attempts.
+[2025-06-24T03:00:46.781596] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:00:46.796938] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:46.797171] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp (attempt 1/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:49.797915] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 2/3)
+[2025-06-24T03:00:49.818906] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:49.819205] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp (attempt 2/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:52.819991] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 3/3)
+[2025-06-24T03:00:52.834293] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:52.834583] [OLLAMA][ERROR] Failed to process ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp (attempt 3/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:52.834884] [OLLAMA][FAIL] Skipping ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp after 3 failed attempts.
+[2025-06-24T03:00:52.835478] [OLLAMA][INFO] Processing ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:00:52.849035] [OLLAMA][ERROR] Multimodal query failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:00:52.849316] [OLLAMA][ERROR] Failed to process ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp (attempt 1/3): 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[2025-06-24T03:01:11.928457] [OLLAMA] Ollama is already running.
+[2025-06-24T03:01:11.928538] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:01:11.928575] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:01:11.928610] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:01:11.928684] No new PNG files to convert.
+[2025-06-24T03:01:11.928723] === Phase 1 Complete ===
+[2025-06-24T03:01:11.928755] ====================
+[2025-06-24T03:01:11.928785] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:01:11.928884] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:03:13.012287] [OLLAMA] Ollama is already running.
+[2025-06-24T03:03:13.012355] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:03:13.012390] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:03:13.012422] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:03:13.012490] No new PNG files to convert.
+[2025-06-24T03:03:13.012523] === Phase 1 Complete ===
+[2025-06-24T03:03:13.012553] ====================
+[2025-06-24T03:03:13.012583] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:03:13.012663] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:04:12.360669] [OLLAMA] Ollama is already running.
+[2025-06-24T03:04:12.360738] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:04:12.360771] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:04:12.360803] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:04:12.360879] No new PNG files to convert.
+[2025-06-24T03:04:12.360911] === Phase 1 Complete ===
+[2025-06-24T03:04:12.360941] ====================
+[2025-06-24T03:04:12.360971] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:04:12.361050] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:04:16.317807] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp -> cyberpunk_horned_beast.webp
+[2025-06-24T03:04:16.318026] [OLLAMA][SUCCESS] Generated metadata for cyberpunk_horned_beast.webp -> metadata/cyberpunk_horned_beast.json
+[2025-06-24T03:04:16.318070] [OLLAMA][DETAILS] Name: Cyberpunk Horned Beast, Traits: Cybernetic enhancements, steampunk style, horned head, mechanical gear, rugged appearance
+[2025-06-24T03:04:21.318483] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:06:03.676552] [OLLAMA] Ollama is already running.
+[2025-06-24T03:06:03.676631] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:06:03.676667] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:06:03.676702] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:06:03.676771] No new PNG files to convert.
+[2025-06-24T03:06:03.676804] === Phase 1 Complete ===
+[2025-06-24T03:06:03.676844] ====================
+[2025-06-24T03:06:03.676877] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:06:03.677011] [OLLAMA][INFO] Processing cyberpunk_horned_beast.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:06:03.677341] [OLLAMA][REQUEST] Sending prompt to Ollama for cyberpunk_horned_beast.webp
+[2025-06-24T03:07:01.328471] [OLLAMA] Ollama is already running.
+[2025-06-24T03:07:01.328537] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:07:01.328571] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:07:01.328611] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:07:01.521180] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp
+[2025-06-24T03:07:01.521606] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.png
+[2025-06-24T03:07:01.712276] Converted ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png -> ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp
+[2025-06-24T03:07:01.712641] Removed original PNG: ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.png
+[2025-06-24T03:07:01.894663] Converted ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png -> ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.webp
+[2025-06-24T03:07:01.894992] Removed original PNG: ohsalmeron_sci-fi_armored_Samurai_Pizza_Cats_1_Japanese_Futur_ac6ff009-2b35-45b7-824a-a22de6ffe38a_3.png
+[2025-06-24T03:07:02.058389] Converted ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png -> ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.webp
+[2025-06-24T03:07:02.058663] Removed original PNG: ohsalmeron_natures_prophet_Cyber_Shaman._sci-fi_armored_Japan_4050ef31-7e27-49f4-8cb2-690ad9c8408f_1.png
+[2025-06-24T03:07:02.058703] === Phase 1 Complete ===
+[2025-06-24T03:07:02.059425] ====================
+[2025-06-24T03:07:02.059469] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:07:02.059574] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:07:02.059794] [OLLAMA][REQUEST] Sending prompt to Ollama for ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp
+[2025-06-24T03:08:51.801320] [OLLAMA] Ollama is already running.
+[2025-06-24T03:08:51.801402] === NFT Asset Generation Pipeline Started ===
+[2025-06-24T03:08:51.801443] === Using Qwen 2.5 VL for Multimodal Image Analysis ===
+[2025-06-24T03:08:51.801481] === Phase 1: Converting PNGs to WebP ===
+[2025-06-24T03:08:51.801560] No new PNG files to convert.
+[2025-06-24T03:08:51.801596] === Phase 1 Complete ===
+[2025-06-24T03:08:51.801631] ====================
+[2025-06-24T03:08:51.801666] === Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===
+[2025-06-24T03:08:51.801760] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp with Qwen 2.5 VL (attempt 1/3)
+[2025-06-24T03:09:17.101474] [OLLAMA][RESPONSE] Name: Cyberpunk Beast
+Description: A cybernetically enhanced beast with a mechanical head and glowing green eyes, standing atop a rocky outcrop under a starry sky.
+Traits: Cybernetic enhancements, glowing eyes, mechanical head, rocky terrain, starry sky
+[2025-06-24T03:09:17.101905] [OLLAMA][SUCCESS] Renamed ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_f12d2879-eb98-40b1-95c7-3e173a943be6_1.webp -> cyberpunk_beast.webp
+[2025-06-24T03:09:17.102078] [OLLAMA][SUCCESS] Generated metadata for cyberpunk_beast.webp -> metadata/cyberpunk_beast.json
+[2025-06-24T03:09:17.102114] [OLLAMA][DETAILS] Name: Cyberpunk Beast, Traits: Cybernetic enhancements, glowing eyes, mechanical head, rocky terrain, starry sky
+[2025-06-24T03:09:22.102486] [OLLAMA][INFO] Processing ohsalmeron_Natures_prophet_DRUID_1_Japanese_Futuristic_Fantas_231ca661-70b5-490c-aa09-66493e10ba12_3.webp with Qwen 2.5 VL (attempt 1/3)

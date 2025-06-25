@@ -8,11 +8,11 @@ from datetime import datetime
 import subprocess
 import socket
 import hashlib
+import base64
 
 # Directories
 ASSETS_DIR = 'assets'
 METADATA_DIR = 'metadata'
-CAPTIONS_FILE = 'captions.json'
 LOG_FILE = 'process.log'
 
 # --- Configuration ---
@@ -61,7 +61,7 @@ except FileNotFoundError:
 os.makedirs(METADATA_DIR, exist_ok=True)
 
 OLLAMA_URL = 'http://localhost:11434/api/generate'
-OLLAMA_MODEL = 'qwen3:1.7b'  # Use qwen3 1.7B as a lighter, more stable model
+OLLAMA_MODEL = 'qwen2.5vl'
 
 def ensure_ollama_running():
     try:
@@ -108,43 +108,41 @@ def phase1_convert_png_to_webp():
         log("No new PNG files to convert.")
     log("=== Phase 1 Complete ===")
 
-def phase2_blip_caption_all():
-    log("=== Phase 2: BLIP Captioning All Images ===")
-    from transformers import BlipProcessor, BlipForConditionalGeneration
-    import torch
-    processor = BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base', use_fast=True)
-    model = BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base')
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model.to(device)
-    captions = {}
-    for filename in os.listdir(ASSETS_DIR):
-        if not filename.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
-            continue
-        image_path = os.path.join(ASSETS_DIR, filename)
-        try:
-            with Image.open(image_path) as img:
-                inputs = processor(images=img, return_tensors="pt").to(device)
-                out = model.generate(**inputs)
-                caption = processor.decode(out[0], skip_special_tokens=True)
-                captions[filename] = caption
-                log(f"[BLIP] Captioned {filename}: {caption}")
-        except Exception as e:
-            log(f"[BLIP][ERROR] Failed to caption {filename}: {e}")
-    # Free GPU memory
-    del model
-    del processor
-    if device == 'cuda':
-        torch.cuda.empty_cache()
-    with open(CAPTIONS_FILE, 'w') as f:
-        json.dump(captions, f, indent=2)
-    log(f"[BLIP] Saved all captions to {CAPTIONS_FILE}")
-    log("=== Phase 2 Complete ===")
-
-def query_ollama(prompt: str, model: str = OLLAMA_MODEL) -> str:
-    data = {"model": model, "prompt": prompt, "stream": False}
-    response = requests.post(OLLAMA_URL, json=data)
-    response.raise_for_status()
-    return response.json()["response"].strip()
+def query_ollama_multimodal(prompt: str, image_path: str, model: str = OLLAMA_MODEL) -> str:
+    """Query Ollama with image and text prompt using multimodal model"""
+    try:
+        # Read and encode the image
+        with open(image_path, 'rb') as f:
+            image_data = f.read()
+            image_base64 = base64.b64encode(image_data).decode('utf-8')
+        
+        data = {
+            "model": model,
+            "prompt": prompt,
+            "images": [image_base64],
+            "stream": False
+        }
+        
+        # Print the full payload to the console
+        print("\n[OLLAMA][PAYLOAD] Sending the following payload to Ollama:")
+        print(json.dumps(data, indent=2)[:1000] + '...')  # Truncate if too long
+        
+        response = requests.post(OLLAMA_URL, json=data)
+        response.raise_for_status()
+        
+        # Print the full raw response
+        print("\n[OLLAMA][RAW RESPONSE] Ollama returned:")
+        print(json.dumps(response.json(), indent=2))
+        
+        ollama_response = response.json()["response"].strip()
+        log(f"[OLLAMA][RESPONSE] {ollama_response}")  # Log to file
+        print(f"[OLLAMA][RESPONSE] {ollama_response}")  # Print to console for real-time feedback
+        return ollama_response
+    except Exception as e:
+        print(f"[OLLAMA][ERROR] Multimodal query failed: {e}")
+        print(f"[OLLAMA][ERROR] Payload was: {json.dumps(data, indent=2)[:1000]}...")
+        log(f"[OLLAMA][ERROR] Multimodal query failed: {e}")
+        raise
 
 def parse_ollama_output(output: str):
     # Expecting output in a structured format
@@ -166,44 +164,54 @@ def parse_ollama_output(output: str):
             description = line.strip()
     return name, description, traits
 
-def phase3_ollama_metadata():
-    log("=== Phase 3: Generating Metadata with Ollama ===")
-    if not os.path.exists(CAPTIONS_FILE):
-        log(f"[OLLAMA][ERROR] {CAPTIONS_FILE} not found. Run phase 2 first.")
-        return
-    with open(CAPTIONS_FILE) as f:
-        captions = json.load(f)
+def phase2_ollama_multimodal_metadata():
+    log("=== Phase 2: Generating Metadata with Qwen 2.5 VL (Multimodal) ===")
     os.makedirs(METADATA_DIR, exist_ok=True)
-    for filename, caption in captions.items():
+    
+    for filename in os.listdir(ASSETS_DIR):
+        if not filename.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
+            continue
+            
         image_path = os.path.join(ASSETS_DIR, filename)
         attempts = 0
         success = False
+        
         while attempts < 3 and not success:
             try:
-                log(f"[OLLAMA][INFO] Processing {filename} (attempt {attempts+1}/3)")
+                log(f"[OLLAMA][INFO] Processing {filename} with Qwen 2.5 VL (attempt {attempts+1}/3)")
+                
                 prompt = f"""
-Given this image description: '{caption}', generate the following for an NFT collection:
-1. Name: A unique, catchy NFT name (max 5 words)
-2. Description: A creative, lore-rich description (1-2 sentences)
-3. Traits: 3-5 unique, collection-worthy traits (comma separated, e.g. 'Cyber Samurai, Glowing Eyes, Futuristic Tokyo')
-Format:
-Name: ...\nDescription: ...\nTraits: ...
+Analyze this image and generate the following for an NFT collection:
+
+1. Name: A unique, catchy NFT name (max 5 words) based on what you see in the image
+2. Description: A creative, lore-rich description (1-2 sentences) describing the character/scene
+3. Traits: 3-5 unique, collection-worthy traits (comma separated) based on visual elements like clothing, colors, accessories, etc.
+
+Format your response exactly as:
+Name: [name]
+Description: [description]
+Traits: [trait1, trait2, trait3]
 """
-                ollama_output = query_ollama(prompt)
+                
+                ollama_output = query_ollama_multimodal(prompt, image_path)
                 name, description, traits = parse_ollama_output(ollama_output)
+                
                 if not name:
-                    name = caption.title()
+                    name = filename.split('.')[0].replace('_', ' ').title()
                 if not description:
-                    description = caption
+                    description = f"A unique character from the {COLLECTION_NAME} collection."
                 if not traits:
                     traits = ["Unique"]
+                
                 new_filename = slugify(name) + os.path.splitext(filename)[1].lower()
                 new_image_path = os.path.join(ASSETS_DIR, new_filename)
+                
                 if new_filename != filename:
                     os.rename(image_path, new_image_path)
                     log(f"[OLLAMA][SUCCESS] Renamed {filename} -> {new_filename}")
                 else:
                     new_image_path = image_path
+                
                 image_url = f"https://{canister_id}.raw.icp0.io/images/{new_filename}"
                 metadata = {
                     "name": name,
@@ -213,12 +221,16 @@ Name: ...\nDescription: ...\nTraits: ...
                         {"trait_type": "Trait", "value": trait} for trait in traits
                     ]
                 }
+                
                 out_path = os.path.join(METADATA_DIR, f"{os.path.splitext(new_filename)[0]}.json")
                 with open(out_path, 'w') as f:
                     json.dump(metadata, f, indent=2)
+                
                 log(f"[OLLAMA][SUCCESS] Generated metadata for {new_filename} -> {out_path}")
+                log(f"[OLLAMA][DETAILS] Name: {name}, Traits: {', '.join(traits)}")
                 success = True
-                time.sleep(10)  # Wait 10 seconds to allow GPU/VRAM to recover
+                time.sleep(5)  # Wait 5 seconds between requests
+                
             except Exception as e:
                 attempts += 1
                 log(f"[OLLAMA][ERROR] Failed to process {filename} (attempt {attempts}/3): {e}")
@@ -226,7 +238,8 @@ Name: ...\nDescription: ...\nTraits: ...
                     time.sleep(3)
                 else:
                     log(f"[OLLAMA][FAIL] Skipping {filename} after 3 failed attempts.")
-    log("=== Phase 3 Complete ===")
+    
+    log("=== Phase 2 Complete ===")
 
 def generate_xmp_metadata(metadata: dict, image_path: str) -> str:
     # --- Helper to format lists for XMP ---
@@ -306,8 +319,8 @@ def generate_xmp_metadata(metadata: dict, image_path: str) -> str:
 <?xpacket end="w"?>'''
     return xmp
 
-def phase4_embed_xmp_metadata():
-    log("=== Phase 4: Embedding XMP Metadata into WebP files ===")
+def phase3_embed_xmp_metadata():
+    log("=== Phase 3: Embedding XMP Metadata into WebP files ===")
     for meta_filename in os.listdir(METADATA_DIR):
         if not meta_filename.lower().endswith('.json'):
             continue
@@ -337,27 +350,30 @@ def phase4_embed_xmp_metadata():
             log(f"[XMP][ERROR] webpmux stderr: {e.stderr}")
         except Exception as e:
             log(f"[XMP][ERROR] An unexpected error occurred for {os.path.basename(webp_path)}: {e}")
-    log("=== Phase 4 Complete ===")
+    log("=== Phase 3 Complete ===")
 
 if __name__ == "__main__":
     ensure_ollama_running()
     log("=== NFT Asset Generation Pipeline Started ===")
+    log("=== Using Qwen 2.5 VL for Multimodal Image Analysis ===")
     phase1_convert_png_to_webp()
     log("="*20)
-    phase2_blip_caption_all()
+    phase2_ollama_multimodal_metadata()
     log("="*20)
-    phase3_ollama_metadata()
-    log("="*20)
-    phase4_embed_xmp_metadata()
+    phase3_embed_xmp_metadata()
     log("=== NFT Asset Generation Pipeline Complete ===")
 
-# Note: Requires 'requests', 'torch', 'transformers', 'Pillow'. Install with: 
-# pip install requests torch transformers Pillow
+# Note: Requires 'requests', 'Pillow'. Install with: 
+# pip install requests Pillow
 # Make sure Ollama is running, e.g.: ollama serve
 # Make sure 'webpmux' command is available (from 'libwebp' package).
 # On Debian/Ubuntu: sudo apt-get install libwebp-dev
 # On Arch: sudo pacman -S libwebp
 # On MacOS (brew): brew install webp
+# =========================================================
+# This script now uses Qwen 2.5 VL for multimodal image analysis and metadata generation.
+# No longer requires transformers, torch, or BLIP - everything is handled by Ollama.
+# The pipeline is now: PNG→WebP → Qwen 2.5 VL Analysis → XMP Embedding
 # =========================================================
 # The original script had several linter errors related to the 'transformers' library.
 # These seem to be type-hinting issues with the linter (pyright/pylance) and not
