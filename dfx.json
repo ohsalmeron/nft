@@ -1,5 +1,12 @@
 {
   "canisters": {
+    "frontend": {
+      "source": [
+        "src/frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "frontend"
+    },
     "storage": {
       "build": ["./scripts/build.sh ./src storage_canister"],
       "candid": "src/storage_canister/wasm/can.did",
