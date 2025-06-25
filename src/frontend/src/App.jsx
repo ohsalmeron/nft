@@ -111,7 +111,7 @@ function App() {
               border: '3px solid #f3f3f3',
               borderTop: '3px solid #667eea',
               borderRadius: '50%',
-              animation: 'spin 1s linear infinite'
+              animation: '1s linear infinite rotate'
             }}></div>
             <p style={{ marginTop: '1rem', color: '#666' }}>Loading NFT collection...</p>
           </div>
@@ -357,13 +357,6 @@ function App() {
           </div>
         </div>
       )}
-
-      <style>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }
