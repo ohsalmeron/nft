@@ -25,4 +25,4 @@ pub use lifecycle::*;
 pub use queries::*;
 pub use updates::*;
 
-export_candid!();
+// export_candid!();

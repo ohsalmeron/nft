@@ -73,6 +73,60 @@ cd ..
 **Expected Output:**
 - `cmdline/target/release/origyn_icrc7_cmdlinetools` (CLI executable)
 
+## Troubleshooting: Generating can.did for the Storage (Asset) Canister
+
+When working with the storage (asset) canister, you may encounter errors related to missing Candid files (can.did), especially when running `dfx generate` or deploying the frontend. For example:
+
+```
+Error: Failed while trying to generate type declarations for 'storage'.
+Caused by: Candid file: /path/to/src/storage_canister/wasm/can.did doesn't exist.
+```
+
+Or for the frontend:
+```
+Error: Failed while trying to generate type declarations for 'frontend'.
+Caused by: Candid file: /path/to/.dfx/local/canisters/frontend/assetstorage.did doesn't exist.
+```
+
+### Why does this happen?
+- The build script or project setup may not generate the Candid file for the storage canister by default.
+- The Candid file is required for generating type-safe bindings and for dfx to understand the canister interface.
+
+### How to fix it (Storage Canister)
+1. **Ensure you have the storage canister WASM built.**
+   - You should have a file like `wasm/storage_canister.wasm` or similar.
+2. **Create the expected output directory:**
+   ```bash
+   mkdir -p src/storage_canister/wasm
+   ```
+3. **Extract the Candid interface from the WASM using candid-extractor:**
+   ```bash
+   candid-extractor wasm/storage_canister.wasm > src/storage_canister/wasm/can.did
+   ```
+4. **Copy the gzipped WASM if needed:**
+   ```bash
+   cp wasm/storage_canister.wasm.gz src/storage_canister/wasm/storage_canister_canister.wasm.gz
+   ```
+5. **Run dfx generate again:**
+   ```bash
+   dfx generate
+   ```
+   This should now generate the required type declarations for the storage canister.
+
+### How to fix it (Frontend Asset Canister)
+- If you see errors about `assetstorage.did` for the frontend, it usually means the frontend assets canister hasn't been deployed locally, or the standard DFINITY asset canister Candid is missing.
+- For most NFT projects, you can ignore this unless you need to interact with the asset canister programmatically from your frontend code.
+- If you want to fix it, deploy the frontend canister locally with:
+   ```bash
+   dfx deploy frontend
+   ```
+  or copy the standard asset canister Candid file to the expected location.
+
+### General Advice
+- Always make sure your Candid files are up to date and match your deployed WASM.
+- If you change your canister interface, regenerate the Candid and rerun `dfx generate`.
+- If you see missing function errors in your frontend (e.g., `TypeError: mainnetActor.icrc7_tokens is not a function`), check that your Candid file actually contains the method and that your declarations are up to date.
+
 ## Step 2: Start Local Internet Computer
 
 ### Start dfx
@@ -465,3 +519,6 @@ dfx deploy core_nft --mode reinstall --argument '(
 1. Make sure your local Internet Computer is running (`dfx start --background --clean`).
 2. Run the above command in your terminal.
 3. This will deploy the canister with a generic configuration for local testing. 
+4. rustup target add wasm32-unknown-unknown
+5. cargo install ic-wasm candid-extractor
+6. export PATH="$HOME/.cargo/bin:$PATH" 
