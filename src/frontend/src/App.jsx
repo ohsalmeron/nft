@@ -2,6 +2,8 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { createActor } from "../../core_nft/api/declarations";
 import NftCard from "./components/NftCard";
 import NftModal from "./components/NftModal";
+import CollectionBanner from "./components/CollectionBanner";
+import { FaSyncAlt, FaGlobe, FaTwitter, FaDiscord } from "react-icons/fa";
 
 const MAINNET_CANISTER_ID = "xea2t-daaaa-aaaaj-qnp2a-cai";
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
@@ -114,6 +116,17 @@ function App() {
   
   const { loadImage, imageCache, loadingImages } = useImageCache();
 
+  // Collection metadata state
+  const [collectionName, setCollectionName] = useState("");
+  const [collectionSymbol, setCollectionSymbol] = useState("");
+  const [collectionDescription, setCollectionDescription] = useState("");
+  const [collectionLogo, setCollectionLogo] = useState("");
+  const [collectionSupplyCap, setCollectionSupplyCap] = useState(null);
+  const [supportedStandards, setSupportedStandards] = useState([]);
+  const [customMetadata, setCustomMetadata] = useState([]);
+  const [descExpanded, setDescExpanded] = useState(false);
+  const [collectionLoading, setCollectionLoading] = useState(true);
+
   // Responsive page size calculation
   useEffect(() => {
     const handleResize = () => {
@@ -138,6 +151,42 @@ function App() {
       }
     }
     fetchTotalCount();
+  }, []);
+
+  // Fetch collection metadata on mount
+  useEffect(() => {
+    async function fetchCollectionMetadata() {
+      setCollectionLoading(true);
+      try {
+        const mainnetActor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } });
+        const [name, symbol, descriptionOpt, logoOpt, supplyCapOpt, standards, customMeta] = await Promise.all([
+          mainnetActor.icrc7_name(),
+          mainnetActor.icrc7_symbol(),
+          mainnetActor.icrc7_description(),
+          mainnetActor.icrc7_logo(),
+          mainnetActor.icrc7_supply_cap(),
+          mainnetActor.icrc10_supported_standards(),
+          mainnetActor.icrc7_collection_metadata(),
+        ]);
+        setCollectionName(name);
+        setCollectionSymbol(symbol);
+        setCollectionDescription(descriptionOpt?.[0] || "");
+        setCollectionLogo(logoOpt?.[0] || "");
+        setCollectionSupplyCap(supplyCapOpt?.[0] || null);
+        setSupportedStandards(standards);
+        setCustomMetadata(customMeta);
+      } catch (e) {
+        setCollectionName("");
+        setCollectionSymbol("");
+        setCollectionDescription("");
+        setCollectionLogo("");
+        setCollectionSupplyCap(null);
+        setSupportedStandards([]);
+        setCustomMetadata([]);
+      }
+      setCollectionLoading(false);
+    }
+    fetchCollectionMetadata();
   }, []);
 
   // Fetch NFTs for a page and append
@@ -302,21 +351,64 @@ function App() {
     setSelectedNft(null);
   };
 
+  // Helper for null display with field name
+  const nullText = (field) => <span className="text-muted text-sm">{field}: null</span>;
+
+  // Helper for custom metadata icons
+  function renderCustomMetadata() {
+    if (!customMetadata || customMetadata.length === 0) {
+      return (
+        <div className="flex flex-col items-start mt-2">{nullText('Custom Metadata')}</div>
+      );
+    }
+    const icons = {
+      website: <FaGlobe className="inline mr-xs" />, web: <FaGlobe className="inline mr-xs" />,
+      twitter: <FaTwitter className="inline mr-xs" />, discord: <FaDiscord className="inline mr-xs" />
+    };
+    let found = false;
+    return (
+      <div className="flex gap-lg flex-wrap items-center mt-2">
+        {customMetadata.map(([key, value], idx) => {
+          if (value.Text && (key.toLowerCase().includes('website') || key.toLowerCase().includes('web') || key.toLowerCase().includes('twitter') || key.toLowerCase().includes('discord'))) {
+            found = true;
+            let icon = icons[key.toLowerCase()] || <FaGlobe className="inline mr-xs" />;
+            return (
+              <a key={idx} href={value.Text} target="_blank" rel="noopener noreferrer" className="flex items-center gap-xs text-accent underline text-sm font-semibold hover:text-accent-dark transition-colors">
+                {icon}{key}
+              </a>
+            );
+          }
+          return null;
+        })}
+        {!found && <div className="flex flex-col items-start">{nullText('Custom Metadata')}</div>}
+      </div>
+    );
+  }
+
+  // Helper for truncated description
+  function renderDescription() {
+    const desc = collectionDescription || '';
+    if (!desc) return nullText('Description');
+    if (desc.length <= 120) return desc;
+    if (descExpanded) return <>{desc} <button className="text-accent underline text-xs ml-1" onClick={() => setDescExpanded(false)}>less</button></>;
+    return <>{desc.slice(0, 120)}... <button className="text-accent underline text-xs ml-1" onClick={() => setDescExpanded(true)}>more</button></>;
+  }
+
   return (
-    <div className="min-h-screen">
-      <header className="glass p-xl text-center mb-xl">
-        <div className="flex justify-between items-center mb-md">
-          <h1 className="text-3xl font-bold text-primary">NFT Collection Gallery</h1>
-          <button 
-            onClick={handleRefresh}
-            disabled={refreshing}
-            className="glass-button px-md py-sm text-sm"
-          >
-            {refreshing ? 'Refreshing...' : 'Refresh'}
-          </button>
-        </div>
-        <p className="text-secondary">Explore the complete collection</p>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-[#181c24] to-[#23283a]">
+      <CollectionBanner
+        collectionLogo={collectionLogo}
+        collectionName={collectionName}
+        collectionSymbol={collectionSymbol}
+        collectionDescription={collectionDescription}
+        customMetadata={customMetadata}
+        totalCount={totalCount}
+        collectionSupplyCap={collectionSupplyCap}
+        supportedStandards={supportedStandards}
+        refreshing={refreshing}
+        handleRefresh={handleRefresh}
+        collectionLoading={collectionLoading}
+      />
       <main className="p-xl max-w-7xl mx-auto">
         {loading && page === 1 ? (
           <div className="text-center p-2xl">
