@@ -1,0 +1,57 @@
+/* Typography Classes */
+.text-primary { color: var(--text-white); }
+.text-secondary { color: var(--text-light); }
+.text-muted { color: var(--text-gray); }
+.text-accent { color: var(--accent-gray-light); }
+
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.uppercase { text-transform: uppercase; }
+.letter-spacing { letter-spacing: 0.5px; }
+
+/* Specific font sizes and weights for headers, cards, modals */
+h1, .h1 {
+  font-size: 2.2rem;
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.5px;
+}
+h2, .h2 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.2px;
+}
+h3, .h3 {
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-semibold);
+}
+.card-title, .nft-card h3 {
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1px;
+}
+.modal-title, .nft-modal-info h2 {
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1px;
+}
+body, .body-text, .nft-modal-info p {
+  font-size: 1rem;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.01em;
+} 
