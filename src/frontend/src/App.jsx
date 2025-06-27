@@ -4,8 +4,13 @@ import NftCard from "./components/NftCard";
 import NftModal from "./components/NftModal";
 
 const MAINNET_CANISTER_ID = "xea2t-daaaa-aaaaj-qnp2a-cai";
-const CACHE_KEY = "nft_collection_cache";
+const PAGE_SIZE_DESKTOP = 8;
+const PAGE_SIZE_MOBILE = 25;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+function getPageSize() {
+  return window.innerWidth < 768 ? PAGE_SIZE_MOBILE : PAGE_SIZE_DESKTOP;
+}
 
 // Custom hook for image caching
 function useImageCache() {
@@ -16,7 +21,6 @@ function useImageCache() {
     if (imageCache.has(src)) {
       return Promise.resolve(imageCache.get(src));
     }
-
     if (loadingImages.has(src)) {
       return new Promise((resolve) => {
         const checkLoaded = () => {
@@ -29,11 +33,9 @@ function useImageCache() {
         checkLoaded();
       });
     }
-
     setLoadingImages(prev => new Set(prev).add(src));
-
     return new Promise((resolve, reject) => {
-      const img = new Image();
+      const img = new window.Image();
       img.onload = () => {
         setImageCache(prev => new Map(prev).set(src, img.src));
         setLoadingImages(prev => {
@@ -64,38 +66,24 @@ const cacheUtils = {
     try {
       const item = localStorage.getItem(key);
       if (!item) return null;
-      
       const { data, timestamp } = JSON.parse(item);
       if (Date.now() - timestamp > CACHE_DURATION) {
         localStorage.removeItem(key);
         return null;
       }
-      
       return data;
     } catch (error) {
-      console.error('Cache get error:', error);
       return null;
     }
   },
-
   set: (key, data) => {
     try {
-      const item = {
-        data,
-        timestamp: Date.now()
-      };
+      const item = { data, timestamp: Date.now() };
       localStorage.setItem(key, JSON.stringify(item));
-    } catch (error) {
-      console.error('Cache set error:', error);
-    }
+    } catch (error) {}
   },
-
   clear: (key) => {
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.error('Cache clear error:', error);
-    }
+    try { localStorage.removeItem(key); } catch (error) {}
   }
 };
 
@@ -105,20 +93,36 @@ function App() {
   const [selectedNft, setSelectedNft] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(getPageSize());
+  const [totalCount, setTotalCount] = useState(0);
+
   const { loadImage, imageCache, loadingImages } = useImageCache();
 
-  // Load cached data immediately
+  // Responsive page size
   useEffect(() => {
-    const cachedNfts = cacheUtils.get(CACHE_KEY);
-    if (cachedNfts) {
-      setNfts(cachedNfts);
-      setLoading(false);
-      console.log('Loaded from cache:', cachedNfts.length, 'NFTs');
-    }
+    const handleResize = () => setPageSize(getPageSize());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const fetchNFTs = useCallback(async (useCache = true) => {
+  // Fetch total count once
+  useEffect(() => {
+    async function fetchTotalCount() {
+      try {
+        const mainnetActor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } });
+        const count = await mainnetActor.icrc7_total_supply();
+        setTotalCount(Number(count));
+      } catch (e) {
+        setTotalCount(0);
+      }
+    }
+    fetchTotalCount();
+  }, []);
+
+  // Fetch NFTs for current page
+  const fetchNFTs = useCallback(async (page, pageSize, useCache = true) => {
+    const CACHE_KEY = `nft_collection_page_${page}_size_${pageSize}`;
     if (useCache) {
       const cachedNfts = cacheUtils.get(CACHE_KEY);
       if (cachedNfts) {
@@ -127,28 +131,20 @@ function App() {
         return;
       }
     }
-
     setLoading(true);
     try {
-      const mainnetActor = createActor(MAINNET_CANISTER_ID, {
-        agentOptions: {
-          host: "https://icp0.io",
-        },
-      });
-
-      // Get all token IDs
-      const tokenIds = await mainnetActor.icrc7_tokens([], []);
-      const metadatas = await mainnetActor.icrc7_token_metadata(tokenIds);
-      
-      // Parse metadata and fetch JSON with caching
+      const mainnetActor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } });
+      // Get all token IDs for this page
+      const start = (page - 1) * pageSize;
+      const end = start + pageSize;
+      const allTokenIds = await mainnetActor.icrc7_tokens([], []);
+      const pageTokenIds = allTokenIds.slice(start, end);
+      const metadatas = await mainnetActor.icrc7_token_metadata(pageTokenIds);
       const parsed = await Promise.all(
-        tokenIds.map(async (id, idx) => {
+        pageTokenIds.map(async (id, idx) => {
           const tokenId = typeof id === 'bigint' ? id.toString() : id;
-          
           const meta = metadatas[idx]?.[0];
           if (!meta) return null;
-          
-          // Find the metadata URL
           let metadataUrl = null;
           for (const [key, value] of meta) {
             if (key === "icrc97:metadata" && value.Array) {
@@ -159,29 +155,24 @@ function App() {
               }
             }
           }
-          
           if (!metadataUrl) {
-            return { 
-              id: tokenId, 
-              name: `NFT #${tokenId}`, 
+            return {
+              id: tokenId,
+              name: `NFT #${tokenId}`,
               description: "No metadata available",
               image: "",
               attributes: [],
               metadataUrl: null
             };
           }
-          
           try {
-            // Check cache for JSON metadata
             const cacheKey = `nft_metadata_${tokenId}`;
             let jsonMetadata = cacheUtils.get(cacheKey);
-            
             if (!jsonMetadata) {
               const response = await fetch(metadataUrl);
               jsonMetadata = await response.json();
               cacheUtils.set(cacheKey, jsonMetadata);
             }
-            
             return {
               id: tokenId,
               name: jsonMetadata.name || `NFT #${tokenId}`,
@@ -191,10 +182,9 @@ function App() {
               metadataUrl
             };
           } catch (fetchError) {
-            console.error(`Failed to fetch metadata for token ${tokenId}:`, fetchError);
-            return { 
-              id: tokenId, 
-              name: `NFT #${tokenId}`, 
+            return {
+              id: tokenId,
+              name: `NFT #${tokenId}`,
               description: "Failed to load metadata",
               image: "",
               attributes: [],
@@ -203,48 +193,48 @@ function App() {
           }
         })
       );
-      
       const validNfts = parsed.filter(Boolean);
       setNfts(validNfts);
       cacheUtils.set(CACHE_KEY, validNfts);
-      
-      // Preload images in background
+      // Preload images for this page
       validNfts.forEach(nft => {
         if (nft.image) {
-          loadImage(nft.image).catch(() => {
-            // Silently fail for image loading
-          });
+          loadImage(nft.image).catch(() => {});
         }
       });
-      
     } catch (e) {
-      console.error('Error fetching NFTs:', e);
+      setNfts([]);
     }
     setLoading(false);
   }, [loadImage]);
 
-  // Initial fetch
+  // Fetch NFTs when page or pageSize changes
   useEffect(() => {
-    fetchNFTs(true);
-  }, [fetchNFTs]);
+    fetchNFTs(page, pageSize, true);
+  }, [fetchNFTs, page, pageSize]);
 
-  // Refresh function
+  // Refresh function (only clears current page cache)
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
+    const CACHE_KEY = `nft_collection_page_${page}_size_${pageSize}`;
     cacheUtils.clear(CACHE_KEY);
-    await fetchNFTs(false);
+    await fetchNFTs(page, pageSize, false);
     setRefreshing(false);
-  }, [fetchNFTs]);
+  }, [fetchNFTs, page, pageSize]);
 
   const handleNftClick = (nft) => {
     setSelectedNft(nft);
     setShowModal(true);
   };
-
   const closeModal = () => {
     setShowModal(false);
     setSelectedNft(null);
   };
+
+  // Paging controls
+  const totalPages = Math.ceil(totalCount / pageSize) || 1;
+  const canPrev = page > 1;
+  const canNext = page < totalPages;
 
   return (
     <div className="min-h-screen">
@@ -260,13 +250,7 @@ function App() {
           </button>
         </div>
         <p className="text-secondary">Explore the complete collection</p>
-        {nfts.length > 0 && (
-          <p className="text-sm text-muted mt-sm">
-            {nfts.length} NFTs loaded • {imageCache.size} images cached
-          </p>
-        )}
       </header>
-
       <main className="p-xl max-w-7xl mx-auto">
         {loading ? (
           <div className="text-center p-2xl">
@@ -274,20 +258,26 @@ function App() {
             <p className="text-secondary mt-md">Loading NFT collection...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg p-md">
-            {nfts.map((nft) => (
-              <NftCard 
-                key={nft.id} 
-                nft={nft} 
-                onClick={handleNftClick}
-                imageLoaded={imageCache.has(nft.image)}
-                imageLoading={loadingImages.has(nft.image)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg p-md">
+              {nfts.map((nft) => (
+                <NftCard 
+                  key={nft.id} 
+                  nft={nft} 
+                  onClick={handleNftClick}
+                  imageLoaded={imageCache.has(nft.image)}
+                  imageLoading={loadingImages.has(nft.image)}
+                />
+              ))}
+            </div>
+            <div className="flex justify-center items-center gap-md mt-xl">
+              <button className="glass-button px-md py-sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={!canPrev}>&lt; Prev</button>
+              <span className="text-base">Page {page} of {totalPages}</span>
+              <button className="glass-button px-md py-sm" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={!canNext}>Next &gt;</button>
+            </div>
+          </>
         )}
       </main>
-
       <NftModal 
         nft={selectedNft} 
         show={showModal} 
