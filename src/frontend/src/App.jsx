@@ -10,18 +10,16 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 function calculatePageSize() {
   const width = window.innerWidth;
   let columns = 1; // Default for mobile
-  let rows = 2; // Default rows for mobile
+  let rows = 8; // Default rows for mobile
 
-  if (width >= 1536) columns = 8;
-  else if (width >= 1280) columns = 6;
-  else if (width >= 1024) columns = 4;
-  else if (width >= 768) columns = 3;
-  else if (width >= 640) columns = 2;
+  if (width >= 1536) columns = 4;
+  else if (width >= 1280) columns = 3;
+  else if (width >= 768) columns = 2;
   else columns = 1;
 
   // Use more rows for desktop
-  if (width >= 768) rows = 4;
-  // Mobile stays at 2 rows
+  if (width >= 768) rows = 6;
+  // Mobile stays at 4 rows
 
   return columns * rows;
 }
