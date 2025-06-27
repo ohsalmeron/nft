@@ -4,12 +4,23 @@ import NftCard from "./components/NftCard";
 import NftModal from "./components/NftModal";
 
 const MAINNET_CANISTER_ID = "xea2t-daaaa-aaaaj-qnp2a-cai";
-const PAGE_SIZE_DESKTOP = 8;
-const PAGE_SIZE_MOBILE = 25;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-function getPageSize() {
-  return window.innerWidth < 768 ? PAGE_SIZE_MOBILE : PAGE_SIZE_DESKTOP;
+// Dynamic page size calculation based on viewport and grid
+function calculatePageSize() {
+  const width = window.innerWidth;
+  let columns = 1; // Default for mobile
+  
+  if (width >= 1536) columns = 8;      // 2xl screens
+  else if (width >= 1280) columns = 6; // xl screens  
+  else if (width >= 1024) columns = 4; // lg screens
+  else if (width >= 768) columns = 3;  // md screens
+  else if (width >= 640) columns = 2;  // sm screens
+  else columns = 1;                    // xs screens
+  
+  // Load enough NFTs to fill 2-3 rows initially
+  const rows = 2;
+  return columns * rows;
 }
 
 // Custom hook for image caching
@@ -94,7 +105,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [page, setPage] = useState(1); // Current page to load next
-  const [pageSize, setPageSize] = useState(getPageSize());
+  const [pageSize, setPageSize] = useState(calculatePageSize());
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -102,12 +113,17 @@ function App() {
   
   const { loadImage, imageCache, loadingImages } = useImageCache();
 
-  // Responsive page size
+  // Responsive page size calculation
   useEffect(() => {
-    const handleResize = () => setPageSize(getPageSize());
+    const handleResize = () => {
+      const newPageSize = calculatePageSize();
+      if (newPageSize !== pageSize) {
+        setPageSize(newPageSize);
+      }
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [pageSize]);
 
   // Fetch total count once
   useEffect(() => {
@@ -118,7 +134,7 @@ function App() {
         setTotalCount(Number(count));
       } catch (e) {
         setTotalCount(0);
-    }
+      }
     }
     fetchTotalCount();
   }, []);
@@ -266,7 +282,7 @@ function App() {
     // Clear all page caches
     for (let i = 1; i <= page; i++) {
       const CACHE_KEY = `nft_collection_page_${i}_size_${pageSize}`;
-    cacheUtils.clear(CACHE_KEY);
+      cacheUtils.clear(CACHE_KEY);
     }
     setNfts([]);
     setPage(1);
