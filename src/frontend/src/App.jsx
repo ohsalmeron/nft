@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { createActor } from "../../core_nft/api/declarations";
 import NftCard from "./components/NftCard";
 import NftModal from "./components/NftModal";
@@ -88,14 +88,17 @@ const cacheUtils = {
 };
 
 function App() {
-  const [nfts, setNfts] = useState([]);
+  const [nfts, setNfts] = useState([]); // All loaded NFTs
   const [loading, setLoading] = useState(true);
   const [selectedNft, setSelectedNft] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); // Current page to load next
   const [pageSize, setPageSize] = useState(getPageSize());
   const [totalCount, setTotalCount] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const observerRef = useRef();
 
   const { loadImage, imageCache, loadingImages } = useImageCache();
 
@@ -120,18 +123,25 @@ function App() {
     fetchTotalCount();
   }, []);
 
-  // Fetch NFTs for current page
+  // Fetch NFTs for a page and append
   const fetchNFTs = useCallback(async (page, pageSize, useCache = true) => {
     const CACHE_KEY = `nft_collection_page_${page}_size_${pageSize}`;
     if (useCache) {
       const cachedNfts = cacheUtils.get(CACHE_KEY);
       if (cachedNfts) {
-        setNfts(cachedNfts);
+        setNfts(prev => {
+          // Avoid duplicates
+          const ids = new Set(prev.map(n => n.id));
+          return [...prev, ...cachedNfts.filter(n => !ids.has(n.id))];
+        });
         setLoading(false);
+        setLoadingMore(false);
+        if (cachedNfts.length < pageSize) setHasMore(false);
         return;
       }
     }
-    setLoading(true);
+    if (page === 1) setLoading(true);
+    else setLoadingMore(true);
     try {
       const mainnetActor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } });
       // Get all token IDs for this page
@@ -194,7 +204,11 @@ function App() {
         })
       );
       const validNfts = parsed.filter(Boolean);
-      setNfts(validNfts);
+      setNfts(prev => {
+        // Avoid duplicates
+        const ids = new Set(prev.map(n => n.id));
+        return [...prev, ...validNfts.filter(n => !ids.has(n.id))];
+      });
       cacheUtils.set(CACHE_KEY, validNfts);
       // Preload images for this page
       validNfts.forEach(nft => {
@@ -202,23 +216,63 @@ function App() {
           loadImage(nft.image).catch(() => {});
         }
       });
+      if (validNfts.length < pageSize) setHasMore(false);
     } catch (e) {
-      setNfts([]);
+      setHasMore(false);
     }
     setLoading(false);
+    setLoadingMore(false);
   }, [loadImage]);
 
-  // Fetch NFTs when page or pageSize changes
+  // Initial load and reset on pageSize change
   useEffect(() => {
-    fetchNFTs(page, pageSize, true);
-  }, [fetchNFTs, page, pageSize]);
+    setNfts([]);
+    setPage(1);
+    setHasMore(true);
+    setLoading(true);
+  }, [pageSize]);
 
-  // Refresh function (only clears current page cache)
+  // Load first page or next page
+  useEffect(() => {
+    if (hasMore) {
+      fetchNFTs(page, pageSize, true);
+    }
+  }, [fetchNFTs, page, pageSize, hasMore]);
+
+  // Infinite scroll: observe the sentinel
+  useEffect(() => {
+    if (!hasMore || loading || loadingMore) return;
+    const observer = new window.IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setPage(p => p + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [hasMore, loading, loadingMore]);
+
+  // Refresh function (clears all loaded pages)
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
-    const CACHE_KEY = `nft_collection_page_${page}_size_${pageSize}`;
-    cacheUtils.clear(CACHE_KEY);
-    await fetchNFTs(page, pageSize, false);
+    // Clear all page caches
+    for (let i = 1; i <= page; i++) {
+      const CACHE_KEY = `nft_collection_page_${i}_size_${pageSize}`;
+      cacheUtils.clear(CACHE_KEY);
+    }
+    setNfts([]);
+    setPage(1);
+    setHasMore(true);
+    setLoading(true);
+    await fetchNFTs(1, pageSize, false);
     setRefreshing(false);
   }, [fetchNFTs, page, pageSize]);
 
@@ -230,11 +284,6 @@ function App() {
     setShowModal(false);
     setSelectedNft(null);
   };
-
-  // Paging controls
-  const totalPages = Math.ceil(totalCount / pageSize) || 1;
-  const canPrev = page > 1;
-  const canNext = page < totalPages;
 
   return (
     <div className="min-h-screen">
@@ -252,7 +301,7 @@ function App() {
         <p className="text-secondary">Explore the complete collection</p>
       </header>
       <main className="p-xl max-w-7xl mx-auto">
-        {loading ? (
+        {loading && page === 1 ? (
           <div className="text-center p-2xl">
             <div className="loading-spinner"></div>
             <p className="text-secondary mt-md">Loading NFT collection...</p>
@@ -270,11 +319,16 @@ function App() {
                 />
               ))}
             </div>
-            <div className="flex justify-center items-center gap-md mt-xl">
-              <button className="glass-button px-md py-sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={!canPrev}>&lt; Prev</button>
-              <span className="text-base">Page {page} of {totalPages}</span>
-              <button className="glass-button px-md py-sm" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={!canNext}>Next &gt;</button>
-            </div>
+            {/* Infinite scroll sentinel */}
+            <div ref={observerRef} style={{ height: 1 }}></div>
+            {loadingMore && (
+              <div className="flex justify-center py-lg">
+                <div className="loading-spinner"></div>
+              </div>
+            )}
+            {!hasMore && nfts.length > 0 && (
+              <div className="text-center text-muted py-lg">No more NFTs to load.</div>
+            )}
           </>
         )}
       </main>
