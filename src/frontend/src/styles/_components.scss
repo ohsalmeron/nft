@@ -19,7 +19,7 @@
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  transition: transform var(--transition-normal);
+  transition: transform .5s ease !important;
 }
 
 .nft-card:hover .nft-card-image {
@@ -165,4 +165,11 @@
 
 .nft-modal .z-10 {
   z-index: 10;
+}
+
+/* Mobile-specific NFT card title */
+@media (max-width: 767px) {
+  .nft-card-title {
+    font-size: clamp(1.25rem, 1vw, 1.25rem) !important;
+  }
 } 

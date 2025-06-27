@@ -3,14 +3,14 @@ import React from "react";
 function NftCard({ nft, onClick, imageLoaded, imageLoading }) {
   return (
     <div className="nft-card" onClick={() => onClick(nft)}>
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative w-full" style={{ aspectRatio: '1 / 1', overflow: 'hidden' }}>
         {nft.image ? (
           <>
             <img
               src={nft.image}
               alt={nft.name}
-              className={`nft-card-image ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-              style={{ transition: 'opacity 0.3s ease' }}
+              className={`nft-card-image w-full h-full object-cover ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{ transition: 'opacity 0.3s ease', width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
             />
             {imageLoading && !imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50">
@@ -32,8 +32,13 @@ function NftCard({ nft, onClick, imageLoaded, imageLoading }) {
           #{nft.id}
         </div>
       </div>
-      <div className="p-md">
-        <h3 className="text-lg font-semibold text-primary truncate">
+      <div className="p-md w-full" style={{ maxWidth: '100%' }}>
+        <h3 className="text-xs font-medium text-primary nft-card-title" style={{ 
+          fontSize: 'clamp(0.65rem, 0.8vw, 0.85rem)', 
+          lineHeight: '1.2', 
+          wordWrap: 'break-word', 
+          overflowWrap: 'break-word'
+        }}>
           {nft.name}
         </h3>
       </div>

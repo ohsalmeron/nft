@@ -99,7 +99,7 @@ function App() {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const observerRef = useRef();
-
+  
   const { loadImage, imageCache, loadingImages } = useImageCache();
 
   // Responsive page size
@@ -118,7 +118,7 @@ function App() {
         setTotalCount(Number(count));
       } catch (e) {
         setTotalCount(0);
-      }
+    }
     }
     fetchTotalCount();
   }, []);
@@ -166,9 +166,9 @@ function App() {
             }
           }
           if (!metadataUrl) {
-            return {
-              id: tokenId,
-              name: `NFT #${tokenId}`,
+            return { 
+              id: tokenId, 
+              name: `NFT #${tokenId}`, 
               description: "No metadata available",
               image: "",
               attributes: [],
@@ -192,9 +192,9 @@ function App() {
               metadataUrl
             };
           } catch (fetchError) {
-            return {
-              id: tokenId,
-              name: `NFT #${tokenId}`,
+            return { 
+              id: tokenId, 
+              name: `NFT #${tokenId}`, 
               description: "Failed to load metadata",
               image: "",
               attributes: [],
@@ -266,7 +266,7 @@ function App() {
     // Clear all page caches
     for (let i = 1; i <= page; i++) {
       const CACHE_KEY = `nft_collection_page_${i}_size_${pageSize}`;
-      cacheUtils.clear(CACHE_KEY);
+    cacheUtils.clear(CACHE_KEY);
     }
     setNfts([]);
     setPage(1);
@@ -308,17 +308,17 @@ function App() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg p-md">
-              {nfts.map((nft) => (
-                <NftCard 
-                  key={nft.id} 
-                  nft={nft} 
-                  onClick={handleNftClick}
-                  imageLoaded={imageCache.has(nft.image)}
-                  imageLoading={loadingImages.has(nft.image)}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-lg p-md">
+            {nfts.map((nft) => (
+              <NftCard 
+                key={nft.id} 
+                nft={nft} 
+                onClick={handleNftClick}
+                imageLoaded={imageCache.has(nft.image)}
+                imageLoading={loadingImages.has(nft.image)}
+              />
+            ))}
+          </div>
             {/* Infinite scroll sentinel */}
             <div ref={observerRef} style={{ height: 1 }}></div>
             {loadingMore && (
