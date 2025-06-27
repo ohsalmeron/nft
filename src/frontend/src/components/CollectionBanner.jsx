@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSyncAlt, FaGlobe, FaTwitter, FaDiscord } from "react-icons/fa";
+import { imageCache } from "../utils/imageCache";
 
 const nullText = (field) => <span className="text-muted text-sm">{field}: null</span>;
 
@@ -17,6 +18,47 @@ function CollectionBanner({
   collectionLoading,
 }) {
   const [descExpanded, setDescExpanded] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [logoSrc, setLogoSrc] = useState("");
+
+  useEffect(() => {
+    if (!collectionLogo) {
+      setLogoLoaded(true);
+      setLogoSrc("");
+      return;
+    }
+    let isMounted = true;
+    const loadLogo = async () => {
+      try {
+        const cachedResponse = await imageCache.getCachedImage(collectionLogo);
+        if (cachedResponse) {
+          const blob = await cachedResponse.blob();
+          if (isMounted) {
+            setLogoSrc(URL.createObjectURL(blob));
+            setLogoLoaded(true);
+          }
+        } else {
+          setLogoSrc(collectionLogo);
+          const img = new window.Image();
+          img.onload = () => {
+            if (isMounted) setLogoLoaded(true);
+            imageCache.cacheImage(collectionLogo);
+          };
+          img.onerror = () => {
+            if (isMounted) setLogoLoaded(true);
+          };
+          img.src = collectionLogo;
+        }
+      } catch (error) {
+        setLogoSrc(collectionLogo);
+        setLogoLoaded(true);
+      }
+    };
+    setLogoLoaded(false);
+    setLogoSrc("");
+    loadLogo();
+    return () => { isMounted = false; };
+  }, [collectionLogo]);
 
   function renderCustomMetadata() {
     if (!customMetadata || customMetadata.length === 0) {
@@ -82,22 +124,26 @@ function CollectionBanner({
       {/* Bottom Left: Logo, Name, Symbol, Description, Custom Metadata */}
       <div className="flex flex-row items-end gap-6" style={{ gridRow: 2, gridColumn: 1, paddingLeft: 24, paddingBottom: 12 }}>
         {/* Large Logo */}
-        {collectionLoading ? null : (
-          <div className="flex items-center justify-center" style={{ minWidth: 96, minHeight: 96 }}>
-            {collectionLogo ? (
+        <div className="flex items-center justify-center" style={{ minWidth: 96, minHeight: 96 }}>
+          {collectionLogo ? (
+            logoLoaded ? (
               <img
-                src={collectionLogo}
+                src={logoSrc}
                 alt="Collection Logo"
                 className="rounded-2xl shadow-xl border-2 border-glass bg-white"
                 style={{ width: 96, height: 96, objectFit: 'cover' }}
               />
             ) : (
-              <span className="rounded-2xl bg-gray-700 flex items-center justify-center shadow-xl border-2 border-glass" style={{ width: 96, height: 96 }}>
-                <span className="text-3xl font-bold text-gray-400">?</span>
-              </span>
-            )}
-          </div>
-        )}
+              <div className="flex items-center justify-center rounded-2xl bg-gray-700 shadow-xl border-2 border-glass" style={{ width: 96, height: 96 }}>
+                <div className="loading-spinner w-8 h-8"></div>
+              </div>
+            )
+          ) : (
+            <span className="rounded-2xl bg-gray-700 flex items-center justify-center shadow-xl border-2 border-glass" style={{ width: 96, height: 96 }}>
+              <span className="text-3xl font-bold text-gray-400">?</span>
+            </span>
+          )}
+        </div>
         {/* Name, Symbol, Description, Custom Metadata */}
         {collectionLoading ? null : (
           <div className="flex flex-col justify-between h-full py-2" style={{ minWidth: 0 }}>

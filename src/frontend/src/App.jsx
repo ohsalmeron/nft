@@ -4,9 +4,13 @@ import NftCard from "./components/NftCard";
 import NftModal from "./components/NftModal";
 import CollectionBanner from "./components/CollectionBanner";
 import { FaSyncAlt, FaGlobe, FaTwitter, FaDiscord } from "react-icons/fa";
+import { cacheUtils } from "./utils/cache";
+import { imageCache } from "./utils/imageCache";
 
 const MAINNET_CANISTER_ID = "xea2t-daaaa-aaaaj-qnp2a-cai";
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_VERSION = 'v1';
+const COLLECTION_CACHE_KEY = 'collection_metadata';
 
 // Dynamic page size calculation based on viewport and grid
 function calculatePageSize() {
@@ -26,80 +30,23 @@ function calculatePageSize() {
   return columns * rows;
 }
 
-// Custom hook for image caching
-function useImageCache() {
-  const [imageCache, setImageCache] = useState(new Map());
-  const [loadingImages, setLoadingImages] = useState(new Set());
+const cached = cacheUtils.get(COLLECTION_CACHE_KEY);
 
-  const loadImage = useCallback((src) => {
-    if (imageCache.has(src)) {
-      return Promise.resolve(imageCache.get(src));
+// Helper to recursively convert BigInt to string in an object
+function convertBigIntToString(obj) {
+  if (typeof obj === 'bigint') {
+    return obj.toString();
+  } else if (Array.isArray(obj)) {
+    return obj.map(convertBigIntToString);
+  } else if (obj && typeof obj === 'object') {
+    const newObj = {};
+    for (const key in obj) {
+      newObj[key] = convertBigIntToString(obj[key]);
     }
-    if (loadingImages.has(src)) {
-      return new Promise((resolve) => {
-        const checkLoaded = () => {
-          if (imageCache.has(src)) {
-            resolve(imageCache.get(src));
-          } else {
-            setTimeout(checkLoaded, 100);
-          }
-        };
-        checkLoaded();
-      });
-    }
-    setLoadingImages(prev => new Set(prev).add(src));
-    return new Promise((resolve, reject) => {
-      const img = new window.Image();
-      img.onload = () => {
-        setImageCache(prev => new Map(prev).set(src, img.src));
-        setLoadingImages(prev => {
-          const newSet = new Set(prev);
-          newSet.delete(src);
-          return newSet;
-        });
-        resolve(img.src);
-      };
-      img.onerror = () => {
-        setLoadingImages(prev => {
-          const newSet = new Set(prev);
-          newSet.delete(src);
-          return newSet;
-        });
-        reject(new Error(`Failed to load image: ${src}`));
-      };
-      img.src = src;
-    });
-  }, [imageCache, loadingImages]);
-
-  return { loadImage, imageCache, loadingImages };
-}
-
-// Cache utilities
-const cacheUtils = {
-  get: (key) => {
-    try {
-      const item = localStorage.getItem(key);
-      if (!item) return null;
-      const { data, timestamp } = JSON.parse(item);
-      if (Date.now() - timestamp > CACHE_DURATION) {
-        localStorage.removeItem(key);
-        return null;
-      }
-      return data;
-    } catch (error) {
-      return null;
-    }
-  },
-  set: (key, data) => {
-    try {
-      const item = { data, timestamp: Date.now() };
-      localStorage.setItem(key, JSON.stringify(item));
-    } catch (error) {}
-  },
-  clear: (key) => {
-    try { localStorage.removeItem(key); } catch (error) {}
+    return newObj;
   }
-};
+  return obj;
+}
 
 function App() {
   const [nfts, setNfts] = useState([]); // All loaded NFTs
@@ -109,23 +56,21 @@ function App() {
   const [refreshing, setRefreshing] = useState(false);
   const [page, setPage] = useState(1); // Current page to load next
   const [pageSize, setPageSize] = useState(calculatePageSize());
-  const [totalCount, setTotalCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(cached?.totalCount || 0);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const observerRef = useRef();
-  
-  const { loadImage, imageCache, loadingImages } = useImageCache();
 
-  // Collection metadata state
-  const [collectionName, setCollectionName] = useState("");
-  const [collectionSymbol, setCollectionSymbol] = useState("");
-  const [collectionDescription, setCollectionDescription] = useState("");
-  const [collectionLogo, setCollectionLogo] = useState("");
-  const [collectionSupplyCap, setCollectionSupplyCap] = useState(null);
-  const [supportedStandards, setSupportedStandards] = useState([]);
-  const [customMetadata, setCustomMetadata] = useState([]);
+  // Always use cached values for initial state
+  const [collectionName, setCollectionName] = useState(cached?.name || "");
+  const [collectionSymbol, setCollectionSymbol] = useState(cached?.symbol || "");
+  const [collectionDescription, setCollectionDescription] = useState(cached?.description || "");
+  const [collectionLogo, setCollectionLogo] = useState(cached?.logo || "");
+  const [collectionSupplyCap, setCollectionSupplyCap] = useState(cached?.supplyCap || null);
+  const [supportedStandards, setSupportedStandards] = useState(cached?.standards || []);
+  const [customMetadata, setCustomMetadata] = useState(cached?.customMetadata || []);
+  const [collectionLoading, setCollectionLoading] = useState(() => !cached);
   const [descExpanded, setDescExpanded] = useState(false);
-  const [collectionLoading, setCollectionLoading] = useState(true);
 
   // Responsive page size calculation
   useEffect(() => {
@@ -153,13 +98,28 @@ function App() {
     fetchTotalCount();
   }, []);
 
-  // Fetch collection metadata on mount
+  // On app start, clear cache if expired
   useEffect(() => {
+    const checkCacheValidity = async () => {
+      const lastUpdated = localStorage.getItem('nft_cache_last_updated');
+      const now = Date.now();
+      if (!lastUpdated || (now - parseInt(lastUpdated)) > CACHE_DURATION) {
+        cacheUtils.clearAll();
+        await imageCache.clearCache();
+        localStorage.setItem('nft_cache_last_updated', now.toString());
+      }
+    };
+    checkCacheValidity();
+  }, []);
+
+  // Fetch from network only if no valid cache
+  useEffect(() => {
+    if (!collectionLoading) return;
     async function fetchCollectionMetadata() {
       setCollectionLoading(true);
       try {
         const mainnetActor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } });
-        const [name, symbol, descriptionOpt, logoOpt, supplyCapOpt, standards, customMeta] = await Promise.all([
+        const [name, symbol, descriptionOpt, logoOpt, supplyCapOpt, standards, customMeta, count] = await Promise.all([
           mainnetActor.icrc7_name(),
           mainnetActor.icrc7_symbol(),
           mainnetActor.icrc7_description(),
@@ -167,6 +127,7 @@ function App() {
           mainnetActor.icrc7_supply_cap(),
           mainnetActor.icrc10_supported_standards(),
           mainnetActor.icrc7_collection_metadata(),
+          mainnetActor.icrc7_total_supply(),
         ]);
         setCollectionName(name);
         setCollectionSymbol(symbol);
@@ -175,23 +136,52 @@ function App() {
         setCollectionSupplyCap(supplyCapOpt?.[0] || null);
         setSupportedStandards(standards);
         setCustomMetadata(customMeta);
+        setTotalCount(Number(count));
+        // Convert BigInt to string before caching
+        const cacheData = convertBigIntToString({
+          name,
+          symbol,
+          description: descriptionOpt?.[0] || "",
+          logo: logoOpt?.[0] || "",
+          supplyCap: supplyCapOpt?.[0] || null,
+          standards,
+          customMetadata: customMeta,
+          totalCount: Number(count),
+        });
+        cacheUtils.set(COLLECTION_CACHE_KEY, cacheData);
+        console.log('WROTE TO CACHE:', cacheUtils.get(COLLECTION_CACHE_KEY));
+        console.log('RAW LOCALSTORAGE:', localStorage.getItem('nft_cache_v1_collection_metadata'));
       } catch (e) {
-        setCollectionName("");
-        setCollectionSymbol("");
-        setCollectionDescription("");
-        setCollectionLogo("");
-        setCollectionSupplyCap(null);
-        setSupportedStandards([]);
-        setCustomMetadata([]);
+        // On fetch failure, DO NOT clear state or cache. Always keep the last cached values.
       }
       setCollectionLoading(false);
     }
     fetchCollectionMetadata();
-  }, []);
+  }, [collectionLoading]);
+
+  // Force cache to be written from state on every render if collectionName is non-empty
+  useEffect(() => {
+    if (collectionName && collectionName !== "") {
+      // Convert BigInt to string before caching
+      const cacheData = convertBigIntToString({
+        name: collectionName,
+        symbol: collectionSymbol,
+        description: collectionDescription,
+        logo: collectionLogo,
+        supplyCap: collectionSupplyCap,
+        standards: supportedStandards,
+        customMetadata: customMetadata,
+        totalCount: totalCount,
+      });
+      cacheUtils.set(COLLECTION_CACHE_KEY, cacheData);
+      console.log('FORCED WRITE TO CACHE:', cacheUtils.get(COLLECTION_CACHE_KEY));
+      console.log('RAW LOCALSTORAGE:', localStorage.getItem('nft_cache_v1_collection_metadata'));
+    }
+  }, [collectionName, collectionSymbol, collectionDescription, collectionLogo, collectionSupplyCap, supportedStandards, customMetadata, totalCount]);
 
   // Fetch NFTs for a page and append
   const fetchNFTs = useCallback(async (page, pageSize, useCache = true) => {
-    const CACHE_KEY = `nft_collection_page_${page}_size_${pageSize}`;
+    const CACHE_KEY = `nfts_page_${page}_size_${pageSize}`;
     if (useCache) {
       const cachedNfts = cacheUtils.get(CACHE_KEY);
       if (cachedNfts) {
@@ -220,36 +210,53 @@ function App() {
         pageTokenIds.map(async (id, idx) => {
           const tokenId = typeof id === 'bigint' ? id.toString() : id;
           const meta = metadatas[idx]?.[0];
-          if (!meta) return null;
+          // Try NFT-level cache
+          const nftCacheKey = `nft_${tokenId}`;
+          const cachedNft = cacheUtils.get(nftCacheKey);
+          if (cachedNft) return cachedNft;
+          // Process NFT data
           let metadataUrl = null;
-          for (const [key, value] of meta) {
-            if (key === "icrc97:metadata" && value.Array) {
-              const urlValue = value.Array[0];
-              if (urlValue && urlValue.Text) {
-                metadataUrl = urlValue.Text;
-                break;
+          if (meta) {
+            for (const [key, value] of meta) {
+              if (key === "icrc97:metadata" && value.Array) {
+                const urlValue = value.Array[0];
+                if (urlValue && urlValue.Text) {
+                  metadataUrl = urlValue.Text;
+                  break;
+                }
               }
             }
           }
           if (!metadataUrl) {
-            return { 
-              id: tokenId, 
-              name: `NFT #${tokenId}`, 
+            const fallback = {
+              id: tokenId,
+              name: `NFT #${tokenId}`,
               description: "No metadata available",
               image: "",
               attributes: [],
               metadataUrl: null
             };
+            cacheUtils.set(nftCacheKey, fallback);
+            return fallback;
           }
           try {
-            const cacheKey = `nft_metadata_${tokenId}`;
-            let jsonMetadata = cacheUtils.get(cacheKey);
+            // Check cache for metadata
+            const metadataCacheKey = `nft_metadata_${tokenId}`;
+            let jsonMetadata = cacheUtils.get(metadataCacheKey);
             if (!jsonMetadata) {
               const response = await fetch(metadataUrl);
               jsonMetadata = await response.json();
-              cacheUtils.set(cacheKey, jsonMetadata);
+              cacheUtils.set(metadataCacheKey, jsonMetadata);
             }
-            return {
+            // Cache the image if available
+            if (jsonMetadata.image) {
+              try {
+                await imageCache.cacheImage(jsonMetadata.image);
+              } catch (error) {
+                // Ignore image cache errors
+              }
+            }
+            const nftData = {
               id: tokenId,
               name: jsonMetadata.name || `NFT #${tokenId}`,
               description: jsonMetadata.description || "",
@@ -257,15 +264,19 @@ function App() {
               attributes: jsonMetadata.attributes || [],
               metadataUrl
             };
+            cacheUtils.set(nftCacheKey, nftData);
+            return nftData;
           } catch (fetchError) {
-            return { 
-              id: tokenId, 
-              name: `NFT #${tokenId}`, 
+            const fallback = {
+              id: tokenId,
+              name: `NFT #${tokenId}`,
               description: "Failed to load metadata",
               image: "",
               attributes: [],
               metadataUrl: null
             };
+            cacheUtils.set(nftCacheKey, fallback);
+            return fallback;
           }
         })
       );
@@ -276,10 +287,12 @@ function App() {
         return [...prev, ...validNfts.filter(n => !ids.has(n.id))];
       });
       cacheUtils.set(CACHE_KEY, validNfts);
-      // Preload images for this page
-      validNfts.forEach(nft => {
+      // Preload images for this page using Cache API
+      validNfts.forEach(async nft => {
         if (nft.image) {
-          loadImage(nft.image).catch(() => {});
+          try {
+            await imageCache.cacheImage(nft.image);
+          } catch {}
         }
       });
       if (validNfts.length < pageSize) setHasMore(false);
@@ -288,7 +301,7 @@ function App() {
     }
     setLoading(false);
     setLoadingMore(false);
-  }, [loadImage]);
+  }, []);
 
   // Initial load and reset on pageSize change
   useEffect(() => {
@@ -326,21 +339,27 @@ function App() {
     };
   }, [hasMore, loading, loadingMore]);
 
-  // Refresh function (clears all loaded pages)
+  // On manual refresh, clear cache and state, then refetch
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
-    // Clear all page caches
-    for (let i = 1; i <= page; i++) {
-      const CACHE_KEY = `nft_collection_page_${i}_size_${pageSize}`;
-      cacheUtils.clear(CACHE_KEY);
-    }
+    cacheUtils.clear(COLLECTION_CACHE_KEY);
+    await imageCache.clearCache();
+    localStorage.setItem('nft_cache_last_updated', Date.now().toString());
+    setCollectionName("");
+    setCollectionSymbol("");
+    setCollectionDescription("");
+    setCollectionLogo("");
+    setCollectionSupplyCap(null);
+    setSupportedStandards([]);
+    setCustomMetadata([]);
+    setCollectionLoading(true);
     setNfts([]);
     setPage(1);
     setHasMore(true);
     setLoading(true);
     await fetchNFTs(1, pageSize, false);
     setRefreshing(false);
-  }, [fetchNFTs, page, pageSize]);
+  }, [fetchNFTs, pageSize]);
 
   const handleNftClick = (nft) => {
     setSelectedNft(nft);
@@ -394,6 +413,22 @@ function App() {
     return <>{desc.slice(0, 120)}... <button className="text-accent underline text-xs ml-1" onClick={() => setDescExpanded(true)}>more</button></>;
   }
 
+  // Debug: Log what is being passed to CollectionBanner
+  useEffect(() => {
+    console.log('CollectionBanner props:', {
+      collectionLogo,
+      collectionName,
+      collectionSymbol,
+      collectionDescription,
+      customMetadata,
+      totalCount,
+      collectionSupplyCap,
+      supportedStandards,
+      refreshing,
+      collectionLoading
+    });
+  }, [collectionLogo, collectionName, collectionSymbol, collectionDescription, customMetadata, totalCount, collectionSupplyCap, supportedStandards, refreshing, collectionLoading]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#181c24] to-[#23283a]">
       <CollectionBanner
@@ -423,8 +458,6 @@ function App() {
                 key={nft.id} 
                 nft={nft} 
                 onClick={handleNftClick}
-                imageLoaded={imageCache.has(nft.image)}
-                imageLoading={loadingImages.has(nft.image)}
               />
             ))}
           </div>
@@ -445,7 +478,6 @@ function App() {
         nft={selectedNft} 
         show={showModal} 
         onClose={closeModal}
-        imageLoaded={selectedNft ? imageCache.has(selectedNft.image) : false}
       />
     </div>
   );

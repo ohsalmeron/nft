@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { imageCache } from "../utils/imageCache";
 
-function NftModal({ nft, show, onClose, imageLoaded }) {
+function NftModal({ nft, show, onClose }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+
+  useEffect(() => {
+    if (!nft?.image) {
+      setImageLoaded(true);
+      setImageSrc("");
+      return;
+    }
+    let isMounted = true;
+    const loadImage = async () => {
+      try {
+        const cachedResponse = await imageCache.getCachedImage(nft.image);
+        if (cachedResponse) {
+          const blob = await cachedResponse.blob();
+          if (isMounted) {
+            setImageSrc(URL.createObjectURL(blob));
+            setImageLoaded(true);
+          }
+        } else {
+          setImageSrc(nft.image);
+          const img = new window.Image();
+          img.onload = () => {
+            if (isMounted) setImageLoaded(true);
+            imageCache.cacheImage(nft.image);
+          };
+          img.onerror = () => {
+            if (isMounted) setImageLoaded(true);
+          };
+          img.src = nft.image;
+        }
+      } catch (error) {
+        setImageSrc(nft.image);
+        setImageLoaded(true);
+      }
+    };
+    setImageLoaded(false);
+    setImageSrc("");
+    loadImage();
+    return () => { isMounted = false; };
+  }, [nft]);
+
   if (!show || !nft) return null;
 
   return (
@@ -37,7 +80,7 @@ function NftModal({ nft, show, onClose, imageLoaded }) {
           {nft.image ? (
             <>
               <img
-                src={nft.image}
+                src={imageSrc}
                 alt={nft.name}
                 className={`w-full h-full object-cover ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 style={{ transition: 'opacity 0.3s ease', borderRadius: 0, width: '100%', height: '100%', display: 'block' }}
