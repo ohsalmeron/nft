@@ -1,0 +1,133 @@
+// Layout components
+.app-container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.main-content {
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+// Enhanced NFT Grid
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  position: relative;
+}
+
+// Subtle grid background pattern
+.nft-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
+  background-size: 40px 40px;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+// Responsive grid breakpoints
+@media (max-width: 768px) {
+  .nft-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nft-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .nft-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1536px) {
+  .nft-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1280px) {
+  .nft-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .nft-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+// Loading states
+.loading-container {
+  text-align: center;
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+}
+
+.loading-container .loading-spinner {
+  margin-bottom: var(--spacing-lg);
+}
+
+.loading-container p {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.loading-more {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-2xl) 0;
+}
+
+.loading-more .loading-spinner {
+  width: 40px;
+  height: 40px;
+}
+
+.no-more-nfts {
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--spacing-2xl) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-wide);
+  position: relative;
+}
+
+.no-more-nfts::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 1px;
+  background: var(--gradient-accent);
+  opacity: 0.3;
+}
+
+.scroll-sentinel {
+  height: 1px;
+  margin-top: var(--spacing-2xl);
+} 

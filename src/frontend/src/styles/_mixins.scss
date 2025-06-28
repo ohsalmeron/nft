@@ -1,0 +1,126 @@
+// Glassmorphism mixins
+@mixin glass($opacity: 0.08, $blur: var(--blur-md)) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid var(--border-light);
+}
+
+@mixin glass-card {
+  @include glass(0.08, var(--blur-lg));
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+}
+
+@mixin glass-sm {
+  @include glass(0.06, var(--blur-sm));
+}
+
+@mixin glass-badge {
+  @include glass-sm;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+@mixin glass-button {
+  @include glass-sm;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: var(--text-white);
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Gradient border effect
+@mixin gradient-border($gradient: var(--gradient-card), $opacity: 0) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: $gradient;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: $opacity;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+  }
+}
+
+// Loading spinner
+@mixin loading-spinner($size: 50px, $border-width: 3px) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  border: $border-width solid var(--glass-secondary);
+  border-top: $border-width solid var(--text-accent);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -$border-width;
+    left: -$border-width;
+    right: -$border-width;
+    bottom: -$border-width;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-full);
+    opacity: 0.3;
+  }
+}
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: 767px) { @content; }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) { @content; }
+}
+
+@mixin large-desktop {
+  @media (min-width: 1280px) { @content; }
+}
+
+// Text utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-gradient($gradient: var(--gradient-accent)) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+} 
