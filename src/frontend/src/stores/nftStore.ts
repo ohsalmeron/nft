@@ -134,22 +134,22 @@ export const useNftStore = defineStore('nft', () => {
         mainnetActor.icrc7_total_supply(),
       ])
 
-      collectionName.value = name
-      collectionSymbol.value = symbol
-      collectionDescription.value = descriptionOpt?.[0] || ""
-      collectionLogo.value = logoOpt?.[0] || ""
-      collectionSupplyCap.value = supplyCapOpt?.[0] || null
-      supportedStandards.value = standards
-      customMetadata.value = customMeta
+      collectionName.value = name as string
+      collectionSymbol.value = symbol as string
+      collectionDescription.value = Array.isArray(descriptionOpt) && descriptionOpt.length > 0 ? (descriptionOpt[0] as string) : ""
+      collectionLogo.value = Array.isArray(logoOpt) && logoOpt.length > 0 ? (logoOpt[0] as string) : ""
+      collectionSupplyCap.value = Array.isArray(supplyCapOpt) && supplyCapOpt.length > 0 ? (supplyCapOpt[0] as number | null) : null
+      supportedStandards.value = standards as any[]
+      customMetadata.value = customMeta as any[]
       totalCount.value = Number(count)
 
       // Cache the data
       const cacheData = convertBigIntToString({
         name,
         symbol,
-        description: descriptionOpt?.[0] || "",
-        logo: logoOpt?.[0] || "",
-        supplyCap: supplyCapOpt?.[0] || null,
+        description: Array.isArray(descriptionOpt) && descriptionOpt.length > 0 ? descriptionOpt[0] : "",
+        logo: Array.isArray(logoOpt) && logoOpt.length > 0 ? logoOpt[0] : "",
+        supplyCap: Array.isArray(supplyCapOpt) && supplyCapOpt.length > 0 ? supplyCapOpt[0] : null,
         standards,
         customMetadata: customMeta,
         totalCount: Number(count),
@@ -186,14 +186,15 @@ export const useNftStore = defineStore('nft', () => {
       
       const start = (page.value - 1) * pageSize.value
       const end = start + pageSize.value
-      const allTokenIds = await mainnetActor.icrc7_tokens([], [])
-      const pageTokenIds = allTokenIds.slice(start, end)
-      const metadatas = await mainnetActor.icrc7_token_metadata(pageTokenIds)
+      const allTokenIds = (await mainnetActor.icrc7_tokens([], [])) as any[]
+      const pageTokenIds = Array.isArray(allTokenIds) ? allTokenIds.slice(start, end) : []
+      const metadatas = (await mainnetActor.icrc7_token_metadata(pageTokenIds)) as any[]
       
       const parsed = await Promise.all(
         pageTokenIds.map(async (id: any, idx: number) => {
           const tokenId = typeof id === 'bigint' ? id.toString() : id
-          const meta = metadatas[idx]?.[0]
+          const metaArr = Array.isArray(metadatas) && Array.isArray(metadatas[idx]) ? (metadatas[idx] as Record<string, any>[]) : []
+          const meta = metaArr.length > 0 ? metaArr[0] : undefined
           
           // Try NFT-level cache
           const nftCacheKey = `nft_${tokenId}`
@@ -202,11 +203,12 @@ export const useNftStore = defineStore('nft', () => {
           
           // Process NFT data
           let metadataUrl = null
-          if (meta) {
-            for (const [key, value] of meta) {
-              if (key === "icrc97:metadata" && value.Array) {
-                const urlValue = value.Array[0]
-                if (urlValue && urlValue.Text) {
+          if (meta && typeof meta === 'object') {
+            for (const [key, value] of Object.entries(meta)) {
+              if (key === 'icrc97:metadata' && value && Array.isArray(value.Array)) {
+                const arr = value.Array as any[]
+                const urlValue = arr.length > 0 ? arr[0] : undefined
+                if (urlValue && typeof urlValue === 'object' && 'Text' in urlValue) {
                   metadataUrl = urlValue.Text
                   break
                 }

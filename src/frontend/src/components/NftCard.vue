@@ -2,20 +2,22 @@
   <div class="nft-card" @click="$emit('click')">
     <div class="nft-card-image-container">
       <img
-        v-if="nft.image"
+        v-if="nft.image && imageSrc"
         :src="imageSrc"
         :alt="nft.name"
         class="nft-card-image"
         :class="{ 'image-loaded': imageLoaded, 'image-loading': !imageLoaded }"
+        @load="onImageLoad"
+        @error="onImageError"
       />
       <div
-        v-if="!imageLoaded && nft.image"
+        v-if="!imageLoaded && nft.image && imageSrc"
         class="nft-card-loading"
       >
         <div class="loading-spinner"></div>
       </div>
       <div
-        v-if="!nft.image"
+        v-if="!nft.image || !imageSrc"
         class="nft-card-no-image"
       >
         No Image
@@ -61,62 +63,27 @@ defineEmits<{
 const imageLoaded = ref(false)
 const imageSrc = ref('')
 
-// Image loading logic
-watch(() => props.nft?.image, async (newImage) => {
+// Simplified image loading logic
+watch(() => props.nft?.image, (newImage) => {
   if (!newImage) {
-    imageLoaded.value = true
+    imageLoaded.value = false
     imageSrc.value = ''
     return
   }
   
+  // Reset state
   imageLoaded.value = false
-  imageSrc.value = ''
-  
-  try {
-    // Try to get from cache first
-    const cachedResponse = await imageCache.getCachedImage(newImage)
-    if (cachedResponse) {
-      const blob = await cachedResponse.blob()
-      imageSrc.value = URL.createObjectURL(blob)
-      imageLoaded.value = true
-    } else {
-      // Load from network
-      imageSrc.value = newImage
-      const img = new window.Image()
-      img.onload = () => {
-        imageLoaded.value = true
-        imageCache.cacheImage(newImage)
-      }
-      img.onerror = () => {
-        imageLoaded.value = true
-      }
-      img.src = newImage
-    }
-  } catch (error) {
-    imageSrc.value = newImage
-    imageLoaded.value = true
-  }
+  imageSrc.value = newImage
 }, { immediate: true })
 
-// Simple image cache utility (you can enhance this)
-const imageCache = {
-  async getCachedImage(url: string) {
-    try {
-      const cache = await caches.open('nft-images')
-      return await cache.match(url)
-    } catch {
-      return null
-    }
-  },
-  
-  async cacheImage(url: string) {
-    try {
-      const cache = await caches.open('nft-images')
-      await cache.add(url)
-    } catch {
-      // Ignore cache errors
-    }
-  }
+// Image event handlers
+const onImageLoad = () => {
+  imageLoaded.value = true
+}
+
+const onImageError = () => {
+  imageLoaded.value = true
+  imageSrc.value = '' // Clear the src to show "No Image"
 }
 </script>
 
