@@ -56,6 +56,45 @@ const cacheUtils = {
   }
 }
 
+// Image cache utilities
+const imageCache = new Map<string, string>()
+const loadingImages = new Set<string>()
+
+const loadImage = async (src: string): Promise<string> => {
+  if (imageCache.has(src)) {
+    return imageCache.get(src)!
+  }
+
+  if (loadingImages.has(src)) {
+    return new Promise((resolve) => {
+      const checkLoaded = () => {
+        if (imageCache.has(src)) {
+          resolve(imageCache.get(src)!)
+        } else {
+          setTimeout(checkLoaded, 100)
+        }
+      }
+      checkLoaded()
+    })
+  }
+
+  loadingImages.add(src)
+
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      imageCache.set(src, img.src)
+      loadingImages.delete(src)
+      resolve(img.src)
+    }
+    img.onerror = () => {
+      loadingImages.delete(src)
+      reject(new Error(`Failed to load image: ${src}`))
+    }
+    img.src = src
+  })
+}
+
 // Helper to convert BigInt to string
 function convertBigIntToString(obj: any): any {
   if (typeof obj === 'bigint') {
@@ -97,6 +136,10 @@ export const useNftStore = defineStore('nft', () => {
   const showModal = ref(false)
   const refreshing = ref(false)
 
+  // Image cache state
+  const imageCacheSize = ref(0)
+  const loadingImagesCount = ref(0)
+
   // Initialize from cache
   const cached = cacheUtils.get(COLLECTION_CACHE_KEY)
   if (cached) {
@@ -111,6 +154,26 @@ export const useNftStore = defineStore('nft', () => {
     collectionLoading.value = false
   } else {
     collectionLoading.value = true
+  }
+
+  // Update image cache stats
+  const updateImageCacheStats = () => {
+    imageCacheSize.value = imageCache.size
+    loadingImagesCount.value = loadingImages.size
+  }
+
+  // Expose image cache utilities
+  const isImageLoaded = (src: string) => {
+    const loaded = imageCache.has(src)
+    // Trigger reactivity by accessing the reactive state
+    imageCacheSize.value
+    return loaded
+  }
+  const isImageLoading = (src: string) => {
+    const loading = loadingImages.has(src)
+    // Trigger reactivity by accessing the reactive state
+    loadingImagesCount.value
+    return loading
   }
 
   // Fetch collection metadata
@@ -193,30 +256,37 @@ export const useNftStore = defineStore('nft', () => {
       const parsed = await Promise.all(
         pageTokenIds.map(async (id: any, idx: number) => {
           const tokenId = typeof id === 'bigint' ? id.toString() : id
-          const metaArr = Array.isArray(metadatas) && Array.isArray(metadatas[idx]) ? (metadatas[idx] as Record<string, any>[]) : []
-          const meta = metaArr.length > 0 ? metaArr[0] : undefined
+          const nftCacheKey = `nft_${tokenId}`;
+          const cachedNft = cacheUtils.get(nftCacheKey);
+          if (cachedNft) return cachedNft;
+
+          const metaOpt = metadatas[idx]; // Option: null or array
+          console.log(`Token ${tokenId} metaOpt:`, metaOpt);
           
-          // Try NFT-level cache
-          const nftCacheKey = `nft_${tokenId}`
-          const cachedNft = cacheUtils.get(nftCacheKey)
-          if (cachedNft) return cachedNft
-          
-          // Process NFT data
-          let metadataUrl = null
-          if (meta && typeof meta === 'object') {
-            for (const [key, value] of Object.entries(meta)) {
-              if (key === 'icrc97:metadata' && value && Array.isArray(value.Array)) {
-                const arr = value.Array as any[]
-                const urlValue = arr.length > 0 ? arr[0] : undefined
-                if (urlValue && typeof urlValue === 'object' && 'Text' in urlValue) {
-                  metadataUrl = urlValue.Text
-                  break
+          let metadataUrl = null;
+          if (Array.isArray(metaOpt) && metaOpt.length > 0) {
+            console.log(`Token ${tokenId} metaOpt array:`, metaOpt);
+            // metaOpt is an array containing another array, so get the inner array
+            const innerArray = metaOpt[0];
+            if (Array.isArray(innerArray)) {
+              console.log(`Token ${tokenId} innerArray:`, innerArray);
+              for (const [key, value] of innerArray) {
+                console.log(`Token ${tokenId} checking key:`, key, 'value:', value);
+                if (key === "icrc97:metadata" && value && Array.isArray(value.Array)) {
+                  const urlValue = value.Array[0];
+                  console.log(`Token ${tokenId} urlValue:`, urlValue);
+                  if (urlValue && typeof urlValue === "object" && "Text" in urlValue) {
+                    metadataUrl = urlValue.Text;
+                    console.log(`Token ${tokenId} found metadataUrl:`, metadataUrl);
+                    break;
+                  }
                 }
               }
             }
           }
-          
+        
           if (!metadataUrl) {
+            console.log(`Token ${tokenId} no metadata URL found`);
             const fallback = {
               id: tokenId,
               name: `NFT #${tokenId}`,
@@ -224,21 +294,23 @@ export const useNftStore = defineStore('nft', () => {
               image: "",
               attributes: [],
               metadataUrl: null
-            }
-            cacheUtils.set(nftCacheKey, fallback)
-            return fallback
+            };
+            cacheUtils.set(nftCacheKey, fallback);
+            return fallback;
           }
-          
+
           try {
             // Check cache for metadata
-            const metadataCacheKey = `nft_metadata_${tokenId}`
-            let jsonMetadata = cacheUtils.get(metadataCacheKey)
+            const metadataCacheKey = `nft_metadata_${tokenId}`;
+            let jsonMetadata = cacheUtils.get(metadataCacheKey);
             if (!jsonMetadata) {
-              const response = await fetch(metadataUrl)
-              jsonMetadata = await response.json()
-              cacheUtils.set(metadataCacheKey, jsonMetadata)
+              console.log(`Token ${tokenId} fetching metadata from:`, metadataUrl);
+              const response = await fetch(metadataUrl);
+              jsonMetadata = await response.json();
+              console.log(`Token ${tokenId} fetched JSON metadata:`, jsonMetadata);
+              cacheUtils.set(metadataCacheKey, jsonMetadata);
             }
-            
+
             const nftData = {
               id: tokenId,
               name: jsonMetadata.name || `NFT #${tokenId}`,
@@ -246,10 +318,12 @@ export const useNftStore = defineStore('nft', () => {
               image: jsonMetadata.image || "",
               attributes: jsonMetadata.attributes || [],
               metadataUrl
-            }
-            cacheUtils.set(nftCacheKey, nftData)
-            return nftData
+            };
+            console.log(`Token ${tokenId} final NFT data:`, nftData);
+            cacheUtils.set(nftCacheKey, nftData);
+            return nftData;
           } catch (fetchError) {
+            console.error(`Token ${tokenId} fetch error:`, fetchError);
             const fallback = {
               id: tokenId,
               name: `NFT #${tokenId}`,
@@ -257,13 +331,13 @@ export const useNftStore = defineStore('nft', () => {
               image: "",
               attributes: [],
               metadataUrl: null
-            }
-            cacheUtils.set(nftCacheKey, fallback)
-            return fallback
+            };
+            cacheUtils.set(nftCacheKey, fallback);
+            return fallback;
           }
         })
       )
-      
+
       const validNfts = parsed.filter(Boolean)
       nfts.value = [...nfts.value, ...validNfts]
       cacheUtils.set(CACHE_KEY, validNfts)
@@ -289,6 +363,12 @@ export const useNftStore = defineStore('nft', () => {
   const refresh = async () => {
     refreshing.value = true
     cacheUtils.clearAll()
+    
+    // Clear image cache
+    imageCache.clear()
+    loadingImages.clear()
+    updateImageCacheStats()
+    
     collectionLoading.value = true
     nfts.value = []
     page.value = 1
@@ -345,6 +425,8 @@ export const useNftStore = defineStore('nft', () => {
     selectedNft,
     showModal,
     refreshing,
+    imageCacheSize,
+    loadingImagesCount,
     
     // Actions
     fetchCollectionMetadata,
@@ -354,7 +436,11 @@ export const useNftStore = defineStore('nft', () => {
     openNftModal,
     closeNftModal,
     
+    // Image cache utilities
+    isImageLoaded,
+    isImageLoading,
+    
     // Computed
     collectionData
   }
-}) 
+})

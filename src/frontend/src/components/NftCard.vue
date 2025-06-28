@@ -6,12 +6,10 @@
         :src="imageSrc"
         :alt="nft.name"
         class="nft-card-image"
-        :class="{ 'image-loaded': imageLoaded, 'image-loading': !imageLoaded }"
-        @load="onImageLoad"
-        @error="onImageError"
+        :class="{ 'image-loaded': imageLoaded, 'image-loading': imageLoading }"
       />
       <div
-        v-if="!imageLoaded && nft.image && imageSrc"
+        v-if="imageLoading && nft.image"
         class="nft-card-loading"
       >
         <div class="loading-spinner"></div>
@@ -35,7 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
+import { useNftStore } from '../stores/nftStore'
 
 interface NftAttribute {
   trait_type: string
@@ -60,31 +59,61 @@ defineEmits<{
   click: []
 }>()
 
+const store = useNftStore()
+
+// Individual image loading state for this card
 const imageLoaded = ref(false)
+const imageLoading = ref(false)
 const imageSrc = ref('')
 
-// Simplified image loading logic
-watch(() => props.nft?.image, (newImage) => {
-  if (!newImage) {
-    imageLoaded.value = false
-    imageSrc.value = ''
+// Load image when component mounts or image URL changes
+const loadImage = async () => {
+  if (!props.nft.image) {
+    imageLoaded.value = true
+    imageLoading.value = false
     return
   }
-  
-  // Reset state
+
+  // Check if already cached
+  if (store.isImageLoaded(props.nft.image)) {
+    imageSrc.value = props.nft.image
+    imageLoaded.value = true
+    imageLoading.value = false
+    return
+  }
+
+  // Start loading
+  imageLoading.value = true
   imageLoaded.value = false
-  imageSrc.value = newImage
+  imageSrc.value = props.nft.image
+
+  try {
+    const img = new Image()
+    img.onload = () => {
+      imageLoaded.value = true
+      imageLoading.value = false
+    }
+    img.onerror = () => {
+      imageLoaded.value = true
+      imageLoading.value = false
+      imageSrc.value = '' // Clear src to show "No Image"
+    }
+    img.src = props.nft.image
+  } catch (error) {
+    imageLoaded.value = true
+    imageLoading.value = false
+    imageSrc.value = ''
+  }
+}
+
+// Watch for image URL changes
+watch(() => props.nft.image, () => {
+  loadImage()
 }, { immediate: true })
 
-// Image event handlers
-const onImageLoad = () => {
-  imageLoaded.value = true
-}
-
-const onImageError = () => {
-  imageLoaded.value = true
-  imageSrc.value = '' // Clear the src to show "No Image"
-}
+onMounted(() => {
+  loadImage()
+})
 </script>
 
 <style scoped>
