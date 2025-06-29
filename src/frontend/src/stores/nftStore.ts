@@ -407,6 +407,28 @@ export const useNftStore = defineStore('nft', () => {
     loading: collectionLoading.value
   }))
 
+  // Fetch NFT owner by tokenId
+  const fetchNftOwner = async (tokenId: string | number, canisterId?: string): Promise<string | null> => {
+    const cacheKey = `nft_owner_${tokenId}`
+    const cached = cacheUtils.get(cacheKey)
+    if (cached) return cached
+    try {
+      const actor = createActor(canisterId || MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } })
+      // icrc7_owner_of expects an array of Nat (token ids)
+      const ids = [typeof tokenId === 'string' ? BigInt(tokenId) : BigInt(tokenId)]
+      const result = await actor.icrc7_owner_of(ids)
+      // result is Vec<Option<Account>>
+      if (Array.isArray(result) && result.length > 0 && result[0] && result[0].owner) {
+        const principal = result[0].owner.toString()
+        cacheUtils.set(cacheKey, principal)
+        return principal
+      }
+    } catch (e) {
+      console.error('Failed to fetch NFT owner:', e)
+    }
+    return null
+  }
+
   return {
     // State
     collectionName,
@@ -441,6 +463,7 @@ export const useNftStore = defineStore('nft', () => {
     isImageLoading,
     
     // Computed
-    collectionData
+    collectionData,
+    fetchNftOwner
   }
 })
