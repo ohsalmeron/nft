@@ -312,11 +312,12 @@ const moreNfts = computed(() => {
     height: 80vh;
     min-height: 480px;
     max-width: 980px;
+    width: 980px;
   }
   .modal-image-container {
     width: 50%;
-    min-width: 340px;
-    max-width: 480px;
+    min-width: 0;
+    max-width: none;
     height: 100%;
     border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
     box-shadow: 8px 0 32px 0 rgba(139, 92, 246, 0.10);
@@ -328,9 +329,10 @@ const moreNfts = computed(() => {
   }
   .modal-info-scrollable {
     width: 50%;
+    min-width: 0;
+    max-width: none;
     height: 100%;
     max-height: none;
-    min-width: 340px;
     border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
     background: rgba(255, 255, 255, 0.18);
     position: relative;
