@@ -429,6 +429,81 @@ export const useNftStore = defineStore('nft', () => {
     return null
   }
 
+  // Fetch NFT transaction history (ICRC3)
+  const fetchNftTransactionHistory = async (
+    tokenId: string | number,
+    { start = 0, length = 100 } = {}
+  ): Promise<any[]> => {
+    const cacheKey = `nft_tx_history_${tokenId}_${start}_${length}`
+    const cached = cacheUtils.get(cacheKey)
+    if (cached) return cached
+    try {
+      const actor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } })
+      const req = [{ start: BigInt(start), length: BigInt(length) }]
+      const result = await actor.icrc3_get_blocks(req) as any
+      // result.blocks: [{ id, block }]
+      // block is a generic ICRC3Value, need to parse for tokenId
+      const txs = ((result.blocks || []) as any[]).map((b: any) => ({ id: b.id, ...b.block }))
+      // Filter for this tokenId (look for tid or token_id in block)
+      const filtered = txs.filter((tx: any) => {
+        // Try to find token id in the block (ICRC3Value)
+        if (tx.Map) {
+          const tid = tx.Map.find(([k, v]: any) => k === 'tid' && (v.Nat || v.Int))
+          if (tid && (tid[1].Nat?.toString() === tokenId.toString() || tid[1].Int?.toString() === tokenId.toString())) {
+            return true
+          }
+        }
+        return false
+      })
+      // Parse for UI: type, from, to, timestamp, memo, etc.
+      const parsed = filtered.map((tx: any) => {
+        let type = ''
+        let from = ''
+        let to = ''
+        let timestamp = ''
+        let memo = ''
+        if (tx.Map) {
+          for (const [k, v] of tx.Map) {
+            if (k === 'type' && v.Text) type = v.Text
+            if (k === 'from' && v.Map) {
+              const owner = v.Map.find(([kk]: any) => kk === 'owner')
+              if (owner && owner[1].Text) from = owner[1].Text
+            }
+            if (k === 'to' && v.Map) {
+              const owner = v.Map.find(([kk]: any) => kk === 'owner')
+              if (owner && owner[1].Text) to = owner[1].Text
+            }
+            if (k === 'created_at_time' && (v.Nat || v.Int)) timestamp = (v.Nat || v.Int).toString()
+            if (k === 'memo' && v.Text) memo = v.Text
+          }
+        }
+        return { id: tx.id, type, from, to, timestamp, memo, raw: tx }
+      })
+      cacheUtils.set(cacheKey, parsed)
+      return parsed
+    } catch (e) {
+      console.error('Failed to fetch NFT transaction history:', e)
+      return []
+    }
+  }
+
+  // Fetch NFT approvals (ICRC37)
+  const fetchNftApprovals = async (tokenId: string | number): Promise<any[]> => {
+    const cacheKey = `nft_approvals_${tokenId}`
+    const cached = cacheUtils.get(cacheKey)
+    if (cached) return cached
+    try {
+      const actor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } })
+      const result = await actor.icrc37_get_token_approvals(BigInt(tokenId), null, null) as any[]
+      // result: array of approvals
+      cacheUtils.set(cacheKey, result)
+      return result
+    } catch (e) {
+      console.error('Failed to fetch NFT approvals:', e)
+      return []
+    }
+  }
+
   return {
     // State
     collectionName,
@@ -464,6 +539,8 @@ export const useNftStore = defineStore('nft', () => {
     
     // Computed
     collectionData,
-    fetchNftOwner
+    fetchNftOwner,
+    fetchNftTransactionHistory,
+    fetchNftApprovals
   }
 })

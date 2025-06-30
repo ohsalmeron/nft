@@ -41,6 +41,7 @@
     <NftModal 
       :nft="store.selectedNft" 
       :show="store.showModal" 
+      :collection="store.collectionData"
       @close="closeNftModal"
     />
   </div>

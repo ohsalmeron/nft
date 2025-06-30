@@ -3,6 +3,13 @@
     <div class="nft-modal-grid" @click.stop>
       <!-- Left: Image -->
       <div class="modal-image-container">
+      <button
+        @click="$emit('close')"
+        class="modal-close-button"
+        aria-label="Close Modal"
+      >
+        &times;
+      </button>
         <img
           v-if="nft.image && imageSrc"
           :src="imageSrc"
@@ -26,13 +33,6 @@
       </div>
       <!-- Right: Info -->
       <div class="modal-info-scrollable">
-        <button
-          @click="$emit('close')"
-          class="modal-close-button"
-          aria-label="Close Modal"
-        >
-          &times;
-        </button>
         <div class="modal-main-info">
           <div class="modal-nft-id">NFT #{{ nft.id }}</div>
           <div class="modal-collection-row">
@@ -52,19 +52,19 @@
             <span>{{ showTraits ? '▲' : '▼' }}</span>
           </div>
           <div v-show="showTraits" class="accordion-content">
-            <div v-if="nft.attributes && nft.attributes.length > 0" class="traits-section">
-              <div class="traits-grid">
-                <div
-                  v-for="(attr, idx) in nft.attributes"
-                  :key="idx"
-                  class="nft-trait"
-                >
-                  <div class="trait-type">
-                    {{ attr.trait_type }}
-                  </div>
-                  <div class="trait-value">{{ attr.value }}</div>
-                </div>
+        <div v-if="nft.attributes && nft.attributes.length > 0" class="traits-section">
+          <div class="traits-grid">
+            <div
+              v-for="(attr, idx) in nft.attributes"
+              :key="idx"
+              class="nft-trait"
+            >
+              <div class="trait-type">
+                {{ attr.trait_type }}
               </div>
+              <div class="trait-value">{{ attr.value }}</div>
+            </div>
+          </div>
             </div>
             <div v-else class="traits-section">No traits available.</div>
           </div>
@@ -96,6 +96,44 @@
             </ul>
           </div>
         </div>
+        <!-- Accordion: Transaction History -->
+        <div class="modal-accordion">
+          <div class="accordion-header" @click="showTxHistory = !showTxHistory">
+            <span>Transaction History</span>
+            <span>{{ showTxHistory ? '▲' : '▼' }}</span>
+          </div>
+          <div v-show="showTxHistory" class="accordion-content">
+            <div v-if="txLoading" class="tx-loading"><div class="loading-spinner"></div> Loading...</div>
+            <div v-else-if="txHistory.length === 0" class="tx-empty">No history found.</div>
+            <ul v-else class="tx-list">
+              <li v-for="tx in txHistory" :key="tx.id" class="tx-item">
+                <span class="tx-type" :class="'tx-' + tx.type.toLowerCase()">{{ tx.type }}</span>
+                <span class="tx-from">{{ tx.from ? 'From: ' + tx.from : '' }}</span>
+                <span class="tx-to">{{ tx.to ? 'To: ' + tx.to : '' }}</span>
+                <span class="tx-date">{{ tx.timestamp ? new Date(Number(tx.timestamp) / 1_000_000).toLocaleString() : '' }}</span>
+                <span class="tx-memo" v-if="tx.memo">Memo: {{ tx.memo }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Accordion: Approvals -->
+        <div class="modal-accordion">
+          <div class="accordion-header" @click="showApprovals = !showApprovals">
+            <span>Approvals</span>
+            <span>{{ showApprovals ? '▲' : '▼' }}</span>
+          </div>
+          <div v-show="showApprovals" class="accordion-content">
+            <div v-if="approvalsLoading" class="tx-loading"><div class="loading-spinner"></div> Loading...</div>
+            <div v-else-if="approvals.length === 0" class="tx-empty">No approvals.</div>
+            <ul v-else class="tx-list">
+              <li v-for="(appr, idx) in approvals" :key="idx" class="tx-item">
+                <span class="tx-type tx-approve">Spender: {{ appr.approval_info?.spender?.owner }}</span>
+                <span class="tx-date">{{ appr.approval_info?.expires_at ? 'Expires: ' + new Date(Number(appr.approval_info.expires_at) / 1_000_000).toLocaleString() : '' }}</span>
+                <span class="tx-memo" v-if="appr.approval_info?.memo">Memo: {{ appr.approval_info.memo }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
         <!-- Accordion: More from this Collection -->
         <div class="modal-accordion">
           <div class="accordion-header" @click="showMore = !showMore">
@@ -112,8 +150,8 @@
               />
             </div>
             <div v-if="moreNfts.length === 0">No other NFTs found.</div>
-          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -147,7 +185,7 @@ interface CollectionInfo {
 interface Props {
   nft: Nft | null
   show: boolean
-  collection: CollectionInfo | null
+  collection?: CollectionInfo | null
 }
 
 const props = defineProps<Props>()
@@ -244,6 +282,43 @@ const showTraits = ref(true)
 const showAbout = ref(false)
 const showBlockchain = ref(false)
 const showMore = ref(false)
+const showTxHistory = ref(false)
+const showApprovals = ref(false)
+
+// Transaction history and approvals state
+const txHistory = ref<any[]>([])
+const txLoading = ref(false)
+const approvals = ref<any[]>([])
+const approvalsLoading = ref(false)
+
+// Fetch transaction history and approvals when modal opens or NFT changes
+const fetchTxAndApprovals = async () => {
+  if (!props.nft) return
+  txLoading.value = true
+  approvalsLoading.value = true
+  txHistory.value = []
+  approvals.value = []
+  try {
+    txHistory.value = await store.fetchNftTransactionHistory(props.nft.id)
+  } finally {
+    txLoading.value = false
+  }
+  try {
+    approvals.value = await store.fetchNftApprovals(props.nft.id)
+  } finally {
+    approvalsLoading.value = false
+  }
+}
+
+watch(() => props.nft?.id, () => {
+  loadImage()
+  fetchTxAndApprovals()
+}, { immediate: true })
+
+onMounted(() => {
+  loadImage()
+  fetchTxAndApprovals()
+})
 
 const MAINNET_CANISTER_ID = "xea2t-daaaa-aaaaj-qnp2a-cai"
 
@@ -272,6 +347,8 @@ const moreNfts = computed(() => {
 .nft-modal-backdrop {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(20, 20, 40, 0.85);
   backdrop-filter: blur(32px) saturate(1.2);
   -webkit-backdrop-filter: blur(32px) saturate(1.2);
@@ -279,7 +356,7 @@ const moreNfts = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg);
+  padding: 0;
   overflow-y: auto;
   animation: modalFadeIn 0.4s cubic-bezier(0.4,0,0.2,1);
 }
@@ -292,34 +369,35 @@ const moreNfts = computed(() => {
 .nft-modal-grid {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 980px;
-  min-width: 340px;
+  width: 100vw;
+  height: 100vh;
+  min-width: 0;
+  min-height: 0;
   background: rgba(255, 255, 255, 0.10);
-  border-radius: var(--radius-2xl);
+  border-radius: 0;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 16px 48px 0 rgba(80, 40, 180, 0.18), 0 2px 8px 0 rgba(0,0,0,0.10);
-  border: 1.5px solid rgba(139, 92, 246, 0.25);
+  box-shadow: none;
+  border: none;
   animation: modalContentFadeIn 0.6s cubic-bezier(0.4,0,0.2,1);
-  height: 80vh;
-  min-height: 480px;
 }
 
 @media (min-width: 900px) {
   .nft-modal-grid {
     flex-direction: row;
-    height: 80vh;
-    min-height: 480px;
-    max-width: 980px;
-    width: 980px;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    min-width: 0;
+    min-height: 0;
   }
   .modal-image-container {
     width: 50%;
     min-width: 0;
     max-width: none;
-    height: 100%;
-    border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
+    height: 100vh;
+    border-radius: 0;
     box-shadow: 8px 0 32px 0 rgba(139, 92, 246, 0.10);
     overflow: hidden;
     position: relative;
@@ -331,9 +409,9 @@ const moreNfts = computed(() => {
     width: 50%;
     min-width: 0;
     max-width: none;
-    height: 100%;
+    height: 100vh;
     max-height: none;
-    border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.18);
     position: relative;
     box-shadow: -8px 0 32px 0 rgba(139, 92, 246, 0.10);
@@ -358,23 +436,44 @@ const moreNfts = computed(() => {
 @media (max-width: 899px) {
   .nft-modal-grid {
     flex-direction: column;
-    max-width: 98vw;
-    max-height: 98vh;
+    width: 100vw;
     height: auto;
+    max-width: 100vw;
+    max-height: none;
+    min-width: 0;
     min-height: 0;
   }
   .modal-image-container {
-    width: 100%;
+    width: 100vw;
+    height: 100vw;
     max-width: 100vw;
-    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-    min-height: 240px;
-    height: auto;
+    min-height: 0;
+    border-radius: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, #2e1065 0%, #a78bfa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px 0 rgba(139, 92, 246, 0.10);
+    background: rgba(255,255,255,0.04);
   }
   .modal-info-scrollable {
-    width: 100%;
-    max-height: 60vh;
-    overflow-y: auto;
-    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+    width: 100vw;
+    max-width: 100vw;
+    max-height: none;
+    height: auto;
+    overflow-y: visible;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.18);
     position: relative;
     padding: 32px 16px 32px 16px;
@@ -382,6 +481,14 @@ const moreNfts = computed(() => {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+  }
+  .modal-close-button {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    z-index: 2;
   }
 }
 
@@ -391,7 +498,7 @@ const moreNfts = computed(() => {
   height: 100%;
   overflow: hidden;
   background: linear-gradient(135deg, #2e1065 0%, #a78bfa 100%);
-  border-radius: inherit;
+  border-radius: 0;
   position: relative;
   flex-shrink: 0;
   display: flex;
@@ -405,7 +512,7 @@ const moreNfts = computed(() => {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: inherit;
+  border-radius: 0;
   box-shadow: 0 4px 24px 0 rgba(139, 92, 246, 0.10);
   transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
   background: rgba(255,255,255,0.04);
@@ -472,12 +579,12 @@ const moreNfts = computed(() => {
 
 .modal-close-button {
   position: absolute;
-  top: var(--spacing-lg);
-  right: var(--spacing-lg);
-  width: 44px;
-  height: 44px;
-  font-size: 2.2rem;
-  z-index: 10;
+  top: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  font-size: 2.4rem;
+  z-index: 1002;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(16px) saturate(1.2);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
@@ -491,14 +598,14 @@ const moreNfts = computed(() => {
   border: 2px solid rgba(139, 92, 246, 0.18);
   box-shadow: 0 2px 8px 0 rgba(139, 92, 246, 0.10);
 }
-.modal-close-button:hover {
-  background: rgba(139, 92, 246, 0.22);
-  border-color: #a78bfa;
-  color: #fff;
-  transform: scale(1.08) rotate(8deg);
-}
-.modal-close-button:active {
-  transform: scale(0.96);
+@media (max-width: 899px) {
+  .modal-close-button {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
 }
 
 .modal-badge {
@@ -700,5 +807,63 @@ const moreNfts = computed(() => {
 .more-nfts-grid :deep(.nft-card):hover {
   box-shadow: 0 8px 24px 0 #a78bfa44;
   border: 1.5px solid #a78bfa;
+}
+
+.tx-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.tx-empty {
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.tx-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tx-item {
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.tx-type {
+  font-weight: 700;
+  color: #a78bfa;
+  margin-right: var(--spacing-md);
+}
+
+.tx-from, .tx-to {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tx-date {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tx-memo {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tx-approve {
+  color: #818cf8;
 }
 </style> 
