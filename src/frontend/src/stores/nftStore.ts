@@ -26,8 +26,10 @@ const cacheUtils = {
 
   set: (key: string, data: any) => {
     try {
+      // Always convert BigInt and Principal to string before storing
+      const safeData = convertBigIntToString(data)
       const item = {
-        data,
+        data: safeData,
         timestamp: Date.now(),
         version: CACHE_VERSION
       }
@@ -404,7 +406,9 @@ export const useNftStore = defineStore('nft', () => {
     standards: supportedStandards.value,
     customMetadata: customMetadata.value,
     totalCount: totalCount.value,
-    loading: collectionLoading.value
+    loading: collectionLoading.value,
+    standard: supportedStandards.value.length > 0 ? (supportedStandards.value[0].name || 'ICRC7') : 'ICRC7',
+    canisterId: MAINNET_CANISTER_ID
   }))
 
   // Fetch NFT owner by tokenId
@@ -419,7 +423,11 @@ export const useNftStore = defineStore('nft', () => {
       const result = await actor.icrc7_owner_of(ids)
       // result is Vec<Option<Account>>
       if (Array.isArray(result) && result.length > 0 && result[0] && result[0].owner) {
-        const principal = result[0].owner.toString()
+        // Principal may be an object, convert to string if needed
+        let principal = result[0].owner
+        if (typeof principal === 'object' && principal.toString) {
+          principal = principal.toString()
+        }
         cacheUtils.set(cacheKey, principal)
         return principal
       }
@@ -441,6 +449,7 @@ export const useNftStore = defineStore('nft', () => {
       const actor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } })
       const req = [{ start: BigInt(start), length: BigInt(length) }]
       const result = await actor.icrc3_get_blocks(req) as any
+      console.log('icrc3_get_blocks response:', result)
       // result.blocks: [{ id, block }]
       // block is a generic ICRC3Value, need to parse for tokenId
       const txs = ((result.blocks || []) as any[]).map((b: any) => ({ id: b.id, ...b.block }))
@@ -494,7 +503,9 @@ export const useNftStore = defineStore('nft', () => {
     if (cached) return cached
     try {
       const actor = createActor(MAINNET_CANISTER_ID, { agentOptions: { host: "https://icp0.io" } })
-      const result = await actor.icrc37_get_token_approvals(BigInt(tokenId), null, null) as any[]
+      // Always pass three arguments: token_id, [], [] (IDL.Opt = [] for None in JS candid bindings)
+      const result = await actor.icrc37_get_token_approvals(BigInt(tokenId), [], []) as any[]
+      console.log('icrc37_get_token_approvals response:', result)
       // result: array of approvals
       cacheUtils.set(cacheKey, result)
       return result

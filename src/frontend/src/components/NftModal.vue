@@ -37,7 +37,6 @@
           <div class="modal-nft-id">NFT #{{ nft.id }}</div>
           <div class="modal-collection-row">
             <span v-if="collection">{{ collection.name }}</span>
-            <span v-if="ownerPrincipal"> - Owned by {{ shortPrincipal(ownerPrincipal) }}</span>
           </div>
           <div class="modal-standard-pills">
             <span v-if="collection" class="pill">{{ collection.standard }}</span>
