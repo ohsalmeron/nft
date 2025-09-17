@@ -1,0 +1,183 @@
+============================================================
+COSMICRAFTS METADATA ANALYSIS REPORT
+============================================================
+
+📛 NAMES ANALYSIS
+------------------------------
+Total names: 300
+Unique names: 209
+Duplication rate: 30.3%
+
+🔴 DUPLICATE NAMES:
+  'Celestial Guardian' appears 23 times
+  'Celestial Sentinel' appears 11 times
+  'Spiral Bastion' appears 8 times
+  'Spiral Guardian' appears 6 times
+  'Spiral Sentinel' appears 5 times
+  'Spiral Vanguard' appears 4 times
+  'Aegis-Class Bastion' appears 4 times
+  'Aurora Sentinel' appears 3 times
+  'Celestial Guardian Escort' appears 3 times
+  'Interdictor Frigate IX' appears 3 times
+  'Celestial Aetherium Core' appears 3 times
+  'Celestial Sovereign' appears 3 times
+  'Sentinel of Kur' appears 3 times
+  'Cosmic Rafts' appears 3 times
+  'Celestial Nexus Core' appears 3 times
+  'Celestial Core' appears 3 times
+  'Celestial Guardian Fleet' appears 3 times
+  'Celestial Fighter Spritesheet' appears 3 times
+  'Praetor-Class Dreadnought' appears 3 times
+  'Ark of Uru' appears 2 times
+  'Spiral Guardian Vessel' appears 2 times
+  'Spiral Dominator' appears 2 times
+  'Vortex Core' appears 2 times
+  'Celestial Guardian Core' appears 2 times
+  'Cosmic Dominator' appears 2 times
+  'Celestial Harmonic Core' appears 2 times
+  'Orak Belt' appears 2 times
+  'Skarr Redfang' appears 2 times
+  'Celestial Guardian Vessel' appears 2 times
+  'Celestial Guardian Symbol' appears 2 times
+  'Celestial Harmony Core' appears 2 times
+  'Celestial Vindicator' appears 2 times
+
+📊 COMMON WORDS IN NAMES:
+  'celestial': 152 times
+  'guardian': 60 times
+  'spiral': 39 times
+  'core': 36 times
+  'sentinel': 27 times
+  'the': 17 times
+  'fleet': 14 times
+  'bastion': 13 times
+  'spritesheet': 12 times
+  'cosmic': 11 times
+
+🔄 NAME PATTERNS:
+  'Celestial *': 150 times
+  'Spiral *': 37 times
+  'Cosmic *': 10 times
+  'Aurora *': 9 times
+  'Ethereal *': 6 times
+  'Violet *': 6 times
+  'Vortex *': 4 times
+  'Sentinel *': 4 times
+  'Aegis-Class *': 4 times
+  'Cyber *': 4 times
+
+
+📝 DESCRIPTIONS ANALYSIS
+------------------------------
+Total descriptions: 300
+Unique descriptions: 298
+Duplication rate: 0.7%
+
+🔴 DUPLICATE DESCRIPTIONS:
+  'A steel-armada vessel with disciplined formations ...' appears 3 times
+
+📊 COMMON WORDS IN DESCRIPTIONS:
+  'the': 648 times
+  'a': 453 times
+  'and': 396 times
+  'with': 269 times
+  'violet': 224 times
+  'eon': 223 times
+  'by': 220 times
+  'celestials': 211 times
+  'to': 207 times
+  'during': 183 times
+  'cosmic': 172 times
+  'balance': 157 times
+  'maintain': 136 times
+  'spaceship': 127 times
+  'of': 121 times
+
+🔄 COMMON PHRASES:
+  'the violet': 223 times
+  'violet eon': 223 times
+  'the violet eon': 222 times
+  'by the': 214 times
+  'the celestials': 211 times
+  'by the celestials': 185 times
+  'during the': 180 times
+  'during the violet': 176 times
+  'during the violet eon': 176 times
+  'cosmic balance': 137 times
+
+
+🏷️ ATTRIBUTES ANALYSIS
+------------------------------
+Total attributes: 900
+
+📊 FACTION DISTRIBUTION:
+  Celestials: 244
+  Webes: 11
+  Cosmicons: 20
+  Spirats: 11
+  Archs: 9
+  Cyber Archs: 2
+  Spades: 3
+
+📊 TYPE DISTRIBUTION:
+  Spaceship: 174
+  Planet: 14
+  Artwork: 33
+  Badge: 6
+  Character: 28
+  Spritesheet: 45
+
+📊 RARITY DISTRIBUTION:
+  Rare: 157
+  Legendary: 29
+  Epic: 105
+  Common: 9
+
+
+🎯 FACTION NAMING COMPLIANCE
+------------------------------
+
+Celestials: 81.6% compliant (199/244)
+  Examples of non-compliant names:
+    - Ark of Uru
+    - Ethereal Shuttle
+    - Cosmic Guardian
+
+Webes: 54.5% compliant (6/11)
+  Examples of non-compliant names:
+    - Cosmic Rafts
+    - Cosmic Rafts
+    - Lunar Mechanus
+
+Cosmicons: 35.0% compliant (7/20)
+  Examples of non-compliant names:
+    - Cosmic Dominator
+    - Interdictor Frigate IX
+    - Aegir's Vigilance
+
+Spirats: 45.5% compliant (5/11)
+  Examples of non-compliant names:
+    - Aurelia's Gambit
+    - Sable Hark
+    - Spectra the Cosmic Rogue
+
+Archs: 66.7% compliant (6/9)
+  Examples of non-compliant names:
+    - Cyber Archs Spritesheet
+    - Cyber Arch Abomination
+    - Nyx the Whisperer
+
+Spades: 33.3% compliant (1/3)
+  Examples of non-compliant names:
+    - Mechanical Monstrosity
+    - Borg the Mechanic
+
+
+💡 RECOMMENDATIONS
+------------------------------
+🔴 Fix duplicate names - ensure each NFT has a unique name
+🔴 Fix duplicate descriptions - make each description unique
+⚠️ Reduce overuse of common words in names
+⚠️ Reduce overuse of common words in descriptions
+✅ Improve faction naming compliance for better immersion
+✅ Add more variety to descriptions and avoid repetitive phrases
